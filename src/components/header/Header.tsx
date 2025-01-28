@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { Button } from '../button'
+import { Button } from '../ui/button'
 import { Menu } from 'lucide-react'
 import {
     Avatar,
@@ -24,7 +24,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className='flex items-center gap-5'>
-                    <Avatar>
+                    <Avatar className='w-11 h-11'>
                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
