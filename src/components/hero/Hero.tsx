@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Phone, Linkedin, ArrowDown, ArrowRightCircle } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import Link from 'next/link'
+import DentalImage from '../../../public/images/Mask-group.png';
 
 const Hero = () => {
     return (
@@ -59,7 +60,7 @@ const Hero = () => {
 
                 <div className='lg:w-[40%] w-[60%] flex lg:mr-0 mt-10 lg:mt-0 mr-24 lg:flex justify-center relative'>
                     <Image
-                        src="/Mask-group.png"
+                        src={DentalImage}
                         layout="responsive"
                         width={700}
                         height={500}
