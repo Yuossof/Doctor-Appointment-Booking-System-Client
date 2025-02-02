@@ -9,6 +9,7 @@ export default {
   ],
   theme: {
     extend: {
+<<<<<<< HEAD
       container: {
         center: true,
         padding: '0.5rem',
@@ -20,6 +21,8 @@ export default {
           '2xl': '1636px',
         },
       },
+=======
+>>>>>>> 6ae4682e4646c10bfad428136630056986d91472
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

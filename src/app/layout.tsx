@@ -20,6 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ae4682e4646c10bfad428136630056986d91472
         className={`${inter.className} antialiased`}
       >
         <div className="w-full flex justify-center">
