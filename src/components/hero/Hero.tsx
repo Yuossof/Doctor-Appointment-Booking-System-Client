@@ -10,7 +10,7 @@ const Hero = () => {
     return (
         <section className='w-full mt-[90px]  flex items-center flex-col px-4 lg:ml-0 '>
             <div className='flex lg:flex-row items-center lg:gap-5 gap-0 w-full flex-col'>
-                <div className='lg:w-[60%] w-full text-left md:text-center lg:text-left flex flex-col items-start justify-start md:items-center lg:items-start'>
+                <div className='lg:w-[60%] w-full text-left md:text-center lg:text-left flex flex-col items-start justify-start md:items-center lg:items-start '>
                     <h1 className='text-3xl md:text-4xl lg:text-5xl text-dark-blue font-semibold leading-7 mb-6'>
                         Get Ready For Your Best Ever
                         Dental Experience!
