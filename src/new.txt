@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 new file sd ojojgjdpfjkgl
+=======
+new file sd ojojgjdpfjkgl asd
+>>>>>>> e443aa8474f10dcbce3921e90c5411cb3e94ed53
