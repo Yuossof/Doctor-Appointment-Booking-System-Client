@@ -8,7 +8,17 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: { 
+    screens: {
+      'sm': '540px',
+      'md': '768px',
+      'lg': '991px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
+    extend: {
+      container: {
+        center: true
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
