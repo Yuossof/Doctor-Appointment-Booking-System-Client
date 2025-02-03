@@ -16,7 +16,7 @@ const Header = () => {
                 <h1 className="font-semibold text-[35px] text-dark-blue">LOGO</h1>
                 <div>
                     <ul className='flex items-center gap-[38px] '>
-                        <li><Link href="/">Home</Link></li>
+                        <li><Link href="/">Home e</Link></li>
                         <li><Link href="/">Services</Link></li>
                         <li><Link href="/">Blogs</Link></li>
                         <li><Link href="/">About</Link></li>
