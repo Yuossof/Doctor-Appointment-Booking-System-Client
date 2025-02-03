@@ -17,7 +17,6 @@ export default {
     },
     extend: {
       container: {
-        padding: '200px',
         center: true
       },
       colors: {
