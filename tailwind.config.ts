@@ -17,8 +17,15 @@ export default {
     },
     extend: {
       container: {
-        padding: "80px",
-        center: true
+        center: true,
+        padding: "0",
+        screens: {
+          sm: "100%",
+          md: "100%",
+          lg: "100%",
+          xl: "100%",
+          "2xl": "100%",
+        },
       },
       colors: {
         background: 'hsl(var(--background))',
