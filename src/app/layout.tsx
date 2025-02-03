@@ -23,7 +23,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <div className="w-full flex justify-center">
-          <div className="container px-[10px] md:px-[20px] lg:px-[80px] ">
+          <div className="container px-[5px] md:px-[20px] lg:px-[80px]">
             <div className="translate-y-[35px]">
               <Header />
             </div>
