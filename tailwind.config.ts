@@ -9,11 +9,11 @@ export default {
   ],
   theme: {
     screens: {
-      'sm': '540px',
+      'sm': '576px',
       'md': '768px',
-      'lg': '991px',
-      'xl': '1280px',
-      '2xl': '1536px',
+      'lg': '992px',
+      'xl': '1200px',
+      '2xl': '1400px',
     },
     extend: {
       container: {
