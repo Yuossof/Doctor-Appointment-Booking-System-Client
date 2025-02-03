@@ -1,16 +1,15 @@
 import React from 'react'
-import { Button, buttonVariants } from '../ui/button'
+import { Button, buttonVariants } from '../../ui/button'
 import Image from 'next/image'
 import { Phone, Linkedin, ArrowDown, ArrowRightCircle } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar'
 import Link from 'next/link'
-import DentalImage from '../../../public/images/Mask-group.png';
 
 const Hero = () => {
     return (
-        <section className='w-full mt-[90px]  flex items-center flex-col px-4 lg:ml-0 '>
+        <section className='w-full mt-[110px]  flex items-center flex-col px-4 lg:ml-0 '>
             <div className='flex lg:flex-row items-center lg:gap-5 gap-0 w-full flex-col'>
-                <div className='lg:w-[60%] w-full text-left md:text-center lg:text-left flex flex-col items-start justify-start md:items-center lg:items-start '>
+                <div className='lg:w-[60%] w-full text-center lg:text-left flex flex-col items-center  md:items-center lg:items-start '>
                     <h1 className='text-3xl md:text-4xl lg:text-5xl text-dark-blue font-semibold leading-7 mb-6'>
                         Get Ready For Your Best Ever
                         Dental Experience!
@@ -38,7 +37,7 @@ const Hero = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex mb-7 lg:mb-6 mt-9 relative flex-col justify-start gap-2 shadow-lg lg:mt-11 p-3 lg:w-[40%] w-full md:w-[60%] rounded-lg border-[1px] border-gray-100'>
+                    <div className='flex mb-7 !text-left lg:mb-6 mt-9 relative flex-col justify-start gap-2 shadow-lg lg:mt-11 p-3 lg:w-[40%] w-full md:w-[60%] rounded-lg border-[1px] border-gray-100'>
                         <div className='absolute top-3 right-3 text-white bg-mid-blue rounded-md p-1'>
                             <Linkedin size={20} />
                         </div>
@@ -58,15 +57,16 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div className='hidden lg:w-[40%] w-[60%] md:flex lg:mr-0 mt-10 lg:mt-0 mr-24 lg:flex justify-center relative'>
+                <div className='hidden lg:w-[40%] w-[60%] lg:mr-0 mt-10 lg:mt-0 mr-24 lg:flex justify-center relative'>
                     <Image
-                        src={DentalImage}
-                        layout="responsive"
+                        src="/images/Mask-group.png"
+                        // layout="responsive"
                         width={700}
                         height={500}
                         priority
                         alt="Dental experience"
                         className='scale-105'
+                        loading='eager'
                     />
                 </div>
             </div>

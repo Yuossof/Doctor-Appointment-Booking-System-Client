@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased`}
+        className={`${inter.className} antialiased h-[300vh]`}
       >
         <div className="w-full flex justify-center">
-          <div className="container px-[5px] md:px-[20px] lg:px-[80px]">
-            <div className="translate-y-[35px]">
+          <div className="">
+            <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
               <Header />
             </div>
             <main>
