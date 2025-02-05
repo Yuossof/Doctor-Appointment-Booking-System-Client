@@ -1,13 +1,17 @@
-import React from 'react'
-import { Button, buttonVariants } from '../ui/button'
-import Image from 'next/image'
-import { Phone, Linkedin, ArrowDown, ArrowRightCircle } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import Link from 'next/link'
+'use client';
+
+import { Button, buttonVariants } from '../ui/button';
+import Image from 'next/image';
+import { Phone, Linkedin, ArrowDown, ArrowRightCircle } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import Link from 'next/link';
 import DentalImage from '../../../public/images/Mask-group.png';
 
 const Hero = () => {
+
+
     return (
+        <>
         <section className='w-full mt-[90px]  flex items-center flex-col px-4 lg:ml-0 '>
             <div className='flex lg:flex-row items-center lg:gap-5 gap-0 w-full flex-col'>
                 <div className='lg:w-[60%] w-full text-left md:text-center lg:text-left flex flex-col items-start justify-start md:items-center lg:items-start '>
@@ -118,6 +122,7 @@ const Hero = () => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

@@ -1,12 +1,16 @@
-
+'use server';
 import Hero from "@/components/hero/Hero";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import UpdateMessage from "@/components/UpdateMessage/UpdateMessage";
+import { cookies } from "next/headers";
+import ShowMessage from '@/components/ShowMessage/ShowMessage';
 
-export default function Home() {
+export default async function Home() {
+  const message = (await cookies()).get('message')?.value;
   return (
     <div>
-      <Hero />
+      <UpdateMessage message={message}/>
+      <ShowMessage/>
+      <Hero/>
     </div>
   );
 }

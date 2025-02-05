@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const flowbite = require("flowbite-react/tailwind");
 
 export default {
   darkMode: ["class"],
@@ -6,6 +7,7 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    flowbite.content(),
   ],
   theme: {
     screens: {
@@ -20,6 +22,7 @@ export default {
         padding: "80px",
         center: true
       },
+
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -27,6 +30,7 @@ export default {
         'mid-blue': '#1376f8',
         'sky-blue': '#25b4f8',
         'light-blue': '#e6f6fe',
+        'form': '#AFAFAF',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
@@ -77,5 +81,8 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    flowbite.plugin(),
+  ],
 } satisfies Config;
