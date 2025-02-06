@@ -1,12 +1,13 @@
 
+import AskQuestion from "@/components/home/ask-question/AskQuestion";
 import CareAndQuality from "@/components/home/care-and-quality/CareAndQuality";
 import DentalAdvantages from "@/components/home/dental-advantages/DentalAdvantages";
+import HappyClients from "@/components/home/happy-clients/HappyClients";
 import Hero from "@/components/home/hero/Hero";
 import SepecialistsSection from "@/components/home/specialists-section/SepecialistsSection";
 import WelcomeSection from "@/components/home/welcome-section/WelcomeSection";
 import WelcomePlaylist from "@/components/home/welcome-with-playlist/WelcomePlaylist";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
@@ -22,8 +23,14 @@ export default function Home() {
         <div className="my-32 w-full"></div>
         <WelcomePlaylist />
       </div>
+
       <div className="my-32 w-full"></div>
       <SepecialistsSection />
+      <div className="my-32 w-full"></div>
+
+      <div className="container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
+        <HappyClients />
+      </div>
     </div>
   );
 }

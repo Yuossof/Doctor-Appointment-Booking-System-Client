@@ -1,7 +1,9 @@
+"use client"
 import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
 import { Menu } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import {
     Avatar,
     AvatarFallback,
@@ -9,18 +11,29 @@ import {
 } from "@/components/ui/avatar"
 
 const Header = () => {
+    const links = [
+        { title: "Home", to: "/" },
+        { title: "Services", to: "/services" },
+        { title: "Blogs", to: "/blogs" },
+        { title: "About", to: "/about" },
+        { title: "Contact", to: "/contact" },
+    ]
+    const pathname = usePathname()
+
     return (
         <>
             {/* LG */}
-            <div className='hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md bg-light-blue px-7 border-2'>
+            <div className={`${pathname === "/" ? "bg-light-blue" : "bg-light-blue"} hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7`}>
                 <h1 className="font-semibold text-[35px] text-dark-blue">LOGO</h1>
                 <div>
                     <ul className='flex items-center gap-[38px] '>
-                        <li><Link href="/">Home e</Link></li>
-                        <li><Link href="/">Services</Link></li>
-                        <li><Link href="/">Blogs</Link></li>
-                        <li><Link href="/">About</Link></li>
-                        <li><Link href="/">Contact</Link></li>
+                        {links.map((lnk, i) => (
+                            <li
+                                key={i}
+                                className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
+                                <Link href={lnk.to}>{lnk.title}</Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <div className='flex items-center gap-5'>

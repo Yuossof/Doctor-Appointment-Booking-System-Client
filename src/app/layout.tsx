@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,16 +21,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased h-[300vh]`}
+        className={`${inter.className} antialiased`}
       >
         <div className="w-full flex justify-center">
-          <div className="">
-            <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
+          <div className="w-full">
+            <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
               <Header />
             </div>
             <main>
               {children}
             </main>
+            <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
+              <div className="my-32 w-full"></div>
+              <Footer />
+            </div>
           </div>
         </div>
       </body>
