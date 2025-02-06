@@ -6,7 +6,7 @@ import { ArrowRightCircle } from 'lucide-react'
 const ServicesHeroSection = () => {
     return (
         <section>
-            <div className='flex flex-col gap-3 items-center'>
+            <div className='flex flex-col gap-3 items-center md:px-0 px-6'>
                 <h1 className='font-semibold text-3xl sm:text-3xl md:text-4xl text-center lg:text-5xl lg:mt-0 mt-4 text-dark-blue lg:max-w-[80%]'>Services</h1>
                 <p className='text-muted-foreground lg:max-w-[80%] text-center'>
                     We use only the best quality materials on the market in order to provide the best <br />
@@ -14,7 +14,7 @@ const ServicesHeroSection = () => {
                     So don’t worry about anything and book yourself.
                 </p>
             </div>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-16'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-16 md:px-0 px-4'>
                 {[1, 2, 3, 4, 5, 6].map((_itm, i) => (
                     <div key={i}
                         className='bg-slate-50 rounded-lg flex flex-col  items-center

@@ -1,6 +1,6 @@
-import WelcomePlaylist from '@/components/home/welcome-with-playlist/WelcomePlaylist'
-import RequestAppointmentSection from '@/components/services/request-appointment-section/RequestAppointmentSection'
-import ServicesHeroSection from '@/components/services/services-hero-section/ServicesHeroSection'
+import WelcomePlaylist from '@/components/home-page/welcome-with-playlist/WelcomePlaylist'
+import RequestAppointmentSection from '@/components/services-page/request-appointment-section/RequestAppointmentSection'
+import ServicesHeroSection from '@/components/services-page/services-hero-section/ServicesHeroSection'
 import React from 'react'
 
 const page = () => {

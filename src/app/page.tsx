@@ -1,12 +1,12 @@
 
-import AskQuestion from "@/components/home/ask-question/AskQuestion";
-import CareAndQuality from "@/components/home/care-and-quality/CareAndQuality";
-import DentalAdvantages from "@/components/home/dental-advantages/DentalAdvantages";
-import HappyClients from "@/components/home/happy-clients/HappyClients";
-import Hero from "@/components/home/hero/Hero";
-import SepecialistsSection from "@/components/home/specialists-section/SepecialistsSection";
-import WelcomeSection from "@/components/home/welcome-section/WelcomeSection";
-import WelcomePlaylist from "@/components/home/welcome-with-playlist/WelcomePlaylist";
+import AskQuestion from "@/components/home-page/ask-question/AskQuestion";
+import CareAndQuality from "@/components/home-page/care-and-quality/CareAndQuality";
+import DentalAdvantages from "@/components/home-page/dental-advantages/DentalAdvantages";
+import HappyClients from "@/components/home-page/happy-clients/HappyClients";
+import Hero from "@/components/home-page/hero/Hero";
+import SepecialistsSection from "@/components/home-page/specialists-section/SepecialistsSection";
+import WelcomeSection from "@/components/home-page/welcome-section/WelcomeSection";
+import WelcomePlaylist from "@/components/home-page/welcome-with-playlist/WelcomePlaylist";
 
 
 export default function Home() {

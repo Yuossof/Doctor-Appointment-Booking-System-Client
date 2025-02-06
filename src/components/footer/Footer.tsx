@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { Facebook, Instagram, Youtube, Linkedin, Twitter } from 'lucide-react'
-import AskQuestion from '../home/ask-question/AskQuestion'
+import AskQuestion from '../home-page/ask-question/AskQuestion'
 
 const Footer = () => {
     return (

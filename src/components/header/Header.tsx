@@ -1,9 +1,9 @@
 "use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../ui/button'
-import { Menu } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import { Menu, X } from 'lucide-react'
 import {
     Avatar,
     AvatarFallback,
@@ -11,11 +11,13 @@ import {
 } from "@/components/ui/avatar"
 
 const Header = () => {
+    const [showHeader, setShowHeader] = useState(false)
+
     const links = [
         { title: "Home", to: "/" },
         { title: "Services", to: "/services" },
         { title: "Blogs", to: "/blogs" },
-        { title: "About", to: "/about" },
+        { title: "About", to: "/about-us" },
         { title: "Contact", to: "/contact" },
     ]
     const pathname = usePathname()
@@ -46,13 +48,40 @@ const Header = () => {
             </div>
 
             {/* SM */}
-            <div className='lg:hidden md:hidden px-5'>
+            <div className='lg:hidden md:hidden px-5 bg-white'>
                 <div className='w-full flex items-center justify-between'>
                     <h1 className="font-semibold text-[35px] text-dark-blue">LOGO</h1>
-                    <div className='bg-mid-blue rounded-lg p-3'>
+                    <div
+                        onClick={() => setShowHeader(true)}
+                        className='bg-mid-blue rounded-lg p-3 hover:bg-primary cursor-pointer'>
                         <Menu className='text-light-blue' />
                     </div>
                 </div>
+                {showHeader && (
+                    <div onClick={() => setShowHeader(false)} className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-40'>
+                        <div className='w-full flex justify-center items-center h-[55vh]'>
+                            <div
+                                onClick={(eo) => { eo.stopPropagation() }}
+                                className='mt-14 relative bg-slate-50 rounded-md w-[85%] p-6'>
+                                <div onClick={() => setShowHeader(false)} className='absolute top-3 right-3 p-2 hover:opacity-85 cursor-pointer'>
+                                    <X />
+                                </div>
+                                <div>
+                                    <ul className='flex flex-col justify-center gap-7 '>
+                                        {links.map((lnk, i) => (
+                                            <li
+                                                key={i}
+                                                className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
+                                                <Link href={lnk.to}>{lnk.title}</Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
             </div>
         </>
     )
