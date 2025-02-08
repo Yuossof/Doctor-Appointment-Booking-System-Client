@@ -9,20 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@hookform/resolvers": "^3.10.0",
-=======
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^3.10.0",
     "@mui/icons-material": "^6.4.3",
     "@mui/material": "^6.4.3",
     "@radix-ui/react-accordion": "^1.2.2",
->>>>>>> 0ec8306bc817504dfdb540a4e4ed355dc07de486
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-popover": "^1.1.5",
     "@radix-ui/react-select": "^2.1.5",
     "@radix-ui/react-slot": "^1.1.1",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookie-universal": "^2.2.2",

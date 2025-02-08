@@ -25,11 +25,8 @@ const Header = () => {
     return (
         <>
             {/* LG */}
-<<<<<<< HEAD
-            <div className='hidden container items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md bg-light-blue px-7 border-2'>
-=======
+
             <div className={`${pathname === "/" ? "bg-light-blue" : "bg-light-blue"} hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7`}>
->>>>>>> 0ec8306bc817504dfdb540a4e4ed355dc07de486
                 <h1 className="font-semibold text-[35px] text-dark-blue">LOGO</h1>
                 <div>
                     <ul className='flex items-center gap-[38px] '>
