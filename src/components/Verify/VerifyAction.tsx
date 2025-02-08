@@ -42,5 +42,6 @@ export default async function VerifyAction(state: any, formData: FormData) {
       const data = await res.json();
       cookiesStore.set('message', data.message);
       cookiesStore.set('data', JSON.stringify(data.data));
+      cookiesStore.delete('verify');
       redirect('/');
 }

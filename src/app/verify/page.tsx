@@ -17,7 +17,7 @@ export default async function Verify() {
     const message = (await cookies()).get('message')?.value;
     const user: UserData = await GetUser();
     await SendCode();
-
+    
     return (
         <>
             <UpdateMessage message={message} />

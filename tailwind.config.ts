@@ -11,16 +11,23 @@ export default {
   ],
   theme: {
     screens: {
-      'sm': '540px',
+      'sm': '576px',
       'md': '768px',
-      'lg': '991px',
-      'xl': '1280px',
-      '2xl': '1536px',
+      'lg': '992px',
+      'xl': '1200px',
+      '2xl': '1400px',
     },
     extend: {
       container: {
-        padding: "80px",
-        center: true
+        center: true,
+        padding: "0",
+        screens: {
+          sm: "100%",
+          md: "100%",
+          lg: "100%",
+          xl: "100%",
+          "2xl": "100%",
+        },
       },
 
       colors: {

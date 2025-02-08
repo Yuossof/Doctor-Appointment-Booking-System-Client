@@ -7,7 +7,8 @@ import userImage from '../../../public/images/user.png';
 import EnvelopeImage from '../../../public/images/envelope 1.png';
 import PasswordImage from '../../../public/images/lock 1.png';
 import Link from "next/link";
-import { Datepicker } from "flowbite-react";
+import './style.css';
+
 import {
     Select,
     SelectContent,

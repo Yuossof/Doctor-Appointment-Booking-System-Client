@@ -13,19 +13,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+<html lang="en">
       <body>
         <ToastMessageProvider>
-          <div className="w-full flex justify-center relative">
-            <div className="container px-[5px] md:px-[20px] lg:px-[80px]">
-              <div className="translate-y-[35px]">
-                <Header />
-              </div>
-              <main>
-                {children}
-              </main>
+        <div className="w-full flex justify-center">
+          <div className="">
+            <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
+              <Header />
             </div>
+            <main>
+              {children}
+            </main>
           </div>
+        </div>
         </ToastMessageProvider>
       </body>
     </html>
