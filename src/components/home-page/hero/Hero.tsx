@@ -33,7 +33,7 @@ const Hero = () => {
                             })}>
                                 <Phone />
                             </div>
-                            <div className='flex flex-col gap-1 justify-start text-left'>
+                            <div className='flex flex-col gap-1 lg:ml-2 justify-start text-left'>
                                 <span className='text-mid-blue lg:text-lg text-xs'>Dental H24 emergancy</span>
                                 <span className='text-xs lg:text-lg'>01023968776</span>
                             </div>
