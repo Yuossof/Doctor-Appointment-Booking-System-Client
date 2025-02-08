@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+osama saif
+=======
 specialists: {
  1- [
  name : Dr. James Connors;
@@ -41,3 +44,4 @@ title: The Future of Dentistry is Digital: ;
 content: {
   Dentists today already utilize software to capture insights in clinical decision-making. These practices will continue to develop to integrate AI algorithms that enable clinicians to find the best modalities for their patients. In the 21st century, digital radiographs and 3D imaging have become the standard of dental care. Using an intraoral scanner with digitized data for 3D dental impressions (vs. polyvinyl siloxane and rubber base impressions) for a dental crown is now commonplace. Artificial intelligence is laying the groundwork for the future of the dental industry. Dental robots can now perform functions such as filling cavities and cleaning or extracting teeth
 }
+>>>>>>> 0ec8306bc817504dfdb540a4e4ed355dc07de486
