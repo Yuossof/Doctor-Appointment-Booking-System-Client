@@ -7,10 +7,10 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 import { useState } from 'react'
-
+import { usePathname } from 'next/navigation'
 
 const AskQuestion = () => {
-
+    const pathname = usePathname()
     const [item, setItem] = useState<number | null>(null)
 
     const accordions = [
@@ -19,7 +19,7 @@ const AskQuestion = () => {
     ]
 
     return (
-        <div className='flex flex-col gap-4 items-center px-[20px]'>
+        <div className={`${pathname === "/check-email" ? "hidden" : "flex"} flex-col gap-4 items-center px-[20px] `}>
             <div className='text-center flex flex-col items-center'>
                 <h2 className='font-semibold text-2xl  sm:text-2xl md:text-3xl lg:text-4xl lg:mt-0 mt-4 text-dark-blue lg:max-w-[80%]'>Frequently Ask Question</h2>
                 <p className='text-muted-foreground text-md lg:max-w-[80%] mt-4'>

@@ -21,9 +21,9 @@ export default function SignInformation(props: InformationData) {
                 <span className='text-[13px] text-dark-blue'>{ props.method } with Google</span>
             </Link>
             <div className="relative flex items-center justify-center mt-6 w-[800px]">
-                <div className="before:content-['']  before:block before:w-[380px] before:h-[1px] before:bg-dark-blue before:absolute before:left-0 before:top-1/2"></div>
-                <span className="px-4 text-dark-blue">Or</span>
-                <div className="after:content-[''] after:block after:w-[380px] after:h-[1px] after:bg-dark-blue after:absolute after:right-0 after:top-1/2"></div>
+                <div className="before:content-['']  before:block before:w-[380px] before:h-[1px] before:bg-gray-400 before:absolute before:left-0 before:top-1/2"></div>
+                <span className="px-4 text-gray-700">Or</span>
+                <div className="after:content-[''] after:block after:w-[380px] after:h-[1px] after:bg-gray-400 after:absolute after:right-0 after:top-1/2"></div>
             </div>
         </div>
     )

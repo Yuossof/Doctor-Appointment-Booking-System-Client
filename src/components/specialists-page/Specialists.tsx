@@ -23,6 +23,7 @@ const Specialists = () => {
             image: "/images/Rectangle 660.png"
         },
     ]
+    
     return (
         <section className='flex justify-center'>
             <div className='lg:w-[70%] w-full flex flex-col'>

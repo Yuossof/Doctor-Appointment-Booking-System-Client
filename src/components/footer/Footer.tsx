@@ -4,6 +4,7 @@ import { Facebook, Instagram, Youtube, Linkedin, Twitter } from 'lucide-react'
 import AskQuestion from '../home-page/ask-question/AskQuestion'
 
 const Footer = () => {
+    
     return (
         <>
             <AskQuestion />

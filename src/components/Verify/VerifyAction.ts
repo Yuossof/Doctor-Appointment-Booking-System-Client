@@ -1,5 +1,4 @@
 'use server'
-import React from 'react'
 import GetToken from '../GetToken/GetToken'
 import { VerfiySchema } from './VerifySchema';
 import { cookies } from 'next/headers';

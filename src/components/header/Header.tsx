@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { Button } from '../ui/button'
+// import { Button } from '../ui/button'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import {
@@ -9,6 +9,8 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
+import { DropdownMenuCheckboxes } from './DropdownMenu'
+import { Button } from '../ui/button'
 
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
@@ -40,11 +42,19 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className='flex items-center gap-5'>
-                    <Avatar className='w-11 h-11'>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <Button className='bg-mid-blue h-[48px]'>Book Now</Button>
+                    <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
+                    <div className='flex items-center gap-2'>
+                        <Button asChild className='bg-mid-blue py-6 px-6'>
+                            <Link href="/register">
+                                Register
+                            </Link>
+                        </Button>
+                        <Button asChild variant={"outline"} className='py-6 px-6 hover:bg-slate-50'>
+                            <Link href="/login">
+                                Login
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
             </div>
 
@@ -89,3 +99,14 @@ const Header = () => {
 }
 
 export default Header
+
+
+
+function AvatarCmp() {
+    return (
+        <Avatar className='w-11 h-11'>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+    )
+}
