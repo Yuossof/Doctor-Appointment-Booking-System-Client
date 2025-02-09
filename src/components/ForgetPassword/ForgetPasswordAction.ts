@@ -38,6 +38,7 @@ export default async function ForgetPasswordAction(state: any, formData: FormDat
     }
 
     const data = await res.json();
+    cookie.set('data', JSON.stringify(data.data));
     cookie.set('message', data.message);
     cookie.delete('email');
     redirect('/');

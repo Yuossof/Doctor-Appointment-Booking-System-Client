@@ -1,5 +1,4 @@
 'use server';
-import React from 'react'
 import { LoginSchema } from './LoginSchema';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';

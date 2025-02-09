@@ -3,7 +3,7 @@ import RequestAppointmentSection from '@/components/services-page/request-appoin
 import ServicesHeroSection from '@/components/services-page/services-hero-section/ServicesHeroSection'
 import React from 'react'
 
-const page = () => {
+const Services = () => {
     return (
         <div>
             <div className='container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]'>
@@ -22,4 +22,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Services

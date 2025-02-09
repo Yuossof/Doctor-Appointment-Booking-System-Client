@@ -23,9 +23,9 @@ export default function RegisterForm() {
     const handleCheckBox = () => setCheckbox(prev => !prev);
 
     return (
-        <form action={action} className="w-[800px] mt-6 flex flex-col gap-6">
+        <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] sm:mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-3">
                 <div className='relative w-full'>
                     <div className="flex items-center gap-2 mb-1">
                         <Image className="absolute left-[15px]" src={userImage} alt="User Image" width={20} height={20} />
@@ -43,7 +43,7 @@ export default function RegisterForm() {
                 </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-3">
                 <div className='relative w-full'>
                     <div className="flex items-center gap-2 mb-1">
                         <Image className="absolute left-[15px]" src={EnvelopeImage} alt="User Image" width={20} height={20} />
@@ -61,7 +61,7 @@ export default function RegisterForm() {
                 </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-3">
                 <div className='relative w-full'>
                     <div className="flex items-center gap-2 mb-1">
                         <Image className="absolute left-[15px]" src={PasswordImage} alt="User Image" width={20} height={20} />
@@ -79,7 +79,7 @@ export default function RegisterForm() {
                 </div>
             </div>
 
-            <div className="flex gap-2 justify-between">
+            <div className="flex flex-col sm:flex-row gap-3 justify-between">
                 <div className="flex flex-col gap-1 w-full">
                     <input defaultValue={state?.data?.gender} type="date" name="birth_date" className="text-body-text rounded-lg border border-form" />
 
