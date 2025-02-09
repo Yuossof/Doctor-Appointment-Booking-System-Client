@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function page() {
 
 return (
-    <div className='flex flex-col mt-16 items-center justify-center'>
+    <div className='flex flex-col md:mt-16 items-center justify-center'>
         <SignInformation method='Sign Up' title='Create An Account' 
         desc='Discover a better way of spandings with Uifry.' />
         <RegisterForm/>

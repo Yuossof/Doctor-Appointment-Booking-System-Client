@@ -1,6 +1,6 @@
 .ring-offset-background{
     border: none;
-    border: 1px solid #afafaf;
+    border: 1px solid #cccccc;
     border-radius: 0.5rem;
 }
 .ring-offset-background:focus{

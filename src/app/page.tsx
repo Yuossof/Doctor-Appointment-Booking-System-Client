@@ -1,9 +1,6 @@
-'use server';
 import UpdateMessage from "@/components/UpdateMessage/UpdateMessage";
 import { cookies } from "next/headers";
 import ShowMessage from '@/components/ShowMessage/ShowMessage';
-
-
 import AskQuestion from "@/components/home-page/ask-question/AskQuestion";
 import CareAndQuality from "@/components/home-page/care-and-quality/CareAndQuality";
 import DentalAdvantages from "@/components/home-page/dental-advantages/DentalAdvantages";
@@ -12,11 +9,11 @@ import Hero from "@/components/home-page/hero/Hero";
 import SepecialistsSection from "@/components/home-page/specialists-section/SepecialistsSection";
 import WelcomeSection from "@/components/home-page/welcome-section/WelcomeSection";
 import WelcomePlaylist from "@/components/home-page/welcome-with-playlist/WelcomePlaylist";
-
-
+import { GetUser } from "@/components/GetUser/GetUser";
 
 export default async function Home() {
   const message = (await cookies()).get('message')?.value;
+  const user = await GetUser();
   return (
     <div>
       <UpdateMessage message={message}/>

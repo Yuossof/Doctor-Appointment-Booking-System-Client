@@ -1,3 +1,4 @@
+'use server'
 import { NextRequest, NextResponse } from "next/server";
 import { GetUser } from "./components/GetUser/GetUser";
 import { cookies } from "next/headers";
@@ -7,28 +8,23 @@ export async function middleware(request: NextRequest){
     const cookie = await cookies();
     const { pathname, searchParams } = request.nextUrl;
     const emailParams = searchParams.get('email');
-    const emailCookie = cookie.get('email')
-    const verify = cookie.get('verify');
+    const emailCookie = cookie.get('email');
 
     if(!user && pathname.startsWith('/verify')){
-        const response = NextResponse.redirect(new URL('/', request.nextUrl));
-        cookie.set('message', 'You are not authorized to visit this route.');
-        return response;
+        return NextResponse.redirect(new URL('/', request.nextUrl));
     } 
 
-    if(user && user.email_verified_at == null && verify && pathname.startsWith('/verify')){
+    if(user && user.email_verified_at == null && pathname.startsWith('/verify')){
         return NextResponse.next();
     }
 
     if(!emailParams || emailParams !== emailCookie?.value && pathname.startsWith('/forgetPassword')){
-        const response = NextResponse.redirect(new URL('/', request.nextUrl));
-        cookie.set('message', 'You are not authorized to visit this route.');
-        return response;
+        return NextResponse.redirect(new URL('/', request.nextUrl));
     }
-    
+
     return NextResponse.next();
 }
 
 export const config = {
-    matcher : ['/verify', '/forgetPassword']
+    matcher : ['/verify','/forgetPassword']
 }
