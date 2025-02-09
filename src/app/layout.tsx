@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header/Header";
 import ToastMessageProvider from "@/components/Context/ToastMessage";
 import Footer from "@/components/footer/Footer";
+import CheckPathName from "@/components/CheckPathName/CheckPathName";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -26,10 +27,7 @@ export default function RootLayout({
             <main>
               {children}
             </main>
-            <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
-              <div className="my-32 w-full"></div>
-              <Footer />
-            </div>
+            <CheckPathName/>
           </div>
         </div>
         </ToastMessageProvider>

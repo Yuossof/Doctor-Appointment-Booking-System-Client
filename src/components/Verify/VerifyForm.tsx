@@ -38,7 +38,7 @@ export default function VerifyForm() {
     }, [message])
 
     return (
-        <form action={action} className="w-[800px] mt-6 flex flex-col gap-6">
+        <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">
             { message && 
                 <div className="bg-green-300 text-white w-full rounded-md p-2 text-center">
                     <span>{message}</span>

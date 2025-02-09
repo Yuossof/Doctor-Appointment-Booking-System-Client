@@ -5,7 +5,8 @@ import AskQuestion from '../home-page/ask-question/AskQuestion'
 
 const Footer = () => {
     return (
-        <>
+        <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
+        <div className="my-32 w-full"></div>
             <AskQuestion />
             <div className="my-36 w-full"></div>
 
@@ -56,7 +57,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
 
     )
 }

@@ -14,7 +14,7 @@ export default function ForgetPasswordForm({ email }: TypeEmail) {
     const [state, action, pending] = useActionState(ForgetPasswordAction, undefined);
 
     return (
-        <form action={action} className="w-[800px] mt-6 flex flex-col gap-6">
+        <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">
             <div className='relative w-full'>
                 <input type="hidden" name="email" value={email} />
                 <div className="flex items-center gap-2 mb-1">

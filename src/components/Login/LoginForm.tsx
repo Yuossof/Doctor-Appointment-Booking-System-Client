@@ -8,11 +8,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import Cookie from 'cookie-universal';
 import { GrFormCheckmark } from "react-icons/gr";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
     const [state, action, pending] = useActionState(LoginAction, undefined);
     const [message, setMessage] = useState('');
     const [checkbox, setCheckbox] = useState(false);
+    const router = useRouter();
     const cookie = Cookie();
     
     const handleCheckBox = () => setCheckbox(prev => !prev);
@@ -22,10 +24,12 @@ export default function LoginForm() {
             setMessage(state.errors.error);
         } 
         if (state?.userData) {
-            console.log(state.userData);
-            cookie.set('data', JSON.stringify(state.userData));
-            cookie.set('message', state.message);
-            redirect('/verify?from=login');
+            if(state?.userData.user.email_verified_at == null){
+                console.log(state?.userData.user)
+                cookie.set('data', JSON.stringify(state.userData));
+                cookie.set('message', state.message);
+                router.push('/verify');
+            }
         }
     }, [state])
 
@@ -38,9 +42,9 @@ export default function LoginForm() {
     }, [message]);
 
     return (
-        <form action={action} className="w-[800px] mt-6 flex flex-col gap-6">
+        <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] sm:mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">
             {message &&
-                <div className="bg-red-500 text-white w-full rounded-md p-2 text-center">
+                <div className="bg-red-500 text-white w-full rounded-md p-2 text-center text-[12px] sm:text-[14px]">
                     <span>{message}</span>
                 </div>
             }

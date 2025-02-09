@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Login() {
   return (
-    <div className='flex flex-col items-center justify-center h-[calc(100vh-80px)]'>
+    <div className='flex flex-col items-center justify-center'>
         <SignInformation method='Login' title='Welcome Back' 
         desc='Discover a better way of spandings with Uifry.' />
         <LoginForm/>

@@ -1,7 +1,7 @@
 import Specialists from '@/components/specialists-page/Specialists'
 import React from 'react'
 
-const Page = () => {
+const Specialist = () => {
     return (
         <div className='flex flex-col items-center container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]'>
             <div className='text-center flex flex-col items-center mt-14'>
@@ -19,4 +19,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default Specialist
