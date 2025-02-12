@@ -81,7 +81,7 @@ export default function ContactForm() {
         </div>
       </div>
       <label htmlFor="msg">
-        <textarea placeholder="Type Your Message" className="w-full rounded-lg resize-none h-[160px] border border-form" name="message" id="msg"></textarea>
+        <textarea placeholder="Type Your Message" className="w-full p-2 focus:outline-none rounded-lg resize-none h-[160px] border border-form" name="message" id="msg"></textarea>
         {state?.errors?.message && <span className="text-red-600">{state.errors.message[0]}</span>}
       </label>
 

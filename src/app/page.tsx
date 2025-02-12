@@ -13,7 +13,7 @@ import { GetUser } from "@/components/GetUser/GetUser";
 export default async function Home() {
   const message = (await cookies()).get('message')?.value;
   const user = await GetUser();
-  console.log(user)
+  
   return (
     <div>
       <UpdateMessage message={message}/>

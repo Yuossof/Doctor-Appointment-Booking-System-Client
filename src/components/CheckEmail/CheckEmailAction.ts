@@ -27,7 +27,6 @@ export default async function CheckEmailAction(state: any, formData: FormData) {
 
       if (!res.ok) {
         const errorsData = await res.json();
-        console.log(errorsData);
         return {
           errors: errorsData.errors,
           data: formValues,

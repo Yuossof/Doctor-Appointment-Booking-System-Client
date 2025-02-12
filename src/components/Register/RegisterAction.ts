@@ -45,6 +45,8 @@ export default async function RegisterAction(state: any, formData: FormData) {
 
     const data = await res.json();
     cookiesStore.set('data', JSON.stringify(data.data));
-    redirect('/verify');
+    return {
+      user: data.data
+    }
 }
 

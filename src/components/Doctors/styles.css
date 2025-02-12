@@ -1,0 +1,24 @@
+ .parent {
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+     position: relative;
+     flex-basis: 20%;
+ }
+
+ .mySwiper {
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+     position: relative !important;
+ }
+
+ .swiper-pagination {
+     position: absolute !important;
+     bottom: -30px !important;
+ }
+
+ .swiper-cube .swiper-cube-shadow {
+     display: none;
+     opacity: 0;
+ }

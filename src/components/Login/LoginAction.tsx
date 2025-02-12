@@ -1,12 +1,11 @@
 'use server';
-import { LoginSchema } from './LoginSchema';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { LoginSchema } from './LoginSchema';
+
 
 export default async function LoginAction(state: any, formData: FormData) {
-
-    const cookiesStore = await cookies();
-
+    const cookie = await cookies();
+    
     const formValues = {
         email: formData.get('email')?.toString() || '',
         password: formData.get('password')?.toString() || ''
@@ -31,6 +30,7 @@ export default async function LoginAction(state: any, formData: FormData) {
     
         if (!res.ok) {
           const errorsData = await res.json();
+          console.log(errorsData);
           return {
             errors: errorsData.errors,
             data: formValues,
@@ -40,7 +40,9 @@ export default async function LoginAction(state: any, formData: FormData) {
         }
     
         const data = await res.json();
-        cookiesStore.set('data', JSON.stringify(data.data));
-        cookiesStore.set('message', data.message);
-        redirect('/');
+        cookie.set('data', JSON.stringify(data.data));
+
+        return {
+          user: data.data
+        }
 }
