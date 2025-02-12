@@ -1,9 +1,9 @@
 import React from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AvatarCmp } from '@/components/Avatar';
 
 const HappyClients = () => {
     const clients = [
@@ -44,10 +44,7 @@ const HappyClients = () => {
                     <div key={i} className='flex flex-col items-start p-4 shadow-lg bg-slate-50 rounded-lg border-[1px] border-gray-300'>
                         <div className='flex gap-2'>
                             <div>
-                                <Avatar className='w-11 h-11'>
-                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                    <AvatarFallback>CN</AvatarFallback>
-                                </Avatar>
+                                <AvatarCmp imgSrc="https://github.com/shadcn.png" />
                             </div>
                             <div>
                                 <h3 className='text-md text-dark-blue'>{client.name}</h3>

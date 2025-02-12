@@ -31,7 +31,7 @@ export default function RegisterForm() {
                         <Image className="absolute left-[15px]" src={userImage} alt="User Image" width={20} height={20} />
                         <input defaultValue={state?.data?.first_name?.toString()} className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="text" placeholder="Type Your First Name" name="first_name" />
                     </div>
-                    {state?.errors?.first_name && <span className="text-red-600">{state.errors.first_name[0]}</span>}
+                    {state?.errors?.first_name && <span className="text-red-500 text-sm pl-1">{state.errors.first_name[0]}</span>}
                 </div>
 
                 <div className='relative w-full'>
@@ -39,7 +39,7 @@ export default function RegisterForm() {
                         <Image className="absolute left-[15px]" src={userImage} alt="User Image" width={20} height={20} />
                         <input defaultValue={state?.data?.last_name?.toString()} className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="text" placeholder="Type Your Last Name" name="last_name" />
                     </div>
-                    {state?.errors?.last_name && <span className="text-red-600">{state.errors.last_name[0]}</span>}
+                    {state?.errors?.last_name && <span className="text-red-500 text-sm pl-1">{state.errors.last_name[0]}</span>}
                 </div>
             </div>
 
@@ -49,7 +49,7 @@ export default function RegisterForm() {
                         <Image className="absolute left-[15px]" src={EnvelopeImage} alt="User Image" width={20} height={20} />
                         <input defaultValue={state?.data?.email?.toString()} className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="email" placeholder="Type Your Email" name="email" />
                     </div>
-                    {state?.errors?.email && <span className="text-red-600">{state.errors.email[0]}</span>}
+                    {state?.errors?.email && <span className="text-red-500 text-sm pl-1">{state.errors.email[0]}</span>}
                 </div>
 
                 <div className='relative w-full'>
@@ -57,7 +57,7 @@ export default function RegisterForm() {
                         <Image className="absolute left-[15px]" src={EnvelopeImage} alt="User Image" width={20} height={20} />
                         <input defaultValue={state?.data?.phone?.toString()} className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="text" placeholder="Type Your Phone" name="phone" />
                     </div>
-                    {state?.errors?.phone && <span className="text-red-600">{state.errors.phone[0]}</span>}
+                    {state?.errors?.phone && <span className="text-red-500 text-sm pl-1">{state.errors.phone[0]}</span>}
                 </div>
             </div>
 
@@ -67,7 +67,7 @@ export default function RegisterForm() {
                         <Image className="absolute left-[15px]" src={PasswordImage} alt="User Image" width={20} height={20} />
                         <input className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="password" placeholder="Type Your Password" name="password" />
                     </div>
-                    {state?.errors?.password && <span className="text-red-600">{state.errors.password[0]}</span>}
+                    {state?.errors?.password && <span className="text-red-500 text-sm pl-1">{state.errors.password[0]}</span>}
                 </div>
 
                 <div className='relative w-full'>
@@ -75,15 +75,15 @@ export default function RegisterForm() {
                         <Image className="absolute left-[15px]" src={PasswordImage} alt="User Image" width={20} height={20} />
                         <input className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="password" placeholder="Type Your Password Confirmation" name="password_confirmation" />
                     </div>
-                    {state?.errors?.password_confirmation && <span className="text-red-600">{state.errors.password_confirmation[0]}</span>}
+                    {state?.errors?.password_confirmation && <span className="text-red-500 text-sm pl-1">{state.errors.password_confirmation[0]}</span>}
                 </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-between">
                 <div className="flex flex-col gap-1 w-full">
-                    <input defaultValue={state?.data?.gender} type="date" name="birth_date" className="text-body-text rounded-lg border border-form" />
+                    <input defaultValue={state?.data?.gender} type="date" name="birth_date" className="text-body-text h-full px-3 rounded-lg border border-form" />
 
-                    {state?.errors?.birth_date && <span className="text-red-600">{state.errors.birth_date[0]}</span>}
+                    {state?.errors?.birth_date && <span className="text-red-500 text-sm pl-1">{state.errors.birth_date[0]}</span>}
                 </div>
 
                 <div className="w-full">
@@ -96,7 +96,7 @@ export default function RegisterForm() {
                             <SelectItem value="F">Female</SelectItem>
                         </SelectContent>
                     </Select>
-                    {state?.errors?.gender && <span className="text-red-600">{state.errors.gender[0]}</span>}
+                    {state?.errors?.gender && <span className="text-red-500 text-sm pl-1">{state.errors.gender[0]}</span>}
                 </div>
             </div>
 

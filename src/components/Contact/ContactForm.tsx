@@ -35,7 +35,7 @@ export default function ContactForm() {
         last_name: user.last_name
       });
     }
-  }, []);
+  }, [cookieStore]);
 
   useEffect(() => {
     if (state?.success) {
@@ -84,7 +84,6 @@ export default function ContactForm() {
         <textarea placeholder="Type Your Message" className="w-full rounded-lg resize-none h-[160px] border border-form" name="message" id="msg"></textarea>
         {state?.errors?.message && <span className="text-red-600">{state.errors.message[0]}</span>}
       </label>
-
 
       <button className="bg-mid-blue rounded-lg py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed" disabled={pending}>
         {pending ? <span className="flex items-center justify-center gap-2">Loading <span className="loader"></span></span> : 'Send Message'}

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Footer from "../footer/Footer";
 
-export default function CheckPathName() {
+export default function FooterWithCheckPathName() {
     const pathName = usePathname();
 
     const hideFooter = pathName.startsWith('/login') || 
@@ -11,7 +11,8 @@ export default function CheckPathName() {
                        pathName.startsWith('/register') || 
                        pathName.startsWith('/check-email') || 
                        pathName.startsWith('/forgetPassword') ||
-                       pathName.startsWith('/contact');
+                       pathName.startsWith('/contact') ||
+                       pathName.startsWith("/doctor-dashboard")
 
     return <>{!hideFooter && <Footer />}</>;
 }

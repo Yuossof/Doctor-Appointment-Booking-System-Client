@@ -1,34 +1,29 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header/Header";
-import ToastMessageProvider from "@/components/Context/ToastMessage";
-import CheckPathName from "@/components/CheckPathName/CheckPathName";
+import ToastMessageProvider from "@/components/Context/ToastMessage"; 
+import FooterWithCheckPathName from "@/components/CheckPathName/FooterWithCheckPathName";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 
+
+  return (
     <html lang="en">
       <body>
         <ToastMessageProvider>
-        <div className="w-full flex justify-center">
-          <div className="w-full">
-            <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
-              <Header />
+          <div className="w-full flex flex-col">
+            <Header />
+            <div className="w-full">
+              <main>{children}</main>
             </div>
-            <main>
-              {children}
-            </main>
-            <CheckPathName/>
+
+            {/* Footer  */}
+            <FooterWithCheckPathName />
           </div>
-        </div>
         </ToastMessageProvider>
       </body>
     </html>

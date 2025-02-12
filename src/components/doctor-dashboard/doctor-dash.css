@@ -1,0 +1,13 @@
+.cols-animation{
+    animation-name: cols-anim;
+    animation-duration: 1s;
+}
+
+@keyframes cols-anim {
+    0%{
+        height: 0;
+    }
+    100%{
+        height: auto;
+    }
+}

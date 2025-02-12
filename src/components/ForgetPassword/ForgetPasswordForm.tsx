@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import ForgetPasswordAction from "./ForgetPasswordAction";
 import Image from "next/image";
 import PasswordImage from '@/../public/images/lock 1.png';

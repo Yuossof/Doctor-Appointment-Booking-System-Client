@@ -22,7 +22,7 @@ export function DropdownMenuCheckboxes({AvatarCmp}: DropdownMenuCheckboxesProps)
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <button className="outline-none">
-                    <AvatarCmp />
+                    <AvatarCmp imgSrc="https://github.com/shadcn.png"/>
                 </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 mr-24">
