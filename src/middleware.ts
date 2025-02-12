@@ -18,10 +18,10 @@ export async function middleware(request: NextRequest){
         return NextResponse.next();
     }
 
-    if(!emailParams || emailParams !== emailCookie?.value && pathname.startsWith('/forgetPassword')){
+    if(!emailParams || emailParams != emailCookie?.value && pathname.startsWith('/forgetPassword')){
         return NextResponse.redirect(new URL('/', request.nextUrl));
     }
-
+    
     return NextResponse.next();
 }
 

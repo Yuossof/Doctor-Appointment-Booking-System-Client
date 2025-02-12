@@ -10,8 +10,38 @@ interface TypeEmail {
     email: string
 }
 
+import { useRouter } from "next/navigation";
+import { useUser } from "../Context/User";
+import { useToastMessage } from "../Context/ToastMessage";
+
 export default function ForgetPasswordForm({ email }: TypeEmail) {
     const [state, action, pending] = useActionState(ForgetPasswordAction, undefined);
+    const contextToastMessage = useToastMessage();
+    const router = useRouter();
+    const userContext = useUser();
+
+    useEffect(() => {
+        if(state?.user){
+            console.log(state?.user.user)
+            userContext?.setUser({
+                phone: state?.user?.user?.phone,
+                address: state?.user?.user?.address,
+                city: state?.user?.user?.city,
+                email: state?.user?.user?.email,
+                first_name: state?.user?.user?.first_name,
+                last_name: state?.user?.user?.last_name,
+                image_url: state?.user?.user?.image_url,
+                email_verified_at: state?.user?.user?.email_verified_at
+            })
+            if(state?.user.email_verified_at){
+                router.push('/');
+                contextToastMessage?.setToastMessage('Updated Successfully');
+            }else{
+                router.replace('/verify');
+                contextToastMessage?.setToastMessage('Please Verify Your Email');
+            }
+        }    
+    }, [state])
 
     return (
         <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">

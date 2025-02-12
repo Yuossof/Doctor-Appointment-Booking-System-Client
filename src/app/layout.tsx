@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header/Header";
-import ToastMessageProvider from "@/components/Context/ToastMessage"; 
+import ToastMessageProvider from "@/components/Context/ToastMessage";
+import UserProvider from "@/components/Context/User";
 import FooterWithCheckPathName from "@/components/CheckPathName/FooterWithCheckPathName";
+
 
 export const metadata: Metadata = {
   title: "Home",
@@ -15,15 +17,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <ToastMessageProvider>
-          <div className="w-full flex flex-col">
-            <Header />
-            <div className="w-full">
-              <main>{children}</main>
+          <UserProvider>
+            <div className="w-full flex justify-center">
+              <div className="w-full">
+                <div>
+                  <Header />
+                </div>
+                <main>
+                  {children}
+                </main>
+                <FooterWithCheckPathName />
+              </div>
             </div>
-
-            {/* Footer  */}
-            <FooterWithCheckPathName />
-          </div>
+          </UserProvider>
         </ToastMessageProvider>
       </body>
     </html>
