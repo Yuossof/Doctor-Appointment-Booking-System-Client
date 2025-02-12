@@ -142,8 +142,8 @@ const SpecialistsSection = () => {
         {/* Navigation Buttons */}
       </div>
       <Button asChild className=" py-5 bg-teal-700 px-9 md:mt-14 mt-9 hover:bg-teal-600 hover:px-11 transition-all">
-        <Link href="/" >
-          <span>View All</span>
+        <Link href="doctors" >
+          View All
           <ArrowRight  />
         </Link>
       </Button>

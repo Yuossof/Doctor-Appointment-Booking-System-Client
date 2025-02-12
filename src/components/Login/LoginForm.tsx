@@ -8,6 +8,7 @@ import Link from "next/link";
 import Cookie from 'cookie-universal';
 import { GrFormCheckmark } from "react-icons/gr";
 import { useRouter } from "next/navigation";
+import { useUser } from "../Context/User";
 
 export default function LoginForm() {
     const [state, action, pending] = useActionState(LoginAction, undefined);
@@ -15,7 +16,8 @@ export default function LoginForm() {
     const [checkbox, setCheckbox] = useState(false);
     const router = useRouter();
     const cookie = Cookie();
-    
+    const userContext = useUser();
+
     const handleCheckBox = () => setCheckbox(prev => !prev);
 
     useEffect(() => {
@@ -24,13 +26,25 @@ export default function LoginForm() {
         } 
         if (state?.userData) {
             if(state?.userData.user.email_verified_at == null){
-                console.log(state?.userData.user)
                 cookie.set('data', JSON.stringify(state.userData));
                 cookie.set('message', state.message);
                 router.push('/verify');
             }
         }
-    }, [cookie, router, state])
+        if(state?.user){
+            userContext?.setUser({
+                phone: state?.user?.phone,
+                address: state?.user?.address,
+                city: state?.user?.city,
+                email: state?.user?.email,
+                first_name: state?.user?.first_name,
+                last_name: state?.user?.last_name,
+                image_url: state?.user?.image_url,
+                email_verified_at: state?.user?.email_verified_at
+            })
+            router.push('/');
+        }
+    }, [state])
 
     useEffect(() => {
         if (message) {

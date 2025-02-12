@@ -8,6 +8,8 @@ export default async function VerifyAction(state: any, formData: FormData) {
     const token = await GetToken();
     const cookiesStore = await cookies();
 
+    console.log(token)
+
     const formValues = {
         code: formData.get('code')?.toString() || ''
     }
@@ -32,6 +34,7 @@ export default async function VerifyAction(state: any, formData: FormData) {
   
       if (!res.ok) {
         const errorsData = await res.json();
+        console.log(errorsData)
         return {
           errors: errorsData.errors,
           data: formValues,
@@ -42,5 +45,8 @@ export default async function VerifyAction(state: any, formData: FormData) {
       cookiesStore.set('message', data.message);
       cookiesStore.set('data', JSON.stringify(data.data));
       cookiesStore.delete('verify');
-      redirect('/');
+      
+      return {
+        user: data.data
+      }
 }
