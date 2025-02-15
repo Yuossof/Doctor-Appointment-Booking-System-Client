@@ -1,8 +1,9 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import './doctor-dash.css'
 import { motion } from "framer-motion"
 const Topbar = () => {
+    const [AppointmentData, setAppointmentData] = useState(46)
     const weaks = [70, 50, 30, 90, 95, 25, 100]
 
     return (
@@ -19,18 +20,25 @@ const Topbar = () => {
                 </div>
                 <div className='justify-between flex'>
                     <div className='flex flex-col gap-2'>
-                        <span className='text-4xl text-slate-300'>46</span>
-                        <span className='px-3 py-1 bg-orange-900 bg-opacity-40 rounded-md text-sm text-gray-200'>+3.5%</span>
+                        <span className='text-4xl text-slate-300'>{AppointmentData}</span>
+                        <span className='px-3 py-1 bg-sky-700 bg-opacity-40 rounded-md text-sm text-gray-200'>+11</span>
                     </div>
-                    <div className=' flex items-end 2xl:gap-4 xl:gap-3 lg:gap-3 md:gap-3 gap-4'>
+                    <div className=' flex items-end 2xl:gap-2 xl:gap-1 lg:gap-1 md:gap-1 gap-2'>
                         {weaks.map((weak, i) => (
-                            <div key={i} className='h-16 rounded-lg w-[6px] bg-gray-700 flex items-end overflow-hidden'>
-                                <motion.div
-                                    initial={{ height: 0 }}
-                                    animate={{ height: `${weak}%` }}
-                                    transition={{ duration: 1, ease: "easeOut" }}
-                                    className="bg-blue-600 w-full"
-                                />
+                            <div
+                                onMouseOver={() => setAppointmentData(weak)}
+                                onMouseLeave={() => setAppointmentData(46)}
+                                className='px-[3px] hover:scale-105 transition-all'
+                                key={i}>
+                                <div
+                                    className='h-16 rounded-lg w-[6px] lg:w-[8px] bg-gray-700 flex items-end overflow-hidden '>
+                                    <motion.div
+                                        initial={{ height: 0 }}
+                                        animate={{ height: `${weak}%` }}
+                                        transition={{ duration: 1, ease: "easeOut" }}
+                                        className="bg-blue-600 w-full"
+                                    />
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -50,7 +58,7 @@ const Topbar = () => {
                  border-transparent transition-all  '
             >
                 <div className='flex items-center justify-between'>
-                    <h2 className='text-sm text-slate-400 mb-2'>Weakly Appointments</h2>
+                    <h2 className='text-sm text-slate-400 mb-2'>Weakly Eearnings</h2>
                     <span className='bg-orange-600 bg-opacity-25  px-2 py-1 rounded-sm text-sm text-slate-200'>
                         total: 230
                     </span>
@@ -58,17 +66,24 @@ const Topbar = () => {
                 <div className='justify-between flex'>
                     <div className='flex flex-col gap-2'>
                         <span className='text-4xl text-slate-300'>46</span>
-                        <span className='px-3 py-1 bg-sky-700 bg-opacity-40 rounded-md text-sm text-gray-200'>+11</span>
+                        <span className='px-3 py-1 bg-orange-900 bg-opacity-40 rounded-md text-sm text-gray-200'>+3.5%</span>
                     </div>
-                    <div className=' flex items-end 2xl:gap-4 xl:gap-3 lg:gap-3 md:gap-3 gap-4'>
+                    <div className='flex items-end 2xl:gap-2 xl:gap-1 lg:gap-1 md:gap-1 gap-2'>
                         {weaks.map((weak, i) => (
-                            <div key={i} className='h-16 rounded-lg w-[6px] bg-gray-700 flex items-end overflow-hidden'>
-                                <motion.div
-                                    initial={{ height: 0 }}
-                                    animate={{ height: `${weak}%` }}
-                                    transition={{ duration: 1, ease: "easeOut" }}
-                                    className="bg-orange-400 w-full"
-                                />
+                            <div
+                                onMouseOver={() => setAppointmentData(weak)}
+                                onMouseLeave={() => setAppointmentData(46)}
+                                className='px-[3px] hover:scale-105 transition-all'
+                                key={i}>
+                                <div
+                                    className='h-16 rounded-lg w-[6px] lg:w-[8px] bg-gray-700 flex items-end overflow-hidden '>
+                                    <motion.div
+                                        initial={{ height: 0 }}
+                                        animate={{ height: `${weak}%` }}
+                                        transition={{ duration: 1, ease: "easeOut" }}
+                                        className="bg-orange-600 w-full"
+                                    />
+                                </div>
                             </div>
                         ))}
                     </div>

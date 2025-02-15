@@ -147,7 +147,6 @@ export default function Sidebar() {
               ))
             )}
 
-
             {/* Age */}
             {inf.type === 'age' && age.length > 0 && (
               age.map((age, index) => (
@@ -158,8 +157,6 @@ export default function Sidebar() {
                 </label>
               ))
             )}
-
-
           </div>
         </div>
       ))}

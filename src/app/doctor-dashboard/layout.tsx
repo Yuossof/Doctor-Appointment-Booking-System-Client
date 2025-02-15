@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     <div className='md:block hidden mt-6'>
                         <Sidebar />
                     </div>
-                    <main className=' mt-6'>{children}</main>
+                    <main className='mt-6 overflow-hidden'>{children}</main>
                 </div>
             </div>
         </div>
