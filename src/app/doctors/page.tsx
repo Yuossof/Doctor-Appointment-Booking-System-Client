@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Doctors'
 }
 
-export default async function Doctors() {
+export default function Doctors() {
 
   return (
     <div className='container h-full px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]'>

@@ -35,7 +35,7 @@ export default function ContactForm() {
         last_name: user.last_name
       });
     }
-  }, [cookieStore]);
+  }, []);
 
   useEffect(() => {
     if (state?.success) {

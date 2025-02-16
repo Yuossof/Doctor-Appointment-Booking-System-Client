@@ -6,11 +6,13 @@ import { Menu, X } from 'lucide-react'
 import { AvatarCmp } from '../Avatar'
 import { DropdownMenuCheckboxes } from './DropdownMenu'
 import { Button } from '../ui/button'
+import { useUser } from '../Context/User'
 
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
     const pathname = usePathname();
     const isDashboard = pathname.startsWith("/doctor-dashboard");
+    const userContext = useUser();
 
     const links = [
         { title: "Home", to: "/" },
@@ -39,14 +41,16 @@ const Header = () => {
                     </div>
                     <div className='flex items-center gap-5'>
                         <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
-                        <div className='flex items-center gap-2'>
-                            <Button asChild className='bg-mid-blue py-6 px-6'>
-                                <Link href="/register">Register</Link>
-                            </Button>
-                            <Button asChild variant={"outline"} className='py-6 px-6 hover:bg-slate-50'>
-                                <Link href="/login">Login</Link>
-                            </Button>
-                        </div>
+                        {!userContext?.user && (
+                            <div className='flex items-center gap-2'>
+                                <Button asChild className='bg-mid-blue py-6 px-6'>
+                                    <Link href="/register">Register</Link>
+                                </Button>
+                                <Button asChild variant={"outline"} className='py-6 px-6 hover:bg-slate-50'>
+                                    <Link href="/login">Login</Link>
+                                </Button>
+                            </div>
+                        )}
                     </div>
                 </div>
 

@@ -1,3 +1,3 @@
 export interface SearchParams {
-    searchParams: Record<string, string | undefined>;
+    searchParams?: Record<string, string | undefined>;
 }

@@ -4,6 +4,10 @@ import Header from "@/components/header/Header";
 import ToastMessageProvider from "@/components/Context/ToastMessage";
 import UserProvider from "@/components/Context/User";
 import FooterWithCheckPathName from "@/components/CheckPathName/FooterWithCheckPathName";
+import DoctorsPagesNumber from "@/components/Context/PageNumberDoctors";
+import ReviewsPagesNumber from "@/components/Context/PageNumberReviews";
+import TotalPagesReviews from "@/components/Context/TotalPagesReviews";
+import Doctors from "@/components/Context/Doctor";
 
 
 export const metadata: Metadata = {
@@ -18,17 +22,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ToastMessageProvider>
           <UserProvider>
-            <div className="w-full flex justify-center">
-              <div className="w-full">
-                <div>
-                  <Header />
-                </div>
-                <main>
-                  {children}
-                </main>
-                <FooterWithCheckPathName />
-              </div>
-            </div>
+            <DoctorsPagesNumber>
+              <ReviewsPagesNumber>
+                <TotalPagesReviews>
+                  <Doctors>
+                    <div className="w-full flex justify-center">
+                      <div className="w-full">
+                        <div>
+                          <Header />
+                        </div>
+                        <main>
+                          {children}
+                        </main>
+                        <FooterWithCheckPathName />
+                      </div>
+                    </div>
+                  </Doctors>
+                </TotalPagesReviews>
+              </ReviewsPagesNumber>
+            </DoctorsPagesNumber>
           </UserProvider>
         </ToastMessageProvider>
       </body>

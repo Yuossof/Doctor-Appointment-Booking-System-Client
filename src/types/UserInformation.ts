@@ -4,12 +4,23 @@ interface Fesses {
     count_review: string
 }
 
-interface Appointments{
+interface Appointments {
     id: number,
     date: string,
 }
 
-interface Days{
+interface Reviews {
+    id: number,
+    rate: number,
+    comment: string,
+    user: IUser
+}
+
+interface DataReviews {
+    data: Reviews []
+}
+
+interface Days {
     id: number,
     day: string,
     appointments: Appointments[]
@@ -38,5 +49,6 @@ export interface IUser {
     avg_rating?: number,
     reservation_count?: number,
     feeses?: Fesses[],
-    days?: Days[]
+    days?: Days[],
+    reviews?: DataReviews
 }
