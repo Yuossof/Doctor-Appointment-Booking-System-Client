@@ -5,22 +5,23 @@ import { GoHome } from "react-icons/go";
 import { PiCityLight } from "react-icons/pi";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { CiPhone } from "react-icons/ci";
-import { IoAnalyticsSharp } from "react-icons/io5";
 import SwiperAppoinments from './SwiperAppoinments';
 import Link from 'next/link';
+import DoctorsPagination from './DoctorsPagination';
 
 
 interface DoctorInformationProps {
-    doctors: IUser[]
+    doctors: IUser[] | null,
+    totalPages: number
 }
 
-export default function DoctorInformation({ doctors }: DoctorInformationProps) {
+export default function DoctorInformation({ doctors, totalPages }: DoctorInformationProps){
 
     return (
         <>
 
             {/* Information */}
-            <div className="flex flex-col gap-8 translate-y-[25px]">
+            <div className="flex flex-col gap-6 translate-y-[25px]">
                 {doctors && doctors.length > 0 && (
                     doctors.map(doctor => (
                         <div key={doctor.id} className="flex justify-between bg-[#f6f6f6] rounded-md p-2 cursor-pointer">
@@ -38,14 +39,14 @@ export default function DoctorInformation({ doctors }: DoctorInformationProps) {
                                             {doctor.last_name.charAt(0).toUpperCase() + doctor.first_name.slice(1)}
                                         </h1>
                                     </div>
-                                    {doctor.specialization_name && (
+                                    {doctor?.specialization_name && (
                                         <p className='text-body-text'>{doctor.specialization_name}</p>
                                     )}
                                     <div className="flex gap-2">
                                         {Array.from({ length: 5 }, (_, index) => (
                                             <FaStar
                                                 key={index}
-                                                className={index < Math.floor(doctor.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"}
+                                                className={index < Math.round(doctor.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"}
                                             />
                                         ))}
                                     </div>
@@ -95,6 +96,7 @@ export default function DoctorInformation({ doctors }: DoctorInformationProps) {
                         </div>
                     ))
                 )}
+                <DoctorsPagination totalPages={totalPages}/>
             </div>
         </>
     )

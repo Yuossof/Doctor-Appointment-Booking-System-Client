@@ -1,21 +1,44 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import SearchFormDcotor from './SearchFormDcotor'
-import { GetDoctors } from './GetDoctors';
-import { IUser } from '@/types/UserInformation';
 import DoctorInformation from './DoctorInformation';
+import { usePageNumber } from '../Context/PageNumberDoctors';
+import { IUser } from '@/types/UserInformation';
 
-export default async function MainContent() {
-    const doctors: IUser[] = await GetDoctors();
+export default function MainContent() {
+  const pageNumber = usePageNumber();
+  const [doctors, setDoctors] = useState<IUser[] | null>(null);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`http://localhost:8000/api/users/get-doctors?page=${pageNumber?.pageNumber}`, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }
+        });
+        const data = await res.json();
+        setDoctors(data.data.doctors.data);
+        setTotalPages(data.data.totalPages);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [pageNumber?.pageNumber, doctors]);
+
   return (
     <main className='flex-1 p-2 rounded-lg'>
-        <div className="flex items-center justify-between">
-            <div className="flex gap-2 text-body-text">
-                <h1 className='text-[18px] font-semibold'>All Specialities</h1>
-                <span>{ doctors && doctors.length > 1 ? doctors.length : 1 } Doctors</span>
-            </div>
-            <SearchFormDcotor/>
+      <div className="flex items-center justify-between">
+        <div className="flex gap-2 text-body-text">
+          <h1 className='text-[18px] font-semibold'>All Specialities</h1>
+          <span>{doctors && doctors.length > 1 ? doctors.length : 1} Doctors</span>
         </div>
-        <DoctorInformation doctors={doctors}/>
+        <SearchFormDcotor />
+      </div>
+      <DoctorInformation doctors={doctors} totalPages={totalPages} />
     </main>
   )
 }
