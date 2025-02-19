@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from "react";
-import { useToastMessage } from "../Context/ToastMessage";
+import { useToastMessage } from "../../Context/ToastMessage";
 import Cookie from 'cookie-universal'
 
 type Message = {

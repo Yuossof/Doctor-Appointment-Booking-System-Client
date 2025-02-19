@@ -1,6 +1,5 @@
-import React from 'react'
-import GetToken from '../GetToken/GetToken';
-import { ContactSchema } from './ContactSchema';
+import GetToken from './auth/GetToken';
+import { ContactSchema } from '../validation/ContactSchema';
 import { ContactActionForm } from '@/types/ContactAction';
 
 export default async function ContactAction(state: ContactActionForm, formData: FormData): Promise<ContactActionForm> {

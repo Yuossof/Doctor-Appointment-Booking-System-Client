@@ -1,5 +1,5 @@
 'use server';
-import { CheckEmail } from './CheckEmailSchema';
+import { CheckEmail } from '../../validation/CheckEmailSchema';
 import { cookies } from 'next/headers';
 
 export default async function CheckEmailAction(state: any, formData: FormData) {

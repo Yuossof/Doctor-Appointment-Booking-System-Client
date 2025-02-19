@@ -6,7 +6,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className='bg-slate-900 w-full'>
             <div className='container px-[15px] md:px-[30px] lg:px-[120px] xl:px-[180px]'>
-                <div className='h-20 flex items-center w-full sticky top-0 bg-slate-900 bg-opacity-95'>  
+                <div className='h-20 flex items-center w-full sticky top-0 bg-slate-900 bg-opacity-95 z-50'>  
                 <Header />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-[250px_1fr] gap-4 min-h-[calc(100vh-80px)]'>

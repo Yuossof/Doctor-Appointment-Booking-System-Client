@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header/Header";
-import ToastMessageProvider from "@/components/Context/ToastMessage";
-import UserProvider from "@/components/Context/User";
+import ToastMessageProvider from "@/Context/ToastMessage";
+import UserProvider from "@/Context/User";
 import FooterWithCheckPathName from "@/components/CheckPathName/FooterWithCheckPathName";
-import DoctorsPagesNumber from "@/components/Context/PageNumberDoctors";
-import ReviewsPagesNumber from "@/components/Context/PageNumberReviews";
-import TotalPagesReviews from "@/components/Context/TotalPagesReviews";
-import Doctors from "@/components/Context/Doctor";
-
+import DoctorsPagesNumber from "@/Context/PageNumberDoctors";
+import ReviewsPagesNumber from "@/Context/PageNumberReviews";
+import TotalPagesReviews from "@/Context/TotalPagesReviews";
+import Doctors from "@/Context/Doctor";
+import AddReport from "@/Context/AddReport";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -26,17 +26,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ReviewsPagesNumber>
                 <TotalPagesReviews>
                   <Doctors>
-                    <div className="w-full flex justify-center">
-                      <div className="w-full">
-                        <div>
-                          <Header />
+                    <AddReport>
+                      <div className="w-full flex justify-center">
+                        <div className="w-full">
+                          <div>
+                            <Header />
+                          </div>
+                          <main>
+                            {children}
+                          </main>
+                          <FooterWithCheckPathName />
                         </div>
-                        <main>
-                          {children}
-                        </main>
-                        <FooterWithCheckPathName />
                       </div>
-                    </div>
+                    </AddReport>
                   </Doctors>
                 </TotalPagesReviews>
               </ReviewsPagesNumber>

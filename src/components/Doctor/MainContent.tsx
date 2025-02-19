@@ -1,6 +1,6 @@
 'use client';
 
-import { useDoctor } from "../Context/Doctor";
+import { useDoctor } from "../../Context/Doctor";
 import PaginationDoctorReview from "./PaginationDoctorReview";
 import SidebarDoctor from "./SidebarDoctor";
 import { FcAbout } from "react-icons/fc";

@@ -1,6 +1,6 @@
 'use server'
-import GetToken from '../GetToken/GetToken'
-import { VerfiySchema } from './VerifySchema';
+import GetToken from './GetToken'
+import { VerfiySchema } from '../../validation/VerifySchema';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 

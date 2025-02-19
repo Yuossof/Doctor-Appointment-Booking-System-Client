@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { useToastMessage } from '../Context/ToastMessage';
+import { useToastMessage } from '../../Context/ToastMessage';
 import Cookie from 'cookie-universal';
 
 export default function ShowMessage() {

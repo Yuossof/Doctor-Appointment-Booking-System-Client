@@ -1,7 +1,6 @@
 "use server";
 import { cookies } from "next/headers";
-import { RegisterSchema } from "./RegisterSchema";
-import { redirect } from "next/navigation";
+import { RegisterSchema } from "../../validation/RegisterSchema";
 
 export default async function RegisterAction(state: any, formData: FormData) {
 

@@ -1,7 +1,7 @@
 'use client';
 import { GrFormCheckmark } from "react-icons/gr";
 import { useActionState, useEffect, useState } from "react";
-import RegisterAction from "./RegisterAction";
+import RegisterAction from "../../lib/services/auth/RegisterAction";
 import Image from "next/image";
 import userImage from '../../../public/images/user.png';
 import EnvelopeImage from '../../../public/images/envelope 1.png';
@@ -17,7 +17,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { useRouter } from "next/navigation";
-import { useUser } from "../Context/User";
+import { useUser } from "../../Context/User";
 
 export default function RegisterForm() {
     const [state, action, pending] = useActionState(RegisterAction, undefined);
@@ -28,19 +28,11 @@ export default function RegisterForm() {
     
     useEffect(() => {
         if(state?.user){
-            userContext?.setUser({
-                phone: state?.user?.phone,
-                address: state?.user?.address,
-                city: state?.user?.city,
-                email: state?.user?.email,
-                first_name: state?.user?.first_name,
-                last_name: state?.user?.last_name,
-                image_url: state?.user?.image_url,
-                email_verified_at: null
-            })
+            userContext?.setUser(state?.user)
             router.push('/verify');
         }    
     }, [state])
+
     return (
         <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] sm:mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">
 

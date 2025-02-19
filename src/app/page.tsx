@@ -8,10 +8,11 @@ import HappyClients from "@/components/home-page/happy-clients/HappyClients";
 import Hero from "@/components/home-page/hero/Hero";
 import SepecialistsSection from "@/components/home-page/specialists-section/SepecialistsSection";
 import WelcomePlaylist from "@/components/home-page/welcome-with-playlist/WelcomePlaylist";
-import { GetUser } from "@/components/GetUser/GetUser";
+import { GetUser } from "@/lib/services/auth/GetUser";
 
 export default async function Home() {
   const message = (await cookies()).get('message')?.value;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const user = await GetUser();
   
   return (

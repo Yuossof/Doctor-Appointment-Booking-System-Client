@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { useTotalPagesReviews } from "../Context/TotalPagesReviews";
-import { usePageNumber } from "../Context/PageNumberReviews";
+import { useTotalPagesReviews } from "../../Context/TotalPagesReviews";
+import { usePageNumber } from "../../Context/PageNumberReviews";
 
 export default function DoctorsPagination() {
     const totalPages = useTotalPagesReviews();

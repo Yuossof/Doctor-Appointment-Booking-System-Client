@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import './style.css';
 
 import { Navigation } from 'swiper/modules';
-import { useDoctor } from '../Context/Doctor';
+import { useDoctor } from '../../Context/Doctor';
 
 export default function SwiperDoctorAppointments() {
     const { doctor } = useDoctor();

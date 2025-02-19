@@ -1,6 +1,6 @@
 'use client';
 import { useActionState, useEffect, useState } from "react";
-import CheckEmailAction from "./CheckEmailAction";
+import CheckEmailAction from "../../lib/services/auth/CheckEmailAction";
 import EnvelopeImage from '@/../public/images/envelope 1.png';
 import Image from "next/image";
 

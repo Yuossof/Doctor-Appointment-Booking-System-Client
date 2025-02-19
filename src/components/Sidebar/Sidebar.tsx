@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { CiFilter } from "react-icons/ci";
 import { PiGraduationCapLight, PiGenderIntersex } from "react-icons/pi";
-import GetToken from '../GetToken/GetToken';
+import GetToken from '../../lib/services/auth/GetToken';
 import axios from 'axios';
 import { IoMdAlarm } from "react-icons/io";
 import { GiTakeMyMoney } from "react-icons/gi";

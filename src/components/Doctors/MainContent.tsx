@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import SearchFormDcotor from './SearchFormDcotor'
 import DoctorInformation from './DoctorInformation';
-import { usePageNumber } from '../Context/PageNumberDoctors';
+import { usePageNumber } from '../../Context/PageNumberDoctors';
 import { IUser } from '@/types/UserInformation';
 
 export default function MainContent() {

@@ -1,14 +1,13 @@
 'use client';
-import React, { useEffect } from 'react'
-import { usePageNumber } from '../Context/PageNumberReviews';
-import { useTotalPagesReviews } from '../Context/TotalPagesReviews';
-import { useDoctor } from '../Context/Doctor';
+import { useEffect } from 'react'
+import { usePageNumber } from '../../Context/PageNumberReviews';
+import { useTotalPagesReviews } from '../../Context/TotalPagesReviews';
+import { useDoctor } from '../../Context/Doctor';
 
 export default function GetDoctor({ id }: { id: string }) {
     const pageNumberReviewsContext = usePageNumber();
     const totalPagesReviewsContext = useTotalPagesReviews();
     const contextDoctor = useDoctor();
-    console.log()
 
     useEffect(() => {
         const fetchOnDoctor = async () => {

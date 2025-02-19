@@ -3,12 +3,12 @@ import Image from "next/image";
 import { useActionState, useEffect, useState } from "react";
 import EnvelopeImage from '../../../public/images/envelope 1.png';
 import PasswordImage from '../../../public/images/lock 1.png';
-import LoginAction from "./LoginAction";
+import LoginAction from "../../lib/services/auth/LoginAction";
 import Link from "next/link";
 import Cookie from 'cookie-universal';
 import { GrFormCheckmark } from "react-icons/gr";
 import { useRouter } from "next/navigation";
-import { useUser } from "../Context/User";
+import { useUser } from "../../Context/User";
 
 export default function LoginForm() {
     const [state, action, pending] = useActionState(LoginAction, undefined);

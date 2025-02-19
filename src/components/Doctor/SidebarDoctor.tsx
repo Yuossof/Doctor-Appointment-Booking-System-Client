@@ -2,7 +2,7 @@
 import { IUser } from '@/types/UserInformation';
 import React from 'react'
 import { GiTakeMyMoney } from "react-icons/gi";
-import { useDoctor } from '../Context/Doctor';
+import { useDoctor } from '../../Context/Doctor';
 import { BiClinic } from "react-icons/bi";
 import SwiperDoctorAppointements from './SwiperDoctorAppointements';
 

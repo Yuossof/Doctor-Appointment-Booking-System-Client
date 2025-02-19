@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect ,useActionState } from "react";
-import ForgetPasswordAction from "./ForgetPasswordAction";
+import ForgetPasswordAction from "../../lib/services/auth/ForgetPasswordAction";
 import Image from "next/image";
 import PasswordImage from '@/../public/images/lock 1.png';
 import Link from "next/link";
@@ -11,8 +11,8 @@ interface TypeEmail {
 }
 
 import { useRouter } from "next/navigation";
-import { useUser } from "../Context/User";
-import { useToastMessage } from "../Context/ToastMessage";
+import { useUser } from "../../Context/User";
+import { useToastMessage } from "../../Context/ToastMessage";
 
 export default function ForgetPasswordForm({ email }: TypeEmail) {
     const [state, action, pending] = useActionState(ForgetPasswordAction, undefined);

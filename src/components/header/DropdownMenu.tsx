@@ -14,9 +14,9 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link";
-import GetToken from "../GetToken/GetToken";
-import { useToastMessage } from "../Context/ToastMessage";
-import { useUser } from "../Context/User";
+import GetToken from "../../lib/services/auth/GetToken";
+import { useToastMessage } from "../../Context/ToastMessage";
+import { useUser } from "../../Context/User";
 import Cookie from 'cookie-universal';
 import { useRouter } from "next/navigation";
 

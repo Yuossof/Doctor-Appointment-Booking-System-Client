@@ -12,7 +12,8 @@ export default function FooterWithCheckPathName() {
                        pathName.startsWith('/check-email') || 
                        pathName.startsWith('/forgetPassword') ||
                        pathName.startsWith('/contact') ||
-                       pathName.startsWith("/doctor-dashboard")
+                       pathName.startsWith("/doctor-dashboard") ||
+                       pathName.startsWith("/profile") 
 
     return <>{!hideFooter && <Footer />}</>;
 }

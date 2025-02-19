@@ -1,6 +1,6 @@
 'use server';
 import { cookies } from 'next/headers';
-import { LoginSchema } from './LoginSchema';
+import { LoginSchema } from '../../validation/LoginSchema';
 
 
 export default async function LoginAction(state: any, formData: FormData) {

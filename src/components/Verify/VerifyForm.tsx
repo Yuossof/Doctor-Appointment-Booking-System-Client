@@ -1,9 +1,9 @@
 'use client';
 import React, { useActionState, useEffect, useState } from "react";
-import VerifyAction from "./VerifyAction";
+import VerifyAction from "../../lib/services/auth/VerifyAction";
 import axios from 'axios';
-import GetToken from "../GetToken/GetToken";
-import { useUser } from "../Context/User";
+import GetToken from "../../lib/services/auth/GetToken";
+import { useUser } from "../../Context/User";
 import Cookie from 'cookie-universal';
 import { useRouter } from "next/navigation";
 

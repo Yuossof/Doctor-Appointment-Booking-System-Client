@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { usePageNumber } from "../Context/PageNumberDoctors";
+import { usePageNumber } from "../../Context/PageNumberDoctors";
 
 export default function DoctorsPagination({ totalPages }: { totalPages: number }) {
     const [page, setPage] = useState<number>(1);

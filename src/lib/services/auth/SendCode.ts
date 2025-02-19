@@ -1,4 +1,4 @@
-import GetToken from '../GetToken/GetToken'
+import GetToken from './GetToken'
 
 export const SendCode = async () => {
     const token = await GetToken();

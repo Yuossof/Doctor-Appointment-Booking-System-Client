@@ -3,7 +3,7 @@ import { useActionState, useEffect, useState } from "react";
 import Image from "next/image";
 import userImage from '../../../public/images/user.png';
 import EnvelopeImage from '../../../public/images/envelope 1.png';
-import ContactAction from "./ContactAction";
+import ContactAction from "../../lib/services/ContactAction";
 import { ContactActionForm } from "@/types/ContactAction";
 import Cookie from 'cookie-universal';
 

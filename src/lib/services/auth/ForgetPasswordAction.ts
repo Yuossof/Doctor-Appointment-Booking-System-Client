@@ -1,6 +1,5 @@
 'use server';
-import { redirect } from 'next/navigation';
-import { ForgetPasswordSchema } from './ForgetPasswordSchema';
+import { ForgetPasswordSchema } from '../../validation/ForgetPasswordSchema';
 import { cookies } from 'next/headers';
 
 export default async function ForgetPasswordAction(state: any, formData: FormData) {

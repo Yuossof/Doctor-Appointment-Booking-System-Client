@@ -1,5 +1,5 @@
-import { GetUser } from '@/components/GetUser/GetUser'
-import { SendCode } from '@/components/SendCode/SendCode';
+import { GetUser } from '@/lib/services/auth/GetUser'
+import { SendCode } from '@/lib/services/auth/SendCode';
 import ShowMessage from '@/components/ShowMessage/ShowMessage';
 import UpdateMessage from '@/components/UpdateMessage/UpdateMessage';
 import VerifyForm from '@/components/Verify/VerifyForm';

@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { AvatarCmp } from '../Avatar'
 import { DropdownMenuCheckboxes } from './DropdownMenu'
 import { Button } from '../ui/button'
-import { useUser } from '../Context/User'
+import { useUser } from '../../Context/User'
 
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
@@ -17,7 +17,7 @@ const Header = () => {
     const links = [
         { title: "Home", to: "/" },
         { title: "Services", to: "/services" },
-        { title: "Specialists", to: "/specialists" },
+        { title: "Doctors", to: "/doctors" },
         { title: "About", to: "/about-us" },
         { title: "Contact", to: "/contact" },
     ]
