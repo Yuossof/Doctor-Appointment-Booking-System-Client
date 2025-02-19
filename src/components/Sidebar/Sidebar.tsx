@@ -8,11 +8,11 @@ import axios from 'axios';
 import { IoMdAlarm } from "react-icons/io";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { IoAnalyticsSharp } from "react-icons/io5";
-import { useAge } from '../Context/DoctorsFilter/DoctorsAge';
-import { useGender } from '../Context/DoctorsFilter/DoctorGender';
-import { useAvilability } from '../Context/DoctorsFilter/DoctorAvialbilty';
-import { useSpecialization } from '../Context/DoctorsFilter/DoctorSpecialization';
-import { useSalary } from '../Context/DoctorsFilter/DoctorSalary';
+import { useAge } from '@/Context/DoctorsFilter/DoctorsAge';
+import { useGender } from '@/Context/DoctorsFilter/DoctorGender';
+import { useAvilability } from '@/Context/DoctorsFilter/DoctorAvialbilty';
+import { useSpecialization } from '@/Context/DoctorsFilter/DoctorSpecialization';
+import { useSalary } from '@/Context/DoctorsFilter/DoctorSalary';
 
 const informations = [
   { image: <PiGraduationCapLight />, title: 'Specialitie', type: 'specialization' },

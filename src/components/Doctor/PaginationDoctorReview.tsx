@@ -1,14 +1,10 @@
 'use client';
 
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { useTotalPagesReviews } from "../../Context/TotalPagesReviews";
-import { usePageNumber } from "../../Context/PageNumberReviews";
-=======
-import { useTotalPagesReviews } from "../Context/TotalPagesReviews";
-import { usePageNumber } from "../Context/PageNumberReviews";
-import { useDoctor } from "../Context/Doctor";
->>>>>>> 145465f22c3fbf7aa088f167a43803998574d110
+
+import { useTotalPagesReviews } from "@/Context/TotalPagesReviews";
+import { usePageNumber } from "@/Context/PageNumberReviews";
+import { useDoctor } from "@/Context/Doctor";
 
 export default function DoctorsPagination() {
     const totalPages = useTotalPagesReviews();

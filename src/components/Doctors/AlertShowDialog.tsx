@@ -1,11 +1,11 @@
 'use client';
 
 import { Dispatch, SetStateAction } from "react";
-import GetToken from "../GetToken/GetToken";
+import GetToken from "@/lib/services/auth/GetToken";
 import axios from "axios";
-import { useMessage } from "../Context/AlertMessage";
+import { useMessage } from "@/Context/AlertMessage";
 import { useRouter } from "next/navigation";
-import { GetUser } from "../GetUser/GetUser";
+import { GetUser } from "@/lib/services/auth/GetUser";
 import { IUser } from "@/types/UserInformation";
 
 interface DialogData {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { useMessage } from "../Context/AlertMessage";
+import { useMessage } from "@/Context/AlertMessage";
 
 export default function ShowMessageDialog() {
     const [showMessage, setShowMessage] = useState<boolean>(false);
