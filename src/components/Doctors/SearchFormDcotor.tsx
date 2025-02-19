@@ -1,7 +1,7 @@
 'use client';
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
-import { useSearchName } from "../Context/DoctorsFilter/SearchForName";
+import { useSearchName } from "@/Context/DoctorsFilter/SearchForName";
 
 export default function SearchFormDoctor() {
   const searchNameContext = useSearchName();

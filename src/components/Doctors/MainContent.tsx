@@ -4,12 +4,12 @@ import SearchFormDcotor from './SearchFormDcotor'
 import DoctorInformation from './DoctorInformation';
 import { usePageNumber } from '../../Context/PageNumberDoctors';
 import { IUser } from '@/types/UserInformation';
-import { useSearchName } from '../Context/DoctorsFilter/SearchForName';
-import { useAge } from '../Context/DoctorsFilter/DoctorsAge';
-import { useGender } from '../Context/DoctorsFilter/DoctorGender';
-import { useAvilability } from '../Context/DoctorsFilter/DoctorAvialbilty';
-import { useSpecialization } from '../Context/DoctorsFilter/DoctorSpecialization';
-import { useSalary } from '../Context/DoctorsFilter/DoctorSalary';
+import { useSearchName } from '@/Context/DoctorsFilter/SearchForName';
+import { useAge } from '@/Context/DoctorsFilter/DoctorsAge';
+import { useGender } from '@/Context/DoctorsFilter/DoctorGender';
+import { useAvilability } from '@/Context/DoctorsFilter/DoctorAvialbilty';
+import { useSpecialization } from '@/Context/DoctorsFilter/DoctorSpecialization';
+import { useSalary } from '@/Context/DoctorsFilter/DoctorSalary';
 
 export default function MainContent() {
   const pageNumber = usePageNumber();

@@ -8,13 +8,10 @@ import 'swiper/css/navigation';
 import './style.css';
 
 import { Navigation } from 'swiper/modules';
-<<<<<<< HEAD
-import { useDoctor } from '../../Context/Doctor';
-=======
-import { useDoctor } from '../Context/Doctor';
+
+import { useDoctor } from '@/Context/Doctor';
 import { useState } from 'react';
 import AlertShowDialog from '../Doctors/AlertShowDialog';
->>>>>>> 145465f22c3fbf7aa088f167a43803998574d110
 
 export default function SwiperDoctorAppointments() {
     const { doctor } = useDoctor();
