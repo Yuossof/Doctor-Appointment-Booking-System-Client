@@ -23,7 +23,7 @@ export default function ShowMessage() {
 
     return (
         <>
-            <div className={` ${show ? 'top-[140px]'  : 'top-[-100%]'} absolute left-1/2 transform -translate-x-1/2 text-white bg-green-300 px-10 py-2 rounded-md transition-all duration-300 ease-in-out`}>
+            <div className={` ${show ? 'top-[140px]'  : 'top-[-100%]'} absolute left-1/2 transform -translate-x-1/2 text-white bg-mid-blue px-10 py-2 rounded-md transition-all duration-300 ease-in-out`}>
                 {context?.toastMessage}
             </div>
 

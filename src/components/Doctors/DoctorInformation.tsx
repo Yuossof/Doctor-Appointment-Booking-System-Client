@@ -22,7 +22,7 @@ export default function DoctorInformation({ doctors, totalPages }: DoctorInforma
 
             {/* Information */}
             <div className="flex flex-col gap-6 translate-y-[25px]">
-                {doctors && doctors.length > 0 && (
+                {doctors && doctors.length > 0 ? (
                     doctors.map(doctor => (
                         <div key={doctor.id} className="flex justify-between bg-[#f6f6f6] rounded-md p-2 cursor-pointer">
 
@@ -95,8 +95,10 @@ export default function DoctorInformation({ doctors, totalPages }: DoctorInforma
                             <SwiperAppoinments doctor={doctor}/>
                         </div>
                     ))
+                ) : (
+                    <div className='text-center w-full text-red-500 bg-[#f6f6f6] p-2 rounded-md'>No Doctors Here</div>
                 )}
-                <DoctorsPagination totalPages={totalPages}/>
+                <DoctorsPagination doctors={doctors} totalPages={totalPages}/>
             </div>
         </>
     )

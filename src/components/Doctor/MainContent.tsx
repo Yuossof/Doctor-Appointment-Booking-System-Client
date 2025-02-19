@@ -71,7 +71,7 @@ export default function MainContent() {
                     </div>
 
                     {/* Users Reviews */}
-                    <div className="bg-[#f9f9f9] p-5 rounded-md shadow-lg flex flex-col gap-6">
+                    <div className={`${doctor?.reviews && doctor?.reviews.data.length > 0 && 'bg-[#f9f9f9] p-5 rounded-md shadow-lg flex flex-col gap-6'} `}>
                         {doctor?.reviews && doctor?.reviews.data.length > 0 && (
                             doctor.reviews.data.map(review => (
                                 <div key={review.id} className="flex justify-between items-center">
