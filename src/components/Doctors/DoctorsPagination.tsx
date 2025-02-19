@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { usePageNumber } from "../Context/PageNumberDoctors";
+import { IUser } from "@/types/UserInformation";
 
-export default function DoctorsPagination({ totalPages }: { totalPages: number }) {
+export default function DoctorsPagination({ doctors, totalPages }: { doctors: IUser[] | null, totalPages: number }) {
     const [page, setPage] = useState<number>(1);
     const pageNumberContext = usePageNumber();
     const [rangeStart, setRangeStart] = useState<number>(1);
@@ -79,30 +80,34 @@ export default function DoctorsPagination({ totalPages }: { totalPages: number }
     };
 
     return (
-        <ul className="flex justify-center items-center gap-3 bg-blue-50 p-1 rounded-md">
-            <button disabled={disabledPrev} onClick={() => handleButton('prev')}
-                className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-mid-blue rounded-md bg-[#f6f6f6] px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out text-mid-blue">
-                Prev
-            </button>
+        <>
+            { doctors && doctors.length > 0 && (
+                <ul className="flex justify-center items-center gap-3 bg-blue-50 p-1 rounded-md">
+                    <button disabled={disabledPrev} onClick={() => handleButton('prev')}
+                        className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-mid-blue rounded-md bg-[#f6f6f6] px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out text-mid-blue">
+                        Prev
+                    </button>
 
-            {getPageNumbers().map((num, index) => (
-                typeof num === "number" ? (
-                    <li key={index} onClick={() => handleClickNum(num)}
-                        className={`${page === num ? 'bg-mid-blue text-white' : 'bg-[#f6f6f6] text-mid-blue'} 
-                        rounded-md px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out cursor-pointer`}>
-                        {num}
-                    </li>
-                ) : (
-                    <li key={index} className="px-2 cursor-pointer text-gray-500" onClick={() => handleDotsClick(num === "..." && index < 2 ? "start" : "end")}>
-                        ...
-                    </li>
-                )
-            ))}
+                    {getPageNumbers().map((num, index) => (
+                        typeof num === "number" ? (
+                            <li key={index} onClick={() => handleClickNum(num)}
+                                className={`${page === num ? 'bg-mid-blue text-white' : 'bg-[#f6f6f6] text-mid-blue'} 
+                                rounded-md px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out cursor-pointer`}>
+                                {num}
+                            </li>
+                        ) : (
+                            <li key={index} className="px-2 cursor-pointer text-gray-500" onClick={() => handleDotsClick(num === "..." && index < 2 ? "start" : "end")}>
+                                ...
+                            </li>
+                        )
+                    ))}
 
-            <button disabled={disabledNext} onClick={() => handleButton('next')}
-                className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-mid-blue rounded-md bg-[#f6f6f6] px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out text-mid-blue">
-                Next
-            </button>
-        </ul>
+                    <button disabled={disabledNext} onClick={() => handleButton('next')}
+                        className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-mid-blue rounded-md bg-[#f6f6f6] px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out text-mid-blue">
+                        Next
+                    </button>
+                </ul>
+            ) }
+        </>
     );
 }
