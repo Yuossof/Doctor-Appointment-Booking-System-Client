@@ -1,11 +1,20 @@
 'use client';
+import React from "react";
 import { IoIosSearch } from "react-icons/io";
+import { useSearchName } from "../Context/DoctorsFilter/SearchForName";
 
 export default function SearchFormDoctor() {
+  const searchNameContext = useSearchName();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    searchNameContext?.setSearchName(e.target.value);
+  }
+
   return (
-    <form action="">
+    <form>
       <div className="flex w-[300px] h-[33px]">
         <input
+          onChange={handleChange}
           type="search"
           placeholder="Search For Doctor ..."
           name="search"

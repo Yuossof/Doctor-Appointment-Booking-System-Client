@@ -7,6 +7,8 @@ interface Fesses {
 interface Appointments {
     id: number,
     date: string,
+    start_time: string,
+    end_time: string
 }
 
 interface Reviews {
