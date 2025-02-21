@@ -73,7 +73,7 @@ const Header = () => {
                                     <div>
                                         <ul className='flex flex-col justify-center gap-7'>
                                             {links.map((lnk, i) => (
-                                                <li key={i} className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
+                                                <li key={i} className={`${pathname === lnk.to ? "text-mid-blue font-semibold" : "text-gray-700"}`}>
                                                     <Link href={lnk.to}>{lnk.title}</Link>
                                                 </li>
                                             ))}
