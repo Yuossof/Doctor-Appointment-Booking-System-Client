@@ -21,7 +21,6 @@ export default function MainContent() {
   const avilabilityContext = useAvilability();
   const [doctors, setDoctors] = useState<IUser[] | null>(null);
   const [totalPages, setTotalPages] = useState(1);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,7 +45,7 @@ export default function MainContent() {
       <div className="flex items-center justify-between">
         <div className="flex gap-2 text-body-text">
           <h1 className='text-[18px] font-semibold'>All Specialities</h1>
-          <span>{doctors && doctors.length > 1 ? doctors.length : 1} Doctors</span>
+          <span>{doctors && doctors.length > 1 ? doctors.length : 0} Doctors</span>
         </div>
         <SearchFormDcotor />
       </div>

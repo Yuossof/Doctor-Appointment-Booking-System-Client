@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { usePageNumber } from "@/Context/PageNumberReviews";
+import { usePageNumber } from "@/Context/PageNumberDoctors";
 import { IUser } from "@/types/UserInformation";
 
 export default function DoctorsPagination({ doctors, totalPages }: { doctors: IUser[] | null, totalPages: number }) {

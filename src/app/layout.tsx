@@ -15,6 +15,7 @@ import GenderProvider from "@/Context/DoctorsFilter/DoctorGender";
 import AvilabilityProvider from "@/Context/DoctorsFilter/DoctorAvialbilty";
 import SpecializationProvider from "@/Context/DoctorsFilter/DoctorSpecialization";
 import SalaryProvider from "@/Context/DoctorsFilter/DoctorSalary";
+import AddReport from "@/Context/AddReport";
 
 
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ReviewsPagesNumber>
                 <TotalPagesReviews>
                   <Doctors>
+                    <AddReport>
                     <MessageProvider>
                       <SearchForName>
                         <AgeProvider>
@@ -58,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </AgeProvider>
                       </SearchForName>
                     </MessageProvider>
+                    </AddReport>
                   </Doctors>
                 </TotalPagesReviews>
               </ReviewsPagesNumber>
