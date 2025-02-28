@@ -52,7 +52,6 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
     useEffect(() => {
         const closeDropdown = () => setShowBox(false);
         window.addEventListener("click", closeDropdown);
-    
         return () => window.removeEventListener("click", closeDropdown);
     }, []);
     
@@ -61,7 +60,10 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
         <>
             {/**(userContext?.user && userContext?.user.email_verified_at !== null) */ true && (
                 <div>
-                    <button onClick={() => setShowBox(!showBox)} className="outline-none">
+                    <button onClick={(eo) => {
+                        eo.stopPropagation()
+                        setShowBox(!showBox)
+                    }} className="outline-none">
                         <AvatarCmp />
                     </button>
                     {showBox && (

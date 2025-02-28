@@ -57,7 +57,10 @@ export function DropdownMenuCheckboxes() {
             {/**(userContext?.user && userContext?.user.email_verified_at !== null) */ true && (
                 <div>
                     <div onClick={(eo)=> eo.stopPropagation()} className="relative">
-                        <button onClick={() => setShowBox(!showBox)} className="outline-none">
+                        <button onClick={(eo) => {
+                            eo.stopPropagation()
+                            setShowBox(!showBox)
+                        }} className="outline-none">
                             <AvatarCmp imgSrc='https://github.com/shadcn.png' w={8} h={8} />
                         </button>
                         {showBox && (
