@@ -4,8 +4,8 @@ import { Badge } from "@/components/ui/badge"
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { UserCircle, Stethoscope, FileText, Calendar } from "lucide-react"
-import AddNewReportBox from "@/components/doctor-dashboard/profile/reports/AddNewReportBox"
-import AddSection from "@/components/doctor-dashboard/profile/reports/AddSection"
+import AddNewReportBox from "@/components/doctor-dashboard/user/reports/AddNewReportBox"
+import AddSection from "@/components/doctor-dashboard/user/reports/AddSection"
 
 interface Connection {
   id: string
@@ -75,7 +75,7 @@ export default function page() {
                 </div>
                 <ScrollArea className="h-[600px] pr-4">
                   {connection.medicalReports.map((report, index) => (
-                    <Card key={report.id} className="mb-8 last:mb-0 overflow-hidden bg-slate-700 border-[1px] border-gray-600">
+                    <Card key={report.id} className="mb-8 last:mb-0 overflow-hidden bg-slate-900 border-[1px] border-gray-600">
                       <CardContent className="p-6">
                         <div className="flex justify-between items-center mb-4">
                           <Badge variant="outline" className="text-lg py-1 px-3 text-gray-400 border-[1px] border-gray-600">

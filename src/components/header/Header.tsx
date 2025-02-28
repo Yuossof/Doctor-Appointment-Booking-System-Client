@@ -11,7 +11,11 @@ import { useUser } from '../../Context/User'
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
     const pathname = usePathname();
-    const isDashboard = pathname.startsWith("/doctor-dashboard");
+    const isDashboard = (
+        pathname.startsWith("/doctor-dashboard") ||
+        pathname.startsWith("/admin")
+    )
+
     const userContext = useUser();
 
     const links = [
@@ -41,7 +45,7 @@ const Header = () => {
                     </div>
                     <div className='flex items-center gap-5'>
                         <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
-                        {!userContext?.user && (
+                        {userContext?.user && (
                             <div className='flex items-center gap-2'>
                                 <Button asChild className='bg-mid-blue py-6 px-6'>
                                     <Link href="/register">Register</Link>

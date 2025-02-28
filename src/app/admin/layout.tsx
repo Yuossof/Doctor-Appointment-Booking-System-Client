@@ -1,18 +1,14 @@
 import Header from '@/components/doctor-dashboard/header/Header'
 import Sidebar from '@/components/doctor-dashboard/sidebar/Sidebar'
+import { LayoutGrid, User } from 'lucide-react'
 import React from 'react'
-import { User } from 'lucide-react'
-import { Calendar } from 'lucide-react'
-import { LayoutGrid } from 'lucide-react'
-import { CalendarDays } from 'lucide-react'
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-    
+
     const links = [
-        { name: "Dashboard", path: "/doctor-dashboard", icon: <LayoutGrid size={18} /> },
-        { name: "Availability", path: "/doctor-dashboard/availability", icon: <CalendarDays size={18} /> },
-        { name: "Reservations", path: "/doctor-dashboard/all-reservations", icon: <Calendar size={18} /> },
-        { name: "Users", path: "/doctor-dashboard/users-table", icon: <User size={18} /> },
+        { name: "Dashboard", path: "/admin", icon: <LayoutGrid size={18} /> },
+        { name: "Users", path: "/admin/users", icon: <User size={18} /> },
+        { name: "Doctors", path: "/admin/doctors", icon: <User size={18} /> },
     ]
 
     return (

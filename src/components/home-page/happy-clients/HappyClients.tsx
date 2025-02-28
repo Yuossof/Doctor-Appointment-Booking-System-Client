@@ -39,7 +39,7 @@ const HappyClients = () => {
                 <h2 className='font-semibold text-2xl  sm:text-2xl md:text-3xl lg:text-4xl lg:mt-0 mt-4 text-dark-blue lg:max-w-[80%] '>Our Happy Clients</h2>
                 <p className='text-muted-foreground text-md text-center'>We use only the best quality materials on the market in order <br /> to provide the best products to our patients.</p>
             </div>
-            <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-7 mt-11 w-auto lg:w-[80%]'>
+            <div className='grid 2xl:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-7 mt-11 w-auto lg:w-[80%]'>
                 {clients.map((client, i) => (
                     <div key={i} className='flex flex-col items-start p-4 shadow-lg bg-slate-50 rounded-lg border-[1px] border-gray-300'>
                         <div className='flex gap-2'>
