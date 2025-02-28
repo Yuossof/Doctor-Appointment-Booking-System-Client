@@ -4,6 +4,7 @@ import { Plus } from 'lucide-react'
 import React from 'react'
 
 const AddSection = () => {
+    
     const { setShowBox } = useAddReport() as { setShowBox: React.Dispatch<React.SetStateAction<boolean>> }
 
     return (

@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -87,12 +87,12 @@ const SpecialistsSection = () => {
       <div className="container mx-auto px-4 max-w-7xl flex items-center w-full gap-4">
         {/* Slider Container */}
         <button
-          className="bg-white text-slate-800 border-[1px] px-3 sm:px-4 py-1 rounded-lg hover:bg-slate-200 
-                     transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-"
-          onClick={() => goToSlide(currentSlide + 1)}
-          disabled={currentSlide === maxSlideIndex}
+          className="bg-white text-slate-800 border-[1px] border-gray-300 sm:px-4 py-1 rounded-lg hover:bg-slate-200 
+                     transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm "
+          onClick={() => goToSlide(currentSlide - 1)}
+          disabled={currentSlide === 0}
         >
-          <ArrowRight size={20} className="rotate-180" />
+          <ChevronRight size={20} className="rotate-180"/>
         </button>
         <div className="relative overflow-hidden w-full">
 
@@ -132,19 +132,20 @@ const SpecialistsSection = () => {
 
         </div>
         <button
-          className="bg-white text-slate-800 border-[1px] border-gray-300 px-3 sm:px-4 py-1 rounded-lg hover:bg-slate-200 
-                     transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-          onClick={() => goToSlide(currentSlide - 1)}
-          disabled={currentSlide === 0}
+          className="bg-white text-slate-800 border-[1px] px-3 sm:px-4 py-1 rounded-lg hover:bg-slate-200 
+                     transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={() => goToSlide(currentSlide + 1)}
+          disabled={currentSlide === maxSlideIndex}
         >
-          <ArrowRight size={20} />
+          <ChevronRight size={20} className="rotate-80" />
+          
         </button>
         {/* Navigation Buttons */}
       </div>
       <Button asChild className=" py-5 bg-teal-700 px-9 md:mt-14 mt-9 hover:bg-teal-600 hover:px-11 transition-all">
         <Link href="doctors" >
           View All
-          <ArrowRight  />
+          <ArrowRight />
         </Link>
       </Button>
     </section>

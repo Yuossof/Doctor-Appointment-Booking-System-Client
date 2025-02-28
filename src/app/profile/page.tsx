@@ -3,17 +3,13 @@ import { Card } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Camera, MapPin } from 'lucide-react'
 import ProfileInputs from "@/components/profile-page/ProfileInputs"
-
+import MyReportsButton from "@/components/profile-page/reports/MyReportsButton"
 export default function ProfilePage() {
 
   return (
     <div className="container mx-auto py-10 px-4">
       <Card className="max-w-4xl mx-auto overflow-hidden">
-        <div className="relative h-48 sm:h-64 bg-gradient-to-r from-blue-400 to-blue-600">
-          <Button variant="secondary" size="icon" className="absolute top-4 right-4 bg-white/80 hover:bg-white">
-            <Camera className="h-4 w-4" />
-            <span className="sr-only">Change cover photo</span>
-          </Button>
+        <div className="relatiove h-48 sm:h-64 bg-gradient-to-r from-blue-400 to-blue-600">
         </div>
 
         <div className="relative px-4 sm:px-8 pb-8">
@@ -33,21 +29,26 @@ export default function ProfilePage() {
                   <span className="sr-only">Change profile picture</span>
                 </Button>
               </div>
-
             </div>
-            <div className="flex flex-col mt-14">
-              <h1 className="text-2xl sm:text-3xl font-bold">John Doe</h1>
-              <p className="text-muted-foreground flex items-center mt-1">
-                <MapPin className="h-4 w-4 mr-1" /> New York, USA
-              </p>
-            </div>
-          </div>
+            <div className="flex w-full">
+              <div className="flex flex-col mt-14">
+                <h1 className="text-2xl sm:text-3xl font-bold">John Doe</h1>
+                <p className="text-muted-foreground flex items-center mt-1">
+                  <MapPin className="h-4 w-4 mr-1" /> New York, USA
+                </p>
+              </div>
+              <div className="flex-1 flex justify-end mt-4">
+                <MyReportsButton />
+              </div>
 
-          <div className="mt-9">
-            <ProfileInputs />
           </div>
         </div>
-      </Card>
+
+        <div className="mt-9">
+          <ProfileInputs />
+        </div>
     </div>
+      </Card >
+    </div >
   )
 }

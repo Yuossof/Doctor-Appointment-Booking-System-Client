@@ -40,7 +40,11 @@ const childVariants = {
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
     const pathname = usePathname();
-    const isDashboard = pathname.startsWith("/doctor-dashboard");
+    const isDashboard = (
+        pathname.startsWith("/doctor-dashboard") ||
+        pathname.startsWith("/admin")
+    )
+
     const userContext = useUser();
 
     const links = [
@@ -81,7 +85,7 @@ const Header = () => {
                         transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 7 }}
                         className='flex items-center gap-5'>
                         <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
-                        {!userContext?.user && (
+                        {userContext?.user && (
                             <div className='flex items-center gap-2'>
                                 <Button asChild className='bg-mid-blue py-6 px-6'>
                                     <Link href="/register">Register</Link>
