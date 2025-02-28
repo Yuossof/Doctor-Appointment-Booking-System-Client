@@ -13,6 +13,7 @@ import { useGender } from '@/Context/DoctorsFilter/DoctorGender';
 import { useAvilability } from '@/Context/DoctorsFilter/DoctorAvialbilty';
 import { useSpecialization } from '@/Context/DoctorsFilter/DoctorSpecialization';
 import { useSalary } from '@/Context/DoctorsFilter/DoctorSalary';
+import { motion } from 'framer-motion';
 
 const informations = [
   { image: <PiGraduationCapLight />, title: 'Specialitie', type: 'specialization' },
@@ -78,20 +79,20 @@ export default function Sidebar() {
   };
 
   const handleChangeAge = (value: number) => {
-    if(ageChecked === value){
+    if (ageChecked === value) {
       setAgeChecked('');
       AgeContext?.setAge(0);
-    }else {
+    } else {
       setAgeChecked(value);
       AgeContext?.setAge(value);
     }
   }
 
   const handleChangeGender = (value: string) => {
-    if(genderChecked === value){
+    if (genderChecked === value) {
       setGenderChecked('');
       GenderContext?.setGender('')
-    }else {
+    } else {
       setGenderChecked(value);
       GenderContext?.setGender(value);
     }
@@ -99,30 +100,30 @@ export default function Sidebar() {
 
   const handleChangeAvilability = (value: string) => {
     if (avilabilityChecked === value) {
-      setAvilabilityChecked(''); 
+      setAvilabilityChecked('');
       AvilabilityContext?.setAvilability('');
     } else {
-      setAvilabilityChecked(value); 
+      setAvilabilityChecked(value);
       AvilabilityContext?.setAvilability(value);
     }
   }
 
   const handleChangeSpecialization = (value: number) => {
     if (specializationChecked === value) {
-      setSpecializationChecked(''); 
+      setSpecializationChecked('');
       SpecializationContext?.setSpecialization('');
     } else {
-      setSpecializationChecked(value); 
+      setSpecializationChecked(value);
       SpecializationContext?.setSpecialization(value);
     }
   }
 
   const handleChangeSalary = (value: number) => {
     if (salaryChecked === value) {
-      setSalaryChecked(''); 
+      setSalaryChecked('');
       SalaryContext?.setSalary('');
     } else {
-      setSalaryChecked(value); 
+      setSalaryChecked(value);
       SalaryContext?.setSalary(value);
     }
   }
@@ -147,7 +148,11 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <div className='sticky left-0 top-0 translate-y-[10px] w-[220px] h-fit rounded-md shadow-lg bg-white'>
+    <motion.div
+      initial={{ scale: 0.5, opacity: 0 }}
+      whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+      transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
+      className='sticky left-0 top-0 translate-y-[10px] w-[220px] h-fit rounded-md shadow-lg bg-white'>
 
       {/* Header */}
       <div className='flex items-center gap-2 bg-mid-blue p-3 text-white'>
@@ -174,9 +179,9 @@ export default function Sidebar() {
             {/* Specialization */}
             {inf.type === 'specialization' && specialization.length > 0 && (
               specialization.map(special => (
-                <label key={special.id} htmlFor={`special-${special.id}`} 
-                       className='flex  items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
-                  <input checked={ specializationChecked === special.id } onChange={() => handleChangeSpecialization(special.id)} type='checkbox' id={`special-${special.id}`} />
+                <label key={special.id} htmlFor={`special-${special.id}`}
+                  className='flex  items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
+                  <input checked={specializationChecked === special.id} onChange={() => handleChangeSpecialization(special.id)} type='checkbox' id={`special-${special.id}`} />
                   {special.name_en}
                 </label>
               ))
@@ -185,8 +190,8 @@ export default function Sidebar() {
             {/* Gender */}
             {inf.type === 'gender' && gender.length > 0 && (
               gender.map((g, index) => (
-                <label key={index} htmlFor={`gender-${index}`} 
-                       className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
+                <label key={index} htmlFor={`gender-${index}`}
+                  className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
                   <input checked={genderChecked === g.value} onChange={() => handleChangeGender(g.value)} type='checkbox' id={`gender-${index}`} />
                   {g.title}
                 </label>
@@ -196,8 +201,8 @@ export default function Sidebar() {
             {/* Avilability */}
             {inf.type === 'avilable' && avilability.length > 0 && (
               avilability.map((avilable, index) => (
-                <label key={index} htmlFor={`avilability-${index}`} 
-                       className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
+                <label key={index} htmlFor={`avilability-${index}`}
+                  className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
                   <input checked={avilabilityChecked === avilable.value} onChange={() => handleChangeAvilability(avilable.value)} type='checkbox' id={`avilability-${index}`} />
                   {avilable.title}
                 </label>
@@ -207,9 +212,9 @@ export default function Sidebar() {
             {/* Salary */}
             {inf.type === 'salary' && salary.length > 0 && (
               salary.map((salary, index) => (
-                <label key={index} htmlFor={`salary-${index}`} 
-                       className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
-                  <input checked={ salaryChecked === salary.value } onChange={() => handleChangeSalary(salary.value)} type='checkbox' id={`salary-${index}`} />
+                <label key={index} htmlFor={`salary-${index}`}
+                  className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
+                  <input checked={salaryChecked === salary.value} onChange={() => handleChangeSalary(salary.value)} type='checkbox' id={`salary-${index}`} />
                   {salary.title}
                 </label>
               ))
@@ -218,8 +223,8 @@ export default function Sidebar() {
             {/* Age */}
             {inf.type === 'age' && age.length > 0 && (
               age.map((age, index) => (
-                <label key={index} htmlFor={`age-${index}`} 
-                       className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
+                <label key={index} htmlFor={`age-${index}`}
+                  className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
                   <input checked={ageChecked === age.value} onChange={() => handleChangeAge(age.value)} type='checkbox' id={`age-${index}`} />
                   {age.num}
                 </label>
@@ -228,6 +233,6 @@ export default function Sidebar() {
           </div>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }

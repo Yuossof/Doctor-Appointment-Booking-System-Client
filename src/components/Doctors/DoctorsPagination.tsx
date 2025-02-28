@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-
+import { motion } from "framer-motion";
 import { usePageNumber } from "@/Context/PageNumberDoctors";
 import { IUser } from "@/types/UserInformation";
 
@@ -11,7 +11,7 @@ export default function DoctorsPagination({ doctors, totalPages }: { doctors: IU
     const [rangeStart, setRangeStart] = useState<number>(1);
     const [disabledPrev, setDisabledPrev] = useState<boolean>(true);
     const [disabledNext, setDisabledNext] = useState<boolean>(false);
-    const visibleRange = 2; 
+    const visibleRange = 2;
 
     useEffect(() => {
         setDisabledPrev(page === 1);
@@ -82,8 +82,12 @@ export default function DoctorsPagination({ doctors, totalPages }: { doctors: IU
 
     return (
         <>
-            { doctors && doctors.length > 0 && (
-                <ul className="flex justify-center items-center gap-3 bg-blue-50 p-1 rounded-md">
+            {doctors && doctors.length > 0 && (
+                <motion.ul
+                    initial={{ y: 50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 80, damping: 6 }}
+                    className="flex justify-center items-center gap-3 bg-blue-50 p-1 rounded-md">
                     <button disabled={disabledPrev} onClick={() => handleButton('prev')}
                         className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-mid-blue rounded-md bg-[#f6f6f6] px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out text-mid-blue">
                         Prev
@@ -107,8 +111,8 @@ export default function DoctorsPagination({ doctors, totalPages }: { doctors: IU
                         className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-mid-blue rounded-md bg-[#f6f6f6] px-4 py-2 hover:bg-mid-blue hover:text-white transition-all duration-300 ease-out text-mid-blue">
                         Next
                     </button>
-                </ul>
-            ) }
+                </motion.ul>
+            )}
         </>
     );
 }

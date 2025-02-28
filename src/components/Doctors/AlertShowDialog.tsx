@@ -7,6 +7,7 @@ import { useMessage } from "@/Context/AlertMessage";
 import { useRouter } from "next/navigation";
 import { GetUser } from "@/lib/services/auth/GetUser";
 import { IUser } from "@/types/UserInformation";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface DialogData {
     doctorId: number | undefined
@@ -37,20 +38,26 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                 setShowDialog(prev => !prev);
                 messageContext?.setMessage(res.data.message);
             } catch (error) {
-                console.log(error);
+                messageContext?.setMessage('You must select from today onwards and not a previous day.');
             }
         } else {
             router.replace('/login');
         }
     }
     return (
-        <div className="absolute flex flex-col gap-2 left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 p-3 w-[100%] scale-100 transition-all duration-300 ease-in-out rounded-md shadow-lg bg-white z-20">
-            <h1 className="text-mid-blue">Are you absolutely sure?</h1>
-            <p className="text-body-text text-[12px]">This action cannot be undone. This will confirm that you have booked this appointment with your doctor.</p>
-            <div className="ml-auto flex gap-2 items-center mt-2 text-[13px]">
-                <button onClick={handleShowDialog} className="bg-[#f9f9f9] rounded-md p-2 text-black shadow-md">Cancel</button>
-                <button onClick={handleReservation} className="bg-mid-blue rounded-md p-2 text-white">Countinue</button>
-            </div>
-        </div>
+        <AnimatePresence>
+            <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 80, damping: 6 }}
+                className="absolute flex flex-col gap-2 left-0 top-[20px] p-3 w-[100%] rounded-md shadow-lg bg-white z-20">
+                <h1 className="text-mid-blue">Are you absolutely sure?</h1>
+                <p className="text-body-text text-[12px]">This action cannot be undone. This will confirm that you have booked this appointment with your doctor.</p>
+                <div className="ml-auto flex gap-2 items-center mt-2 text-[13px]">
+                    <button onClick={handleShowDialog} className="bg-[#f9f9f9] rounded-md p-2 text-black shadow-md">Cancel</button>
+                    <button onClick={handleReservation} className="bg-mid-blue rounded-md p-2 text-white">Countinue</button>
+                </div>
+            </motion.div>
+        </AnimatePresence>
     )
 }

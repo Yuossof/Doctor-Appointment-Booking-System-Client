@@ -9,6 +9,7 @@ import Cookie from 'cookie-universal';
 import { GrFormCheckmark } from "react-icons/gr";
 import { useRouter } from "next/navigation";
 import { useUser } from "../../Context/User";
+import { motion } from "framer-motion";
 
 export default function LoginForm() {
     const [state, action, pending] = useActionState(LoginAction, undefined);
@@ -23,15 +24,15 @@ export default function LoginForm() {
     useEffect(() => {
         if (state?.errors?.error == 'Email Or Password Is Not Valid') {
             setMessage(state.errors.error);
-        } 
+        }
         if (state?.userData) {
-            if(state?.userData.user.email_verified_at == null){
+            if (state?.userData.user.email_verified_at == null) {
                 cookie.set('data', JSON.stringify(state.userData));
                 cookie.set('message', state.message);
                 router.push('/verify');
             }
         }
-        if(state?.user){
+        if (state?.user) {
             userContext?.setUser({
                 phone: state?.user?.phone,
                 address: state?.user?.address,
@@ -61,38 +62,64 @@ export default function LoginForm() {
                     <span>{message}</span>
                 </div>
             }
-            <div className='relative w-full'>
+            <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+                className='relative w-full'>
                 <div className="flex items-center gap-2 mb-1">
                     <Image className="absolute left-[15px]" src={EnvelopeImage} alt="User Image" width={20} height={20} />
                     <input defaultValue={state?.data?.email} className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="email" placeholder="Type Your Email" name="email" />
                 </div>
                 {state?.errors?.email && <span className="text-red-600">{state.errors.email[0]}</span>}
-            </div>
+            </motion.div>
 
-            <div className='relative w-full'>
+            <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+                className='relative w-full'>
                 <div className="flex items-center gap-2 mb-1">
                     <Image className="absolute left-[15px]" src={PasswordImage} alt="User Image" width={20} height={20} />
                     <input className="w-full p-2 rounded-lg border border-form focus:outline-none pl-[45px] text-body-text" type="password" placeholder="Type Your Password" name="password" />
                 </div>
                 {state?.errors?.password && <span className="text-red-600">{state.errors.password[0]}</span>}
-            </div>
+            </motion.div>
 
             <div className="flex justify-between items-center">
-                <div className="flex gap-3">
+                <motion.div
+                    initial={{ x: -50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+                    className="flex gap-3">
                     <input id="checkbox" type="hidden" checked={checkbox} onChange={handleCheckBox} name="checkbox" />
                     <span className="w-[20px] h-[20px] border border-form rounded-md relative">
                         <GrFormCheckmark className={`${checkbox ? 'scale-100' : 'scale-0'} transition-transform duration-300 ease-in-out absolute left-0 top-0 w-full h-full text-dark-blue`} />
                     </span>
                     <label onClick={handleCheckBox} htmlFor="checkbox" className="text-dark-blue cursor-pointer">Remember Me</label>
-                </div>
-                <Link href={'/check-email'} className="underline text-dark-blue">Forget Password?</Link>
+                </motion.div>
+                <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+                >
+                    <Link href={'/check-email'} className="underline text-dark-blue">Forget Password?</Link>
+                </motion.div>
             </div>
 
-            <button type="submit" className="bg-mid-blue rounded-lg py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed" disabled={pending}>
+            <motion.button
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+                type="submit" className="bg-mid-blue rounded-lg py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed" disabled={pending}>
                 {pending ? <span className="flex items-center justify-center gap-2">Loading <span className="loader"></span></span> : 'Log In'}
-            </button>
+            </motion.button>
 
-            <span className="text-dark-blue text-center">Not member yet? <Link href={'/register'} className="underline">Create An Account</Link></span>
+            <motion.span
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+                className="text-dark-blue text-center">Not member yet? <Link href={'/register'} className="underline">Create An Account</Link></motion.span>
         </form>
     )
 }

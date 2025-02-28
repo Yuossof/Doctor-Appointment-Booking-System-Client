@@ -23,11 +23,7 @@ export default async function Verify() {
             <UpdateMessage message={message} />
             <ShowMessage />
             <div className='flex flex-col items-center justify-center h-[calc(100vh-125px)] md:h-[calc(100vh-150px)]'>
-                <h1 className='text-dark-blue text-[35px] sm:text-[50px] font-semibold'>Verify Code</h1>
-                <p className='text-body-text text-center text-[12px] sm:text-[14px] mt-2'>We Sent Code To This Email:
-                    <span className='text-dark-blue'> {user.email}</span>
-                </p>
-                <VerifyForm />
+                <VerifyForm user={user}/>
             </div>
         </>
     )

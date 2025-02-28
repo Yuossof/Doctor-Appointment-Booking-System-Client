@@ -19,6 +19,7 @@ import { useToastMessage } from "../../Context/ToastMessage";
 import { useUser } from "../../Context/User";
 import Cookie from 'cookie-universal';
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface DropdownMenuCheckboxesProps {
     AvatarCmp: React.ElementType;
@@ -49,7 +50,11 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
     }
 
     return (
-        <>
+        <motion.div 
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 0.7 }}
+        transition={{ duration: 0.5 }}
+        >
             {(userContext?.user && userContext?.user.email_verified_at !== null) && (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -74,6 +79,6 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
                     </DropdownMenuContent>
                 </DropdownMenu>
             )}
-        </>
+        </motion.div>
     )
 }

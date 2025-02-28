@@ -31,7 +31,7 @@ export function AddAvailabilityForm() {
                                     onClick={() => setSelectedDay(day.day)}
                                     key={day.id}
                                     className={` py-2 px-4 rounded-md text-gray-400 cursor-pointer 
-                                                ${selectedDay === day.day ? "border-blue-500 border-2" : "border-slate-600 border-[1px]"}`}>
+                                                ${selectedDay === day.day ? "border-blue-500 border-2" : "border-slate-600 border-[2px]"}`}>
                                     {day.day}
                                 </div>
                             ))}

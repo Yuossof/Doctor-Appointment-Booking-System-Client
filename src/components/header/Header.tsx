@@ -7,6 +7,35 @@ import { AvatarCmp } from '../Avatar'
 import { DropdownMenuCheckboxes } from './DropdownMenu'
 import { Button } from '../ui/button'
 import { useUser } from '../../Context/User'
+import { motion } from 'framer-motion'
+
+const divVariants = {
+    hidden: {
+        y: 50,
+    },
+    visible: {
+        y: 0,
+        transition: {
+            duration: 2,
+            type: 'spring', stiffness: 150, damping: 8, 
+            staggerChildren: 0.3
+        }
+    }
+}
+
+const childVariants = {
+    hidden: {
+        opacity: 0,
+        y: 50
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 2, type: 'spring', stiffness: 150, damping: 8, 
+        }
+    }
+}
 
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
@@ -29,17 +58,28 @@ const Header = () => {
             {/* LG */}
             <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
                 <div className="bg-light-blue hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7">
-                    <h1 className="font-semibold text-[35px] text-dark-blue">LOGO</h1>
-                    <div>
-                        <ul className='flex items-center gap-[38px]'>
-                            {links.map((lnk, i) => (
-                                <li key={i} className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
-                                    <Link href={lnk.to}>{lnk.title}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className='flex items-center gap-5'>
+                    <motion.h1
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 7 }}
+                        className="font-semibold text-[35px] text-dark-blue">LOGO</motion.h1>
+                    <motion.ul 
+                    variants={divVariants} initial='hidden' animate='visible'
+                    className='flex items-center gap-[38px]'>
+                        {links.map((lnk, i) => (
+                            <motion.li 
+                            variants={childVariants}
+                            whileHover={{ color: '#011632', transition: { duration: 0.7 } }}
+                            key={i} className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
+                                <Link href={lnk.to}>{lnk.title}</Link>
+                            </motion.li>
+                        ))}
+                    </motion.ul>
+                    <motion.div
+                        initial={{ x: 50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 7 }}
+                        className='flex items-center gap-5'>
                         <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
                         {!userContext?.user && (
                             <div className='flex items-center gap-2'>
@@ -51,7 +91,7 @@ const Header = () => {
                                 </Button>
                             </div>
                         )}
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/* SM  */}

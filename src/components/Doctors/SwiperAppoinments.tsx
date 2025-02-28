@@ -1,7 +1,7 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { motion } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -14,6 +14,7 @@ import AlertShowDialog from './AlertShowDialog';
 
 
 export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
+
     const [showDialog, setShowDialog] = useState<boolean>(false);
     const [appointemetId, setAppointmentID] = useState<number>(0);
     const [dayId, setDayId] = useState<number>(0);
@@ -26,7 +27,11 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
 
     return (
         <>
-            <div className='relative'>
+            <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 80, damping: 6 }}
+                className='relative'>
                 {showDialog && <AlertShowDialog doctorId={doctor.id} dayID={dayId} appointementId={appointemetId} setShowDialog={setShowDialog} />}
                 {doctor.days && doctor.days?.length > 0 && (
                     <Swiper
@@ -40,7 +45,7 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
                         {!showDialog && (doctor?.days ?? []).map((day) => (
                             <SwiperSlide
                                 key={day.id}
-                                className="w-[250px] max-w-[250px] "
+                                className="w-[250px] max-w-[250px]"
                             >
                                 <h1 className='bg-mid-blue text-white text-[13px] p-[5px] shadow-sm w-[150px]'>{day.day}</h1>
                                 <ul className='text-[13px] p-2 flex flex-col gap-2 shadow-sm w-[150px]'>
@@ -57,7 +62,7 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
                         ))}
                     </Swiper>
                 )}
-            </div>
+            </motion.div>
         </>
     );
 }

@@ -10,6 +10,7 @@ import { useGender } from '@/Context/DoctorsFilter/DoctorGender';
 import { useAvilability } from '@/Context/DoctorsFilter/DoctorAvialbilty';
 import { useSpecialization } from '@/Context/DoctorsFilter/DoctorSpecialization';
 import { useSalary } from '@/Context/DoctorsFilter/DoctorSalary';
+import { motion } from 'framer-motion';
 
 export default function MainContent() {
   const pageNumber = usePageNumber();
@@ -21,6 +22,7 @@ export default function MainContent() {
   const avilabilityContext = useAvilability();
   const [doctors, setDoctors] = useState<IUser[] | null>(null);
   const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,10 +45,14 @@ export default function MainContent() {
   return (
     <main className='flex-1 p-2 rounded-lg'>
       <div className="flex items-center justify-between">
-        <div className="flex gap-2 text-body-text">
+        <motion.div
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, type: 'spring', stiffness: 80, damping: 5 }}
+          className="flex gap-2 text-body-text">
           <h1 className='text-[18px] font-semibold'>All Specialities</h1>
           <span>{doctors && doctors.length > 1 ? doctors.length : 0} Doctors</span>
-        </div>
+        </motion.div>
         <SearchFormDcotor />
       </div>
       <DoctorInformation doctors={doctors} totalPages={totalPages} />

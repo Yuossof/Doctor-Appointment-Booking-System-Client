@@ -7,6 +7,8 @@ import { FcAbout } from "react-icons/fc";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { childeDiv, childNav, parentDiv } from "../ParentAndChildAnimation";
 
 export default function MainContent() {
     const { doctor } = useDoctor();
@@ -15,12 +17,28 @@ export default function MainContent() {
         <>
             <div className="relative flex justify-between gap-4">
 
-                <div className="flex flex-col flex-1 gap-8">
+                <motion.div
+                    variants={parentDiv}
+                    initial='hidden'
+                    whileInView='visible'
+                    className="flex flex-col flex-1 gap-8">
 
                     {/* Doctor Information */}
-                    <div className="flex bg-[#f9f9f9] items-center gap-8 p-5 rounded-md shadow-lg">
-                        <img className="w-[100px] h-[100px] rounded-full" src={doctor.image_url} alt="Doctor Image" />
-                        <div className="flex flex-col gap-2 p-2 flex-1">
+                    <motion.div
+                        variants={childeDiv}
+                        initial='hidden'
+                        whileInView='visible'
+                        className="flex bg-[#f9f9f9] items-center gap-8 p-5 rounded-md shadow-lg">
+                        <motion.img
+                            initial={{ scale: 0.5, opacity: 0 }}
+                            whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                            transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
+                            className="w-[100px] h-[100px] rounded-full" src={doctor.image_url} alt="Doctor Image" />
+                        <motion.div
+                            variants={childeDiv}
+                            initial='hidden'
+                            whileInView='visible'
+                            className="flex flex-col gap-2 p-2 flex-1">
                             <div className="flex justify-between items-center text-body-text">
                                 <h1>Doctor <span> </span>
                                     {doctor?.first_name?.charAt(0).toUpperCase() + doctor?.first_name?.slice(1)}
@@ -35,20 +53,28 @@ export default function MainContent() {
                             <span>City: {doctor.city}</span>
                             <span>Address: {doctor.address}</span>
                             <span>Experince Years: {doctor.ex_years}</span>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* Doctor About */}
-                    <div className="bg-[#f9f9f9] p-5 rounded-md shadow-lg">
+                    <motion.div
+                        variants={childeDiv}
+                        initial='hidden'
+                        whileInView='visible'
+                        className="bg-[#f9f9f9] p-5 rounded-md shadow-lg">
                         <div className="flex items-center gap-6 pl-8">
                             <FcAbout className="text-mid-blue" />
                             <h1 className="text-body-text">About The Doctor</h1>
                         </div>
                         <p className="text-body-text leading-6">{doctor?.desc}</p>
-                    </div>
+                    </motion.div>
 
                     {/* Patient Reviews */}
-                    <div className="bg-[#f9f9f9] p-5 rounded-md shadow-lg">
+                    <motion.div
+                        variants={childeDiv}
+                        initial='hidden'
+                        whileInView='visible'
+                        className="bg-[#f9f9f9] p-5 rounded-md shadow-lg">
                         <div className="flex items-center gap-6 pl-8">
                             <FaStarHalfAlt className="text-mid-blue" />
                             <h1 className="text-body-text">Patients’ Reviews </h1>
@@ -68,13 +94,21 @@ export default function MainContent() {
                             <p className="text-body-text">From <span className="text-mid-blue">{doctor.reservation_count}</span> Visitors</p>
                         </div>
 
-                    </div>
+                    </motion.div>
 
                     {/* Users Reviews */}
-                    <div className={`${doctor?.reviews && doctor?.reviews.data.length > 0 && 'bg-[#f9f9f9] p-5 rounded-md shadow-lg flex flex-col gap-6'} `}>
+                    <motion.div
+                        variants={childeDiv}
+                        initial='hidden'
+                        whileInView='visible'
+                        className={`${doctor?.reviews && doctor?.reviews.data.length > 0 && 'bg-[#f9f9f9] p-5 rounded-md shadow-lg flex flex-col gap-6'} `}>
                         {doctor?.reviews && doctor?.reviews.data.length > 0 && (
                             doctor.reviews.data.map(review => (
-                                <div key={review.id} className="flex justify-between items-center">
+                                <motion.div 
+                                initial={{ scale: 0.5, opacity: 0 }}
+                                whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                                transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
+                                key={review.id} className="flex justify-between items-center">
                                     <div className="flex items-center gap-8">
                                         <img className="rounded-full w-[50px] h-[50px]" src={review.user.image_url} alt="User Image" />
                                         <div className="flex flex-col gap-1">
@@ -102,13 +136,13 @@ export default function MainContent() {
                                         <span className="text-white bg-mid-blue rounded-md flex items-center justify-center w-[40px] h-[40px] text-center">{Math.round(doctor.avg_rating ?? 0)}</span>
                                         <span className="text-body-text block">Doctor Rating</span>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))
                         )}
-                    </div>
+                    </motion.div>
 
                     <PaginationDoctorReview />
-                </div>
+                </motion.div>
 
                 {/* Book Mark */}
                 <SidebarDoctor />

@@ -1,22 +1,37 @@
+'use client';
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRightCircle } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { childeDiv, parentDiv } from '@/components/ParentAndChildAnimation';
 
 const ServicesHeroSection = () => {
     return (
         <section>
             <div className='flex flex-col gap-3 items-center md:px-0 px-6'>
-                <h1 className='font-semibold text-3xl sm:text-3xl md:text-4xl text-center lg:text-5xl lg:mt-0 mt-4 text-dark-blue lg:max-w-[80%]'>Services</h1>
-                <p className='text-muted-foreground lg:max-w-[80%] text-center'>
+                <motion.h1
+                    initial={{ y: -50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1.5, type: 'spring', stiffness: 100 }}
+                    className='font-semibold text-3xl sm:text-3xl md:text-4xl text-center lg:text-5xl lg:mt-0 mt-4 text-dark-blue lg:max-w-[80%]'>Services</motion.h1>
+                <motion.p
+                    initial={{ y: 50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4, type: 'spring', stiffness: 100 }}
+                    className='text-muted-foreground lg:max-w-[80%] text-center'>
                     We use only the best quality materials on the market in order to provide the best <br />
                     products to our patients
                     So don’t worry about anything and book yourself.
-                </p>
+                </motion.p>
             </div>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-16 md:px-0 px-4'>
+            <motion.div 
+            variants={parentDiv}
+            initial='hidden'
+            whileInView='visible'
+            className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-16 md:px-0 px-4'>
                 {[1, 2, 3, 4, 5, 6].map((_itm, i) => (
-                    <div key={i}
+                    <motion.div key={i} variants={childeDiv}
                         className='bg-slate-50 rounded-lg flex flex-col  items-center
                          p-4 border-slate-200 border-[1px] shadow-md hover:scale-105 transition'
                     >
@@ -33,9 +48,9 @@ const ServicesHeroSection = () => {
                                 <ArrowRightCircle size={20} />
                             </Link>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     )
 }
