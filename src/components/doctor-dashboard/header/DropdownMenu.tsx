@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 import Cookie from 'cookie-universal';
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion"
 import { useToastMessage } from "@/Context/ToastMessage";
 import { useUser } from "@/Context/User";
@@ -45,9 +45,12 @@ export function DropdownMenuCheckboxes() {
         setShowBox(false)
     }
 
-    window.onclick = () => {
-        setShowBox(false)
-    }
+    useEffect(() => {
+        const closeDropdown = () => setShowBox(false);
+        window.addEventListener("click", closeDropdown);
+    
+        return () => window.removeEventListener("click", closeDropdown);
+    }, []);
     
     return (
         <>

@@ -60,7 +60,7 @@ const Header = () => {
     return (
         <>
             {/* LG */}
-            <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]">
+            <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px] z-50">
                 <div className="bg-light-blue hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7">
                     <motion.h1
                         initial={{ x: -50, opacity: 0 }}

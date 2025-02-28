@@ -37,6 +37,8 @@ const childeDiv = {
     }
 }
 
+
+
 const Hero = () => {
     return (
         <>
@@ -105,7 +107,7 @@ const Hero = () => {
                                 </Avatar>
                                 <div>
                                     <h2 className='text-dark-blue text-md'>Dr.name</h2>
-                                    <p className='text-muted-foreground text-sm'>hello i'm dr.name</p>
+                                    <p className='text-muted-foreground text-sm'>hello i&apos;m dr.name</p>
                                 </div>
                             </div>
                             <div>
@@ -118,7 +120,7 @@ const Hero = () => {
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: [0, 1.2, 1], opacity: 1 }}
                         transition={{ duration: 3, delay: 0.3, type: 'spring', stiffness: 50, damping: 15 }}
-                        className='hidden lg:w-[40%] w-[60%] lg:mr-0 mt-10 lg:mt-0 mr-24 lg:flex justify-center relative'>
+                        className='hidden lg:w-[40%] w-[60%] lg:mr-0 mt-10 lg:mt-0 mr-24 lg:flex justify-center relative -z-[100]'>
                         <Image
                             src="/images/Mask-group.png"
                             // layout="responsive"
@@ -126,7 +128,7 @@ const Hero = () => {
                             height={500}
                             priority
                             alt="Dental experience"
-                            className='scale-105'
+                            className=''
                             loading='eager'
                         />
                     </motion.div>
