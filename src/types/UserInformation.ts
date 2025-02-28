@@ -23,6 +23,7 @@ interface DataReviews {
 }
 
 interface Days {
+    date: string
     id: number,
     day: string,
     appointments: Appointments[]

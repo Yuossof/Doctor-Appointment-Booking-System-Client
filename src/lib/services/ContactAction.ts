@@ -39,7 +39,6 @@ export default async function ContactAction(state: ContactActionForm, formData: 
         };
       }
       const data = await res.json();
-      console.log(data)
       return {
         errors: {},
         data: {},

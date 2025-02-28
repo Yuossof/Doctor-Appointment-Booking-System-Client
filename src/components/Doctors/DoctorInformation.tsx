@@ -1,5 +1,6 @@
+'use client';
 import { IUser } from '@/types/UserInformation'
-import React from 'react'
+import React, { useState } from 'react'
 import { FaStar } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { PiCityLight } from "react-icons/pi";
@@ -8,28 +9,34 @@ import { CiPhone } from "react-icons/ci";
 import SwiperAppoinments from './SwiperAppoinments';
 import Link from 'next/link';
 import DoctorsPagination from './DoctorsPagination';
-
+import { motion } from 'framer-motion';
+import { childeDiv, childNav, parentDiv } from '../ParentAndChildAnimation';
 
 interface DoctorInformationProps {
     doctors: IUser[] | null,
     totalPages: number
 }
 
-export default function DoctorInformation({ doctors, totalPages }: DoctorInformationProps){
+export default function DoctorInformation({ doctors, totalPages }: DoctorInformationProps) {
 
     return (
         <>
-
             {/* Information */}
-            <div className="flex flex-col gap-6 translate-y-[25px]">
+            <motion.div
+                variants={parentDiv}
+                initial='hidden'
+                whileInView='visible'
+                className="flex flex-col gap-6 translate-y-[25px]">
                 {doctors && doctors.length > 0 ? (
                     doctors.map(doctor => (
-                        <div key={doctor.id} className="flex justify-between bg-[#f6f6f6] rounded-md p-2 cursor-pointer">
-
+                        <motion.div
+                            variants={childeDiv}
+                            initial='hidden'
+                            whileInView='visible'
+                            key={doctor.id} className="flex justify-between bg-[#f6f6f6] rounded-md p-2 cursor-pointer">
                             <Link href={`doctors/${doctor.id}`} className="flex flex-1 items-center gap-8">
 
-                                <img alt='Doctor Image' src={doctor.image_url}
-                                    className='object-cover w-[100px] h-[100px] rounded-full' />
+                                <img src={doctor.image_url} alt='Doctor Image' className='object-cover w-[100px] h-[100px] rounded-full' />
                                 <div className="text-mid-blue flex flex-col gap-2">
                                     <div>
                                         <span className='text-[13px]'>Doctor </span>
@@ -44,14 +51,16 @@ export default function DoctorInformation({ doctors, totalPages }: DoctorInforma
                                     )}
                                     <div className="flex gap-2">
                                         {Array.from({ length: 5 }, (_, index) => (
-                                            <FaStar
-                                                key={index}
-                                                className={index < Math.round(doctor.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"}
-                                            />
+                                            <div key={index}>
+                                                <FaStar
+                                                    className={index < Math.round(doctor.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"}
+                                                />
+                                            </div>
                                         ))}
                                     </div>
-                                    <p className='text-body-text'>Overall Rating From {doctor.reservation_count} Visitors</p>
-
+                                    <p className='text-body-text'>
+                                        Overall Rating From {doctor.reservation_count} Visitors
+                                    </p>
                                     {/* Additional Information */}
                                     <div className="flex flex-col gap-2 mt-[10px]">
                                         <div className="flex justify-between items-center gap-2">
@@ -70,7 +79,6 @@ export default function DoctorInformation({ doctors, totalPages }: DoctorInforma
                                         </div>
                                         <div className="flex justify-between items-center gap-2">
                                             {doctor.feeses && doctor.feeses.length > 0 && (
-
                                                 doctor.feeses.map(fee => (
                                                     <div key={fee.id} className="flex items-center gap-2">
                                                         <GiTakeMyMoney />
@@ -92,14 +100,14 @@ export default function DoctorInformation({ doctors, totalPages }: DoctorInforma
                                 </div>
                             </Link>
                             {/* Swiper Appoinment */}
-                            <SwiperAppoinments doctor={doctor}/>
-                        </div>
+                            <SwiperAppoinments doctor={doctor} />
+                        </motion.div>
                     ))
                 ) : (
                     <div className='text-center w-full text-red-500 bg-[#f6f6f6] p-2 rounded-md'>No Doctors Here</div>
                 )}
-                <DoctorsPagination doctors={doctors} totalPages={totalPages}/>
-            </div>
+                <DoctorsPagination doctors={doctors} totalPages={totalPages} />
+            </motion.div>
         </>
     )
 }

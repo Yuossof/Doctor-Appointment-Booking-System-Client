@@ -1,4 +1,5 @@
 
+import BreadCamp from '@/components/Doctors/BreadCamp'
 import MainContent from '@/components/Doctors/MainContent'
 import ShowMessageDialog from '@/components/Doctors/ShowMessageDialog'
 import Sidebar from '@/components/Sidebar/Sidebar'
@@ -16,13 +17,7 @@ export default function Doctors() {
     <>
     <ShowMessageDialog />
       <div className='relative container h-full px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]'>
-
-        <div className='flex gap-1 text-[12px] text-body-text'>
-          <Link href={'/'} className='hover:text-mid-blue transition-all duration-300 hover:underline cursor-pointer'>Logo</Link>
-          <span>/</span>
-          <span className='hover:text-mid-blue transition-all duration-300 hover:underline '>All Docotrs In Egypt</span>
-        </div>
-
+        <BreadCamp/>
         <div className="flex gap-4 shadow-xl border border-[#f9f9f9] rounded-md p-5 pb-10 translate-y-[10px]">
           <Sidebar />
           <MainContent />

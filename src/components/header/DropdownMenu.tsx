@@ -12,6 +12,7 @@ import { useToastMessage } from "../../Context/ToastMessage";
 import { useUser } from "../../Context/User";
 import Cookie from 'cookie-universal';
 import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 import { motion } from "framer-motion"
 
@@ -54,11 +55,15 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
     
 
     return (
-        <>
-            {/**(userContext?.user && userContext?.user.email_verified_at !== null) */ true && (
-                <div>
-                    <div onClick={(eo)=> eo.stopPropagation()} className="relative">
-                        <button onClick={() => setShowBox(!showBox)} className="outline-none">
+        <motion.div 
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 0.7 }}
+        transition={{ duration: 0.5 }}
+        >
+            {(userContext?.user && userContext?.user.email_verified_at !== null) && (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <button className="outline-none">
                             <AvatarCmp />
                         </button>
                         {showBox && (
@@ -91,6 +96,6 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
                     </div>
                 </div>
             )}
-        </>
+        </motion.div>
     )
 }
