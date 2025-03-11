@@ -85,7 +85,7 @@ const Header = () => {
                         transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 7 }}
                         className='flex items-center gap-5'>
                         <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
-                        {userContext?.user && (
+                        {!userContext?.user && (
                             <div className='flex items-center gap-2'>
                                 <Button asChild className='bg-mid-blue py-6 px-6'>
                                     <Link href="/register">Register</Link>

@@ -9,13 +9,13 @@ import { FaStar } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { childeDiv, childNav, parentDiv } from "../ParentAndChildAnimation";
+import { IUser } from "@/types/UserInformation";
 
-export default function MainContent() {
+export default function MainContent({ user }: { user: IUser }) {
     const { doctor } = useDoctor();
-
     return (
         <>
-            <div className="relative flex justify-between gap-4">
+            <div className="relative flex flex-col md:flex-row justify-between gap-8 md:gap-4">
 
                 <motion.div
                     variants={parentDiv}
@@ -33,7 +33,7 @@ export default function MainContent() {
                             initial={{ scale: 0.5, opacity: 0 }}
                             whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
                             transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
-                            className="w-[100px] h-[100px] rounded-full" src={doctor.image_url} alt="Doctor Image" />
+                            className="w-[100px] h-[100px] rounded-full" src={doctor?.image_url} alt="Doctor Image" />
                         <motion.div
                             variants={childeDiv}
                             initial='hidden'
@@ -45,14 +45,14 @@ export default function MainContent() {
                                     {' '}
                                     {doctor?.last_name?.charAt(0).toUpperCase() + doctor?.first_name?.slice(1)}
                                 </h1>
-                                <p><span className="text-mid-blue">{doctor.reservation_count}</span> View</p>
+                                <p><span className="text-mid-blue">{doctor?.reservation_count}</span> View</p>
                             </div>
-                            <h1 className="text-body-text">{doctor.desc}</h1>
-                            <p>{doctor.specialization_name}</p>
-                            <span>Age: {doctor.age}</span>
-                            <span>City: {doctor.city}</span>
-                            <span>Address: {doctor.address}</span>
-                            <span>Experince Years: {doctor.ex_years}</span>
+                            <h1 className="text-body-text">{doctor?.desc}</h1>
+                            <p>{doctor?.specialization_name}</p>
+                            <span>Age: {doctor?.age}</span>
+                            <span>City: {doctor?.city}</span>
+                            <span>Address: {doctor?.address}</span>
+                            <span>Experince Years: {doctor?.ex_years}</span>
                         </motion.div>
                     </motion.div>
 
@@ -83,7 +83,7 @@ export default function MainContent() {
                             {Array.from({ length: 5 }, (_, index) => (
                                 <FaStar
                                     key={index}
-                                    className={`${index < Math.round(doctor.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"} mr-2`}
+                                    className={`${index < Math.round(doctor?.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"} mr-2`}
                                 />
                             ))}
 
@@ -91,7 +91,7 @@ export default function MainContent() {
 
                         <div className="flex flex-col items-center justify-center gap-2">
                             <p className="text-body-text">Overall Rating</p>
-                            <p className="text-body-text">From <span className="text-mid-blue">{doctor.reservation_count}</span> Visitors</p>
+                            <p className="text-body-text">From <span className="text-mid-blue">{doctor?.reservation_count}</span> Visitors</p>
                         </div>
 
                     </motion.div>
@@ -104,11 +104,11 @@ export default function MainContent() {
                         className={`${doctor?.reviews && doctor?.reviews.data.length > 0 && 'bg-[#f9f9f9] p-5 rounded-md shadow-lg flex flex-col gap-6'} `}>
                         {doctor?.reviews && doctor?.reviews.data.length > 0 && (
                             doctor.reviews.data.map(review => (
-                                <motion.div 
-                                initial={{ scale: 0.5, opacity: 0 }}
-                                whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
-                                transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
-                                key={review.id} className="flex justify-between items-center">
+                                <motion.div
+                                    initial={{ scale: 0.5, opacity: 0 }}
+                                    animate={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                                    transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
+                                    key={review.id} className="flex justify-between items-center">
                                     <div className="flex items-center gap-8">
                                         <img className="rounded-full w-[50px] h-[50px]" src={review.user.image_url} alt="User Image" />
                                         <div className="flex flex-col gap-1">
@@ -121,7 +121,7 @@ export default function MainContent() {
                                                 {Array.from({ length: 5 }, (_, index) => (
                                                     <FaStar
                                                         key={index}
-                                                        className={`${index < Math.round(doctor.avg_rating ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"} mr-2`}
+                                                        className={`${index < Math.round(review.rate ?? 0) ? "text-yellow-300" : "text-[#9e9b9b70]"} mr-2`}
                                                     />
                                                 ))}
                                             </div>
@@ -132,9 +132,19 @@ export default function MainContent() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-center justify-center gap-1">
-                                        <span className="text-white bg-mid-blue rounded-md flex items-center justify-center w-[40px] h-[40px] text-center">{Math.round(doctor.avg_rating ?? 0)}</span>
-                                        <span className="text-body-text block">Doctor Rating</span>
+                                    <div className="flex gap-2">
+                                        {review.user.id && review.user.id === user.id ? (
+                                            <>
+                                                <button className="bg-red-600 text-white rounded-md px-4 py-2">Delete</button>
+                                                <button className="bg-yellow-400 text-white rounded-md px-4 py-2">Edit</button>
+                                            </>
+                                        ) : (
+                                            <div className="flex flex-col items-center justify-center gap-1">
+                                                <span className="text-white bg-mid-blue rounded-md flex items-center justify-center w-[40px] h-[40px] text-center">{Math.round(review.rate ?? 0)}</span>
+                                                <span className="text-body-text block">Doctor Rating</span>
+                                            </div>
+                                        )}
+
                                     </div>
                                 </motion.div>
                             ))
@@ -142,6 +152,7 @@ export default function MainContent() {
                     </motion.div>
 
                     <PaginationDoctorReview />
+
                 </motion.div>
 
                 {/* Book Mark */}

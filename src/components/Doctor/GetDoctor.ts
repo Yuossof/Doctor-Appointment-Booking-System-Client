@@ -19,8 +19,8 @@ export default function GetDoctor({ id }: { id: string }) {
                     }
                 })
                 const data = await res.json();
-                totalPagesReviewsContext?.setTotalPage(data.data.totalPages);
-                contextDoctor?.setDoctor(data.data.doctor);
+                totalPagesReviewsContext?.setTotalPage(data?.data?.totalPages);
+                contextDoctor?.setDoctor(data?.data?.doctor);
             } catch (error) {
                 console.log(error)
             }

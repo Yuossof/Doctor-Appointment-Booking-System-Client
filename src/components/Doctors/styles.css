@@ -25,3 +25,12 @@
   .swiper-button-prev{
     left: 0px !important;
   }
+  .ring-offset-background{
+    border: none;
+    border: 1px solid #cccccc;
+    border-radius: 0.5rem;
+}
+.ring-offset-background:focus{
+    outline: none;
+    box-shadow: none;
+}

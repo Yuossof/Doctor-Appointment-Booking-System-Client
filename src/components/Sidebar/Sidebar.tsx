@@ -152,7 +152,7 @@ export default function Sidebar() {
       initial={{ scale: 0.5, opacity: 0 }}
       whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
       transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
-      className='sticky left-0 top-0 translate-y-[10px] w-[220px] h-fit rounded-md shadow-lg bg-white'>
+      className='lg:sticky left-0 top-0 mb-4 lg:mb-0 translate-y-[10px] lg:w-[220px] h-fit rounded-md shadow-lg bg-white'>
 
       {/* Header */}
       <div className='flex items-center gap-2 bg-mid-blue p-3 text-white'>
@@ -177,7 +177,7 @@ export default function Sidebar() {
            ${count === i ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
 
             {/* Specialization */}
-            {inf.type === 'specialization' && specialization.length > 0 && (
+            {inf.type === 'specialization' && specialization?.length > 0 && (
               specialization.map(special => (
                 <label key={special.id} htmlFor={`special-${special.id}`}
                   className='flex  items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
@@ -188,7 +188,7 @@ export default function Sidebar() {
             )}
 
             {/* Gender */}
-            {inf.type === 'gender' && gender.length > 0 && (
+            {inf.type === 'gender' && gender?.length > 0 && (
               gender.map((g, index) => (
                 <label key={index} htmlFor={`gender-${index}`}
                   className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
@@ -199,7 +199,7 @@ export default function Sidebar() {
             )}
 
             {/* Avilability */}
-            {inf.type === 'avilable' && avilability.length > 0 && (
+            {inf.type === 'avilable' && avilability?.length > 0 && (
               avilability.map((avilable, index) => (
                 <label key={index} htmlFor={`avilability-${index}`}
                   className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
@@ -210,7 +210,7 @@ export default function Sidebar() {
             )}
 
             {/* Salary */}
-            {inf.type === 'salary' && salary.length > 0 && (
+            {inf.type === 'salary' && salary?.length > 0 && (
               salary.map((salary, index) => (
                 <label key={index} htmlFor={`salary-${index}`}
                   className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>
@@ -221,7 +221,7 @@ export default function Sidebar() {
             )}
 
             {/* Age */}
-            {inf.type === 'age' && age.length > 0 && (
+            {inf.type === 'age' && age?.length > 0 && (
               age.map((age, index) => (
                 <label key={index} htmlFor={`age-${index}`}
                   className='flex items-center gap-2 p-2 hover:bg-gray-100 transition-all duration-300 ease-out cursor-pointer'>

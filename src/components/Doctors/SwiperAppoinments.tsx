@@ -31,7 +31,7 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 80, damping: 6 }}
-                className='relative'>
+                className='relative py-4 md:py-0'>
                 {showDialog && <AlertShowDialog doctorId={doctor.id} dayID={dayId} appointementId={appointemetId} setShowDialog={setShowDialog} />}
                 {doctor.days && doctor.days?.length > 0 && (
                     <Swiper
@@ -40,7 +40,7 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
                         loop={true}
                         navigation={true}
                         modules={[Navigation]}
-                        className="mySwiper w-[250px] max-w[250px] h-[200px] max-h-[450px] cursor-pointer"
+                        className="mySwiper w-[250px] max-w[250px] md:h-[200px] max-h-[450px] cursor-pointer"
                     >
                         {!showDialog && (doctor?.days ?? []).map((day) => (
                             <SwiperSlide

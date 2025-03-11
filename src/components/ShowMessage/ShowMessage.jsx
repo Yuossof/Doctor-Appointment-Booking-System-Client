@@ -19,7 +19,7 @@ export default function ShowMessage() {
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, [context?.toastMessage, cookieStore]);
+    }, [context?.toastMessage, cookieStore.get('message')]);
 
     return (
         <>

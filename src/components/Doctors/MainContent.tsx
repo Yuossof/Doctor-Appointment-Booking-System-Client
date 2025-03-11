@@ -44,13 +44,13 @@ export default function MainContent() {
 
   return (
     <main className='flex-1 p-2 rounded-lg'>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 items-center justify-between">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, type: 'spring', stiffness: 80, damping: 5 }}
-          className="flex gap-2 text-body-text">
-          <h1 className='text-[18px] font-semibold'>All Specialities</h1>
+          className="flex gap-1 md:gap-2 text-body-text">
+          <h1 className='text-[18px] sm:text-[16px] md:text-[18px] font-semibold'>All Specialities</h1>
           <span>{doctors && doctors.length > 1 ? doctors.length : 0} Doctors</span>
         </motion.div>
         <SearchFormDcotor />

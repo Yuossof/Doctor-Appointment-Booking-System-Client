@@ -18,11 +18,10 @@ export default function Doctors() {
     <ShowMessageDialog />
       <div className='relative container h-full px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px]'>
         <BreadCamp/>
-        <div className="flex gap-4 shadow-xl border border-[#f9f9f9] rounded-md p-5 pb-10 translate-y-[10px]">
+        <div className="flex flex-col lg:flex-row gap-4 shadow-xl border border-[#f9f9f9] rounded-md p-5 pb-10 translate-y-[10px]">
           <Sidebar />
           <MainContent />
         </div>
-
       </div>
     </>
   )

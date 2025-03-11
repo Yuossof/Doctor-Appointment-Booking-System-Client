@@ -12,6 +12,7 @@ type InformationData = {
 }
 
 export default function SignInformation(props: InformationData) {
+      
     return (
         <div className='text-center w-full sm:w-[550px] md:w-[700px] lg:w-[800px] px-2 sm:px-0'>
             <motion.h1
@@ -30,12 +31,11 @@ export default function SignInformation(props: InformationData) {
                 transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
                 className="sm:flex sm:items-center sm:justify-center w-full">
                 <Link
-                    href=''
+                    href="http://127.0.0.1:8000/api/auth/google?prompt=select_account"
                     className='flex items-center justify-center gap-1 w-full  p-2 mt-6 border border-dark-blue rounded-lg'>
                     <Image src={GoogleLogo} alt='GoogleLogo' width={20} height={20} />
                     <span className='text-[13px] text-dark-blue'>{props.method} with Google</span>
                 </Link>
-
             </motion.div>
             <div className="relative flex items-center justify-center mt-6 w-full ">
                 <motion.div
