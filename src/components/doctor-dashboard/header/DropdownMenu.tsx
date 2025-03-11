@@ -52,6 +52,7 @@ export function DropdownMenuCheckboxes() {
         return () => window.removeEventListener("click", closeDropdown);
     }, []);
     
+    
     return (
         <>
             {/**(userContext?.user && userContext?.user.email_verified_at !== null) */ true && (

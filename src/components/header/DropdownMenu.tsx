@@ -71,12 +71,18 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="bg-slate-50 absolute top-13 -right-4 p-3 rounded-md shadow-lg w-[250px] flex flex-col gap-2">
+                            className="bg-slate-50 absolute top-13 -right-4 p-3 rounded-md shadow-lg w-[250px] flex flex-col gap-2 z-50">
                             <Link
                                 onClick={() => clickOnItem(false)} href={"/profile"}
                                 className="flex items-center gap-3 text-gray-600 px-3 py-2 rounded-md hover:bg-slate-100 transition-all">
                                 <User size={22} />
                                 <span className="text-md">Profile</span>
+                            </Link>
+                            <Link
+                                onClick={() => clickOnItem(false)} href={"/my-appointments"}
+                                className="flex items-center gap-3 text-gray-600 px-3 py-2 rounded-md hover:bg-slate-100 transition-all">
+                                <User size={22} />
+                                <span className="text-md">My Appointments</span>
                             </Link>
                             <Link
                                 onClick={() => clickOnItem(false)} href={"/profile/reports"}

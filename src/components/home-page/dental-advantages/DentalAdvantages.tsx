@@ -35,8 +35,8 @@ const DentalAdvantages = () => {
     return (
         <section className='flex lg:justify-between md:justify-between lg:flex-row bg-slate-100 rounded-lg p-9 gap-5 flex-col items-center'>
             <motion.div
-                initial={{ scale: 0, rotate: 360, opacity: 0 }}
-                whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1.5, type: 'spring', stiffness: 30, damping: 7, mass: 0.5 }}
                 className='lg:w-2/4 w-full lg:justify-start justify-center lg:flex flex lg:pl-24 md:hidden'>
                 <Image src="/images/Rectangle-631.png" alt='img' width={400} height={300} />
@@ -46,14 +46,14 @@ const DentalAdvantages = () => {
                     <motion.h2
                         initial={{ x: 50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.2, type: 'spring', stiffness: 50, damping: 5, mass: 0.5 }}
+                        transition={{ duration: 1, type: 'spring', stiffness: 50, damping: 5, mass: 0.5 }}
                         className='font-semibold text-2xl  sm:text-2xl md:text-3xl lg:text-5xl lg:mt-0 mt-4 text-dark-blue lg:max-w-[80%] '>
                         Why choose Smile for all your dental treatments?
                     </motion.h2>
                     <motion.p
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.2, type: 'spring', stiffness: 50, damping: 5, mass: 0.5 }}
+                        transition={{ duration: 1, type: 'spring', stiffness: 50, damping: 5, mass: 0.5 }}
                         className='text-muted-foreground text-md lg:max-w-[80%]'>
                         We use only the best quality materials on the market in order to provide the best products to our patients.
                     </motion.p>
