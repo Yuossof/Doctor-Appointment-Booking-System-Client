@@ -58,8 +58,8 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
 
     return (
         <>
-            {(userContext?.user && userContext?.user.email_verified_at !== null) && (
-                <div>
+            {(userContext?.user && userContext?.user.email_verified_at !== null)  && (
+                <div className="relative z-50">
                     <button onClick={(eo) => {
                         eo.stopPropagation()
                         setShowBox(!showBox)
@@ -71,6 +71,8 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
+                            className="bg-slate-50 absolute top-14 rounded-md shadow-lg border-[1px] border-gray-200 -left-24 p-4 flex flex-col gap-2 w-[250px]"
+                            >
                             <Link
                                 onClick={() => clickOnItem(false)} href={"/profile"}
                                 className="flex items-center gap-3 text-gray-600 px-3 py-2 rounded-md hover:bg-slate-100 transition-all">
@@ -90,12 +92,12 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
                                 <span className="text-md">Reports</span>
                             </Link>
                             <div className="w-full h-[1px] bg-gray-200"></div>
-                            <Link
-                                onClick={() => clickOnItem(true)} href={"/profile"}
+                            <button
+                                onClick={() => clickOnItem(true)}
                                 className="flex cursor-pointer items-center gap-3 text-red-500 px-3 py-2 rounded-md hover:bg-slate-100 transition-all">
                                 <LogOut size={22} />
                                 <span className="text-md">Logout</span>
-                            </Link>
+                            </button>
                         </motion.div>
                     )}
                 </div>
