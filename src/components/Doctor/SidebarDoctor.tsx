@@ -21,7 +21,7 @@ export default function SidebarDoctor() {
                 <span className='text-mid-blue'>Examination</span>
             </div>
             <div className='flex flex-col items-center justify-between border-b border-form p-3 gap-2'>
-                {doctor.feeses && doctor.feeses.length > 0 && (
+                {doctor?.feeses && doctor?.feeses?.length > 0 && (
 
                     doctor.feeses.map(fee => (
                         <div key={fee.id} className="flex items-center gap-2">

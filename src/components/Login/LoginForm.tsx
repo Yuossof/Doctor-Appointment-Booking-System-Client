@@ -22,13 +22,12 @@ export default function LoginForm() {
     const handleCheckBox = () => setCheckbox(prev => !prev);
 
     useEffect(() => {
-        if (state?.errors?.error == 'Email Or Password Is Not Valid') {
+        if (state?.errors?.error) {
             setMessage(state.errors.error);
-        }
-        if (state?.userData) {
+        } else if (state?.userData) {
             if (state?.userData.user.email_verified_at == null) {
                 cookie.set('data', JSON.stringify(state.userData));
-                cookie.set('message', state.message);
+                cookie.set('message', 'You Must Verify Your Email');
                 router.push('/verify');
             }
         }
