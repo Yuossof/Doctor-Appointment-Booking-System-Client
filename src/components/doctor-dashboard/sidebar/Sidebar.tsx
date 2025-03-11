@@ -14,7 +14,7 @@ const Sidebar = ({ links }: {links: LinksProps[]}) => {
     const pathname = usePathname()
 
     return (
-        <div className='h-auto fixed'>
+        <div className='h-auto fixed'> 
             <div className='h-full '>
                 <div className='flex flex-col gap-4'>
                     {links.map((lnk: LinksProps) => (

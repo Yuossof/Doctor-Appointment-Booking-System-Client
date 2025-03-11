@@ -4,18 +4,18 @@ import { Button } from '@/components/ui/button'
 import { Sheet } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 
-const MyReportsButton = () => {
+const ProfileButton = ({text, path}: {text: string, path: string}) => {
     const router = useRouter()
     const pathname = usePathname()
     
     return (
         <Button
-            onClick={() => router.push(`${pathname}/reports`)}
+            onClick={() => router.push(`${pathname}/${path}`)}
             variant="outline" className="w-44 z-10 text-gray-800">
             <Sheet />
-            <span>My Reports</span>
+            <span>{text}</span>
         </Button>
     )
 }
 
-export default MyReportsButton
+export default ProfileButton

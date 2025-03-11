@@ -3,7 +3,8 @@ import { Card } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Camera, MapPin } from 'lucide-react'
 import ProfileInputs from "@/components/profile-page/ProfileInputs"
-import MyReportsButton from "@/components/profile-page/reports/MyReportsButton"
+import ProfileButton from "@/components/profile-page/reports/ProfileButton"
+
 export default function ProfilePage() {
 
   return (
@@ -37,17 +38,20 @@ export default function ProfilePage() {
                   <MapPin className="h-4 w-4 mr-1" /> New York, USA
                 </p>
               </div>
-              <div className="flex-1 flex justify-end mt-4">
-                <MyReportsButton />
+              <div className="flex-1 flex justify-end mt-4 gap">
+                <div className="flex items-center gap-3">
+                  <ProfileButton text="My Reports" path="/reports" />
+                  <ProfileButton text="My Appointments" path="my-appointments" />
+                </div>
               </div>
 
+            </div>
+          </div>
+
+          <div className="mt-9">
+            <ProfileInputs />
           </div>
         </div>
-
-        <div className="mt-9">
-          <ProfileInputs />
-        </div>
-    </div>
       </Card >
     </div >
   )

@@ -15,6 +15,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         { name: "Users", path: "/doctor-dashboard/users-table", icon: <User size={18} /> },
     ]
 
+    
+    
+
     return (
         <div className='bg-slate-900 w-full'>
             <div className='container px-[15px] md:px-[30px] lg:px-[120px] xl:px-[180px]'>
@@ -22,7 +25,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     <Header />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-[250px_1fr] gap-4 min-h-[calc(100vh-80px)]'>
-                    <div className='md:block hidden mt-6'>
+                    <div className='md:block hidden mt-6 '>
                         <Sidebar links={links} />
                     </div>
                     <main className='mt-6 overflow-hidden'>{children}</main>
