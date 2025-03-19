@@ -1,8 +1,9 @@
 "use client"
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Upload, X } from "lucide-react";
+import { useDocsImage } from "@/Context/DocsImages";
 
 interface Images {
     name: string,
@@ -12,14 +13,22 @@ interface Images {
 export default function MultiImageUploader() {
     const inpRef = useRef<HTMLInputElement>(null)
     const [images, setImages] = useState<Images[]>([]);
-
+    const docsImageContext = useDocsImage();
+    
+    useEffect(() => {
+        if(docsImageContext?.successUpload){
+            setImages([])
+        }
+    }, [docsImageContext?.successUpload])
+    
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files
         if (!files || files.length === 0) return
+        docsImageContext?.setImage(files);
+
         const imgs = Array.from(files);
         const newImages = imgs.map((file) => ({ src: URL.createObjectURL(file), name: file.name }));
         setImages((prevImages) => [...prevImages, ...newImages]);
-        console.log(images)
     };
 
     const deleteImage = (src: string) => {

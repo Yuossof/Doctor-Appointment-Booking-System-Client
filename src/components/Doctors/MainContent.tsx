@@ -20,7 +20,7 @@ export default function MainContent() {
   const specializationContext = useSpecialization();
   const salaryContext = useSalary();
   const avilabilityContext = useAvilability();
-  const [doctors, setDoctors] = useState<IUser[] | null>(null);
+  const [doctors, setDoctors] = useState<IUser[] | undefined>(undefined);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {

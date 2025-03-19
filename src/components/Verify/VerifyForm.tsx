@@ -39,7 +39,6 @@ export default function VerifyForm({ user }: { user: UserData }) {
     }
 
     useEffect(() => {
-        console.log(state?.user)
         if (state?.user) {
             userContext?.setUser({
                 phone: state?.user?.phone,
@@ -49,7 +48,8 @@ export default function VerifyForm({ user }: { user: UserData }) {
                 first_name: state?.user?.first_name,
                 last_name: state?.user?.last_name,
                 image_url: state?.user?.image_url,
-                email_verified_at: state?.user?.email_verified_at
+                email_verified_at: state?.user?.email_verified_at,
+                gender: state?.user?.gender
             })
             router.push('/');
         }

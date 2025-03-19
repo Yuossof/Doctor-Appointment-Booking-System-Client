@@ -7,10 +7,13 @@ type UData = {
     last_name: string,
     email: string,
     phone: string,
+    gender: string
     image_url?: string,
     address?: string,
     city?: string,
-    email_verified_at?: string | null
+    email_verified_at?: string | null,
+    role: string,
+    clinic_address?: string
 }
 
 type UContext = {
@@ -35,6 +38,8 @@ export default function UserProvider({ children }: { children: React.ReactNode }
                 first_name: userCookie.first_name,
                 last_name: userCookie.last_name,
                 image_url: userCookie.image_url,
+                gender: userCookie.gender,
+                role: userCookie?.role
             })
         }
     }, [])

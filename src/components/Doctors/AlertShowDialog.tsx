@@ -16,6 +16,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { usePaymentMethod } from "@/Context/PaymentMethod";
+import { loadStripe } from "@stripe/stripe-js";
+import { useToastMessage } from "@/Context/ToastMessage";
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 interface DialogData {
     doctorId: number | undefined
@@ -32,13 +36,15 @@ const methods = [
 
 export default function AlertShowDialog({ doctorId, dayID, appointementId, setShowDialog }: DialogData) {
     const messageContext = useMessage();
+    const toastMessageContext = useToastMessage();
+
     const [appointementPending, setAppointemetnPending] = useState(false);
     const [paymentPending, setpaymentPending] = useState(false);
     const router = useRouter()
     const handleShowDialog = () => setShowDialog(false);
     const [showPaymentMethod, setShowPaymentMethod] = useState(false);
     const [reservationId, setReservationId] = useState();
-    const [paymentMethod, setPaymentMethod] = useState('cache')
+    const paymentMethod = usePaymentMethod();
 
     const handleReservation = async () => {
         const user: IUser = await GetUser();
@@ -57,8 +63,6 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                 })
                 setReservationId(res.data.data.reservation_id);
                 setAppointemetnPending(false);
-
-                // messageContext?.setMessage(res.data.message);
                 setShowPaymentMethod(prev => !prev);
             } catch (error) {
                 setAppointemetnPending(false);
@@ -69,33 +73,59 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
         }
     }
 
-    const hadlePaymentValue = (value: string) => { setPaymentMethod(value) }
+    const hadlePaymentValue = (value: string) => { paymentMethod?.setPaymentMethod(value) }
 
     const handlePaymentMethod = async () => {
-        try {
-            setpaymentPending(true);
-            const token = await GetToken();
-            const res = await axios.get(`http://localhost:8000/api/paypal/create/${reservationId}?payment_method=${paymentMethod}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
+        if(paymentMethod?.paymentMethod === 'paypal'){
+            try {
+                setpaymentPending(true);
+                const res = await axios.get(`http://localhost:8000/api/paypal/create/${reservationId}?payment_method=${paymentMethod?.paymentMethod}`)
+                if (res.status === 200) {
+                    setpaymentPending(false);
+                    router.push(res.data.data.approval_url);
                 }
-            })
-            if (res.status === 200) {
-                console.log(res.data)
+            } catch (error) {
                 setpaymentPending(false);
-                router.push(res.data.data.approval_url);
             }
-        } catch (error) {
-            setpaymentPending(false);
+        } else if (paymentMethod?.paymentMethod === 'stripe'){
+            setpaymentPending(true);
+            try {
+                const stripe = await stripePromise;
+                if (!stripe) {
+                    console.error("Stripe failed to load.");
+                    return;
+                  }
+                // إرسال الطلب إلى API للحصول على sessionId
+                const { data } = await axios.post("http://127.0.0.1:8000/api/stripe/create-checkout-session", {
+                    reservation_id: reservationId
+                });
+                // توجيه المستخدم إلى Stripe Checkout
+                await stripe.redirectToCheckout({ sessionId: data.sessionId });
+              } catch (error) {
+                setpaymentPending(false);
+              }
+        } else {
+            try {
+                setpaymentPending(true);
+                const res = await axios.get(`http://localhost:8000/api/cache/create/${reservationId}`)
+                if (res.status === 200) {
+                    setpaymentPending(false);
+                    toastMessageContext?.setToastMessage(res.data.data.message);
+                    router.push('my-appointments');
+                }
+            } catch (error) {
+                setpaymentPending(false);
+            }
         }
     }
+
     return (
         <>
             {showPaymentMethod && (
                 <motion.div
                     initial={{ scale: 0.5, opacity: 0 }}
-                    whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
-                    transition={{ duration: 0.6, type: 'spring', stiffness: 80, damping: 6 }}
+                    whileInView={{ scale: [1.1, 1], opacity: 1 }}
+                    transition={{ duration: 0.6, ease:'easeInOut' }}
                     className="absolute flex flex-col gap-2 left-0 top-[20px] p-3 w-[100%] rounded-md shadow-lg bg-white z-[100]">
                     <h1 className="text-mid-blue">Choose Your Payment Method</h1>
 
@@ -121,8 +151,8 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
             )}
             <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
-                whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
-                transition={{ duration: 0.6, type: 'spring', stiffness: 80, damping: 6 }}
+                whileInView={{ scale: [1.1, 1], opacity: 1 }}
+                transition={{ duration: 0.6, ease:'easeInOut' }}
                 className={`${showPaymentMethod && 'hidden'} absolute flex flex-col gap-2 left-0 top-[20px] p-3 w-[100%] rounded-md shadow-lg bg-white z-[100]`}>
                 <h1 className="text-mid-blue">Are you absolutely sure?</h1>
                 <p className="text-body-text text-[12px]">This action cannot be undone. This will confirm that you have booked this appointment with your doctor.</p>

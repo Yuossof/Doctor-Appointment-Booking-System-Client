@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button'
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -33,8 +32,8 @@ const CareAndQuality = () => {
                     className='h-14 bg-mid-blue text-white rounded-md p-2'>Book an appointment</motion.button>
             </div>
             <motion.div
-                initial={{  opacity: 0 }}
-                whileInView={{  opacity: 1 }}
+                initial={{ x:50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1.5, type: 'spring', stiffness: 30, damping: 7, mass: 0.5 }}
                 className='lg:w-2/4 w-full relative lg:flex lg:justify-end justify-center lg:mt-0 mt-14 flex'>
                 <Image src="/images/Group 1000001024.png" alt='img'

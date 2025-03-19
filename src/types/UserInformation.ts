@@ -29,18 +29,24 @@ interface Days {
     appointments: Appointments[]
 }
 
+
+type Specialization = {
+    id: number,
+    name_en: string
+  }
+
 export interface IUser {
     id?: number,
     first_name: string,
     last_name: string,
     email: string,
-    phone: string,
+    phone?: string,
     image: string,
     image_url: string,
-    role: string,
+    role?: string,
     gender: string,
-    status: string,
-    age: number,
+    status?: string,
+    age?: number,
     address?: string,
     city?: string,
     clinic_address?: string,
@@ -53,5 +59,6 @@ export interface IUser {
     reservation_count?: number,
     feeses?: Fesses[],
     days?: Days[],
-    reviews?: DataReviews
+    reviews?: DataReviews,
+    specialization?: Specialization
 }

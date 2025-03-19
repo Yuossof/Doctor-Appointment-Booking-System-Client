@@ -1,5 +1,6 @@
+'use server'
 import UpdateMessage from "@/components/UpdateMessage/UpdateMessage";
-import { cookies } from "next/headers";
+import { cookies }  from "next/headers";
 import ShowMessage from '@/components/ShowMessage/ShowMessage';
 
 import CareAndQuality from "@/components/home-page/care-and-quality/CareAndQuality";
@@ -8,12 +9,11 @@ import HappyClients from "@/components/home-page/happy-clients/HappyClients";
 import Hero from "@/components/home-page/hero/Hero";
 import SepecialistsSection from "@/components/home-page/specialists-section/SepecialistsSection";
 import WelcomePlaylist from "@/components/home-page/welcome-with-playlist/WelcomePlaylist";
-import { GetUser } from "@/lib/services/auth/GetUser";
-import GetToken from "@/lib/services/auth/GetToken";
+;
 
 export default async function Home() {
-  const message = (await cookies()).get('message')?.value;
-
+  const cookieStore = await cookies();
+  const message = cookieStore.get('message')?.value || undefined;
 
   return (
     <div>

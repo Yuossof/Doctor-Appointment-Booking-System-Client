@@ -4,8 +4,6 @@ import Header from "@/components/header/Header";
 import FooterWithCheckPathName from "@/components/CheckPathName/FooterWithCheckPathName";
 import LayoutProviders from "@/components/layout/LayoutProviders";
 
-
-
 export const metadata: Metadata = {
   title: "Home",
 };

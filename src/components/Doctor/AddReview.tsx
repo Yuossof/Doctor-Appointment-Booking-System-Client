@@ -8,9 +8,12 @@ import axios from 'axios'
 import GetToken from '@/lib/services/auth/GetToken'
 import { motion } from 'framer-motion'
 import { childNav, parentDiv } from '../ParentAndChildAnimation'
+import { usePageNumber } from '@/Context/PageNumberReviews'
 
 export default function AddReview({ id }: { id: string }) {
     const userContext = useUser();
+    const updatePage = usePageNumber();
+
     const [state, action, pending] = useActionState<RFAction, FormData>(
         ReviewAction,
         {
@@ -21,21 +24,16 @@ export default function AddReview({ id }: { id: string }) {
             message: ''
         }
     )
-    const [message, setMessage] = useState<string>('');
 
     useEffect(() => {
-        if (state?.message) {
-            setMessage(state?.message);
+        if (state) {
+            updatePage?.setDeleteReview(false)
         }
-
-        setTimeout(() => {
-            setMessage('')
-        }, 2000);
-
-        return () => setMessage('');
-    }, [state?.message])
+        return () => updatePage?.setDeleteReview(false);
+    }, [state])
 
     const [haveReservations, setHaveReservations] = useState(false);
+
     useEffect(() => {
         const fetchSuccess = async () => {
             try {
@@ -70,6 +68,7 @@ export default function AddReview({ id }: { id: string }) {
         });
         setStarCount(0);
         setComment("");
+        updatePage?.setDeleteReview(true)
     };
 
     return (
@@ -77,11 +76,6 @@ export default function AddReview({ id }: { id: string }) {
             {userContext?.user && haveReservations && (
                 <>
                     <div className='mt-14'>
-                        {message && (
-                            <div className="bg-green-400 text-white w-full rounded-md p-2 text-center text-[12px] sm:text-[14px]">
-                                <span>{message}</span>
-                            </div>
-                        )}
                         <motion.h1
                             initial={{ y: 20, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
@@ -149,8 +143,8 @@ export default function AddReview({ id }: { id: string }) {
                                         whileInView={{ x: 0, opacity: 1 }}
                                         transition={{ duration: 0.3, ease: "easeIn" }}
                                         disabled={pending}
-                                        className='bg-mid-blue text-white rounded-md px-4 py-2 hover:-translate-y-2 transition-all duration-300 ease-in-out'>
-                                        Post Review
+                                        className='bg-mid-blue disabled:cursor-not-allowed disabled:opacity-50 text-white rounded-md px-4 py-2 hover:-translate-y-2 transition-all duration-300 ease-in-out'>
+                                        { pending ? <span>Loading <span className='loader'></span></span> : 'Post Review' }
                                     </motion.button>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { usePageNumber } from "@/Context/PageNumberDoctors";
 import { IUser } from "@/types/UserInformation";
 
-export default function DoctorsPagination({ doctors, totalPages }: { doctors: IUser[] | null, totalPages: number }) {
+export default function DoctorsPagination({ doctors, totalPages }: { doctors: IUser[] | undefined, totalPages: number }) {
     const [page, setPage] = useState<number>(1);
     const pageNumberContext = usePageNumber();
     const [rangeStart, setRangeStart] = useState<number>(1);

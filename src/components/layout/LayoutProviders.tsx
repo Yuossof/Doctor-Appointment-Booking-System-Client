@@ -15,39 +15,54 @@ import SpecializationProvider from "@/Context/DoctorsFilter/DoctorSpecialization
 import SalaryProvider from "@/Context/DoctorsFilter/DoctorSalary";
 import AddReport from "@/Context/AddReport";
 import AddUserAndDoctor from "@/Context/AddUserAndDoctor";
+import PaymentMethod from '@/Context/PaymentMethod';
+import ImageProfileChanged from '@/Context/ProfileImageChanged';
+import { ProfileImageRefProvider } from '@/Context/RefImageProfile';
+import DocsImageProvider from '@/Context/DocsImages';
+import ReportImageProvider from '@/Context/DoctorsFilter/ShowReportImage';
 
 const LayoutProviders = ({ children }: { children: React.ReactNode }) => {
     return (
         <ToastMessageProvider>
-            <UserProvider>
-                <DoctorsPagesNumber>
-                    <ReviewsPagesNumber>
-                        <TotalPagesReviews>
-                            <Doctors>
-                                <AddReport>
-                                    <MessageProvider>
-                                        <SearchForName>
-                                            <AgeProvider>
-                                                <GenderProvider>
-                                                    <AvilabilityProvider>
-                                                        <SpecializationProvider>
-                                                            <SalaryProvider>
-                                                                <AddUserAndDoctor>
-                                                                    {children}
-                                                                </AddUserAndDoctor>
-                                                            </SalaryProvider>
-                                                        </SpecializationProvider>
-                                                    </AvilabilityProvider>
-                                                </GenderProvider>
-                                            </AgeProvider>
-                                        </SearchForName>
-                                    </MessageProvider>
-                                </AddReport>
-                            </Doctors>
-                        </TotalPagesReviews>
-                    </ReviewsPagesNumber>
-                </DoctorsPagesNumber>
-            </UserProvider>
+            <ReportImageProvider>
+                <DocsImageProvider>
+                    <ProfileImageRefProvider>
+                        <ImageProfileChanged>
+                            <UserProvider>
+                                <PaymentMethod>
+                                    <DoctorsPagesNumber>
+                                        <ReviewsPagesNumber>
+                                            <TotalPagesReviews>
+                                                <Doctors>
+                                                    <AddReport>
+                                                        <MessageProvider>
+                                                            <SearchForName>
+                                                                <AgeProvider>
+                                                                    <GenderProvider>
+                                                                        <AvilabilityProvider>
+                                                                            <SpecializationProvider>
+                                                                                <SalaryProvider>
+                                                                                    <AddUserAndDoctor>
+                                                                                        {children}
+                                                                                    </AddUserAndDoctor>
+                                                                                </SalaryProvider>
+                                                                            </SpecializationProvider>
+                                                                        </AvilabilityProvider>
+                                                                    </GenderProvider>
+                                                                </AgeProvider>
+                                                            </SearchForName>
+                                                        </MessageProvider>
+                                                    </AddReport>
+                                                </Doctors>
+                                            </TotalPagesReviews>
+                                        </ReviewsPagesNumber>
+                                    </DoctorsPagesNumber>
+                                </PaymentMethod>
+                            </UserProvider>
+                        </ImageProfileChanged>
+                    </ProfileImageRefProvider>
+                </DocsImageProvider>
+            </ReportImageProvider>
         </ToastMessageProvider>
     )
 }

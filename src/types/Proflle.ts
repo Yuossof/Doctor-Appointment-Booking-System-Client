@@ -1,19 +1,11 @@
-export enum Gender {
-    gender = "Gender",
-    male = "male",
-    female = "female"
-}
-
 export type UserProfileInputs = {
     first_name: string;
     last_name: string;
-    email: string;
-    image: string;
-    gender: Gender;
-    age: string | null;
+    image: File | null;
+    gender: string;
     city: string;
     address: string;
-    phone: string | null;
+    phone: string ;
 }
 
 export type DoctorProfileInputs = UserProfileInputs & {
