@@ -26,6 +26,7 @@ export default function GetDoctor({ id }: { id: string }) {
             }
         }
         fetchOnDoctor()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNumberReviewsContext?.pageNumber, totalPagesReviewsContext?.totalPage, pageNumberReviewsContext?.deleteReview])
     return null;
 }

@@ -32,6 +32,7 @@ export default function LoginForm() {
             }
         }
        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     useEffect(() => {
@@ -49,12 +50,17 @@ export default function LoginForm() {
                 role: state?.user?.user?.role,
                 clinic_address: state?.user?.user?.clinic_address,
             });
-            if(state?.user?.user?.role == 'doctor'){
+            if(state?.user?.user?.role == 'doctor' && !state?.user?.user?.clinic_address){
                 router.push('/doctor-dashboard/profile');
+            }else if (state?.user?.user?.role == 'doctor' && state?.user?.user?.clinic_address){
+                router.push('/doctor-dashboard');
+            }else if (state?.user?.user?.role == 'user' && state?.user?.user?.city && state?.user?.user?.address){
+                router.push('/')
             }else if (state?.user?.user?.role == 'user'){
                 router.push('/profile');
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state?.user])
 
     useEffect(() => {

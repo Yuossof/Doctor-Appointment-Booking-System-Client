@@ -25,7 +25,7 @@ export default async function RegisterAction(state: any, formData: FormData) {
     };
   }
 
-    const res = await fetch("http://localhost:8000/api/register", {
+    const res = await fetch("https://clinic.divstark.com/api/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -44,6 +44,7 @@ export default async function RegisterAction(state: any, formData: FormData) {
 
     const data = await res.json();
     cookiesStore.set('data', JSON.stringify(data.data));
+    console.log(data.data)
     return {
       user: data.data
     }

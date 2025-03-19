@@ -22,7 +22,7 @@ export default async function VerifyAction(state: any, formData: FormData) {
         };
       }
 
-      const res = await fetch("http://localhost:8000/api/users/check-code", {
+      const res = await fetch("https://clinic.divstark.com/api/users/check-code", {
         method: "POST",
         headers: {
           Accept: "application/json",

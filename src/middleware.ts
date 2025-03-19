@@ -1,54 +1,100 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GetUser } from "./lib/services/auth/GetUser";
 import { cookies } from "next/headers";
+import { IUser } from "./types/UserInformation";
 
 export async function middleware(request: NextRequest) {
-    const user = await GetUser();
+    const user: IUser = await GetUser();
     const cookie = await cookies();
     const { pathname, searchParams } = request.nextUrl;
     const emailParams = searchParams.get('email');
     const emailCookie = cookie.get('email');
-    
-    if (user && user?.role === 'doctor' && !user.clinic_address && pathname.startsWith('/doctor-dashboard/profile')){
+
+    const pathSegments = pathname.split('/');  
+    const userId = pathSegments[pathSegments.length - 1];  
+
+    const doctorRoutes = [
+        '/admin',
+        '/admin/doctors',
+        '/admin/users',
+        '/profile',
+        '/register',
+        '/login',
+        '/forgetPassword',
+        '/verify'
+    ];
+
+    const userRoutes = [
+        '/admin',
+        '/admin/doctors',
+        '/admin/users',
+        '/doctor-dashboard',
+        '/doctor-dashboard/profile',
+        '/doctor-dashboard/all-reservations',
+        '/doctor-dashboard/availability',
+        '/doctor-dashboard/users-table',
+        `/doctor-dashboard/users-table/report/${userId}`,
+        '/register',
+        '/login',
+        '/forgetPassword',
+        '/verify'
+    ]
+
+    // const adminRoutes = [
+
+    // ];
+
+    if (user && user?.role === 'doctor' && pathname.startsWith('/doctor-dashboard/profile')) {
         return NextResponse.next();
-    }
-    
-    if (user && user?.role === 'doctor' && !user.clinic_address && !pathname.startsWith('/doctor-dashboard/profile')){
-        console.log('annnnnnna')
+    } else if (user && user?.role === 'doctor' && !user.clinic_address && !pathname.startsWith('/doctor-dashboard/profile')) {
         return NextResponse.redirect(new URL('/doctor-dashboard/profile', request.url))
     }
-    
+
+    if (user && user.role === 'doctor' && user.clinic_address && doctorRoutes.includes(pathname)) {
+        return NextResponse.redirect(new URL('/', request.nextUrl))
+    } else if (user && user.role === 'user' && user.email_verified_at && userRoutes.includes(pathname)) {
+        return NextResponse.redirect(new URL('/', request.nextUrl))
+    }
+
     if (!user && pathname.startsWith('/verify')) {
         return NextResponse.redirect(new URL('/login', request.nextUrl));
     }
-    
+
     if (user && user.email_verified_at && (pathname.startsWith('/contact') ||
-    pathname.startsWith('/profile') || pathname.startsWith('/profile/reports') ||
+        pathname.startsWith('/profile') || pathname.startsWith('/profile/reports') ||
         pathname.startsWith('/my-appointments')
     )) {
         return NextResponse.next();
     }
-    
+
     if (user && user.email_verified_at == null && pathname.startsWith('/verify')) {
         return NextResponse.next();
     }
 
-    if (!emailParams || emailParams != emailCookie?.value && pathname.startsWith('/forgetPassword')) {
-        return NextResponse.redirect(new URL('/', request.nextUrl));
+    if (!user && pathname.startsWith('/forgetPassword')) {
+        if (!emailParams || emailParams != emailCookie?.value) {
+            return NextResponse.redirect(new URL('/', request.nextUrl));
+        }
     }
-    
+
+    if (!user && pathname.startsWith('/contact')) {
+        return NextResponse.redirect(new URL('/login', request.nextUrl));
+    }
+
     return NextResponse.next();
 }
 
 export const config = {
-    matcher:  [
+    matcher: [
         '/verify',
+        '/login',
+        '/register',
         '/forgetPassword',
         '/contact',
         '/profile',
         '/profile/reports',
         '/my-appointments',
-        '/doctor-dashboard/profile',
-        '/doctor-dashboard/:path*' 
+        '/doctor-dashboard/:path*',
+        '/admin/:path*'
     ]
 }
