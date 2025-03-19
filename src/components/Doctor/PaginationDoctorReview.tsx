@@ -23,6 +23,7 @@ export default function DoctorsPagination() {
 
     useEffect(() => {
         pageNumberContext?.setPageNumber(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page])
 
     const handleButton = (action: string) => {

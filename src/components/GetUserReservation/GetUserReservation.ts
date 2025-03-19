@@ -3,7 +3,7 @@ import GetToken from '@/lib/services/auth/GetToken'
 export const GetUserReservation = async () => {
     const token = await GetToken();
     try{
-        const res = await fetch('http://localhost:8000/api/users/reservations', {
+        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/reservations`, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',

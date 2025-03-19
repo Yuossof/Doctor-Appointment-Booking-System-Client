@@ -2,6 +2,7 @@
 import { ForgetPasswordSchema } from '../../validation/ForgetPasswordSchema';
 import { cookies } from 'next/headers';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function ForgetPasswordAction(state: any, formData: FormData) {
     const cookie = await cookies();
 
@@ -19,7 +20,7 @@ export default async function ForgetPasswordAction(state: any, formData: FormDat
         };
     }
 
-    const res = await fetch("http://localhost:8000/api/users/forget-password", {
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/forget-password`, {
         method: "POST",
         headers: {
             Accept: "application/json",

@@ -3,7 +3,7 @@ import GetToken from './auth/GetToken'
 export const GetDocs = async () => {
     const token = await GetToken();
     try{
-        const res = await fetch('http://localhost:8000/api/user_documentations', {
+        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/user_documentations`, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',

@@ -17,6 +17,7 @@ export default function ShowMessageDialog() {
 
             return () => clearTimeout(timer); 
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messageContext?.message]);
 
     useEffect(() => {
@@ -24,6 +25,7 @@ export default function ShowMessageDialog() {
             setShowMessage(false);
             messageContext.setMessage(null);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

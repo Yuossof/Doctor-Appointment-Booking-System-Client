@@ -2,8 +2,8 @@
 import GetToken from './GetToken'
 import { VerfiySchema } from '../../validation/VerifySchema';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function VerifyAction(state: any, formData: FormData) {
     const token = await GetToken();
     const cookiesStore = await cookies();
@@ -22,7 +22,7 @@ export default async function VerifyAction(state: any, formData: FormData) {
         };
       }
 
-      const res = await fetch("http://localhost:8000/api/users/check-code", {
+      const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/check-code`, {
         method: "POST",
         headers: {
           Accept: "application/json",

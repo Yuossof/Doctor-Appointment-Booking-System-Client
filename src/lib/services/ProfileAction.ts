@@ -51,7 +51,7 @@ export default async function ProfileAction(state: Returned, formData: FormData)
         formDataToSend.append("image", formValues.image);
     }
 
-    const res = await fetch('http://localhost:8000/api/users/profile', {
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/profile`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

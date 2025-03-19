@@ -19,7 +19,7 @@ export default async function ContactAction(state: ContactActionForm, formData: 
         };
       }
 
-      const res = await fetch("http://localhost:8000/api/users/contact", {
+      const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/contact`, {
         method: "POST",
         headers: {
           Accept: "application/json",

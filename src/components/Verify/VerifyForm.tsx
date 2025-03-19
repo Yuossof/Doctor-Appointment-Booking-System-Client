@@ -4,7 +4,6 @@ import VerifyAction from "../../lib/services/auth/VerifyAction";
 import axios from 'axios';
 import GetToken from "../../lib/services/auth/GetToken";
 import { useUser } from "../../Context/User";
-import Cookie from 'cookie-universal';
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { UserData } from "@/types/RegsiterUser";
@@ -15,7 +14,6 @@ export default function VerifyForm({ user }: { user: UserData }) {
     const [message, setMessage] = useState('');
     const userContext = useUser();
     const router = useRouter();
-    const cookie = Cookie();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -26,12 +24,14 @@ export default function VerifyForm({ user }: { user: UserData }) {
     const handleResendCode = async () => {
         const token = await GetToken();
         try {
-            const res = await axios.get('http://localhost:8000/api/users/send-code', {
+            const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/users/send-code`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
                 }
             })
+
             const data = await res.data;
+            console.log(data)
             setMessage(data.message);
         } catch (error) {
             console.log(error);
@@ -41,6 +41,7 @@ export default function VerifyForm({ user }: { user: UserData }) {
     useEffect(() => {
         if (state?.user) {
             userContext?.setUser({
+                role: state?.user?.role,
                 phone: state?.user?.phone,
                 address: state?.user?.address,
                 city: state?.user?.city,
@@ -53,6 +54,7 @@ export default function VerifyForm({ user }: { user: UserData }) {
             })
             router.push('/');
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state?.user])
 
     useEffect(() => {

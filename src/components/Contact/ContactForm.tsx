@@ -37,6 +37,7 @@ export default function ContactForm() {
         last_name: user.last_name
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

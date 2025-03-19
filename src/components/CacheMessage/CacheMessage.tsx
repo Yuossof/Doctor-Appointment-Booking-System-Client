@@ -1,14 +1,14 @@
 'use client';
 import { useToastMessage } from "@/Context/ToastMessage";
 import { motion } from "framer-motion";
-import {  useRouter, useSearchParams } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 
 export default function CacheMessage() {
     const toastMessageContext = useToastMessage();
     const [showMessage, setShowMessage] = useState(true);
-    const searchParams = useSearchParams()
+    // const searchParams = useSearchParams()
     const router = useRouter();
 
     const handleClick = (e: React.MouseEvent<SVGAElement>) => {

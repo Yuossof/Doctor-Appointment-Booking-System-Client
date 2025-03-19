@@ -26,7 +26,7 @@ export default function MainContent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/users/get-doctors?page=${pageNumber?.pageNumber}&&name=${searchNameContext?.searchName}&&age=${ageContext?.age}&&gender=${genderContext?.gender}&&availability=${avilabilityContext?.avilability}&&specialization_id=${specializationContext?.specialization}&&salary=${salaryContext?.salary}`, {
+        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/get-doctors?page=${pageNumber?.pageNumber}&&name=${searchNameContext?.searchName}&&age=${ageContext?.age}&&gender=${genderContext?.gender}&&availability=${avilabilityContext?.avilability}&&specialization_id=${specializationContext?.specialization}&&salary=${salaryContext?.salary}`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',

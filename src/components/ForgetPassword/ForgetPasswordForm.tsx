@@ -42,6 +42,9 @@ export default function ForgetPasswordForm({ email }: TypeEmail) {
         if (state?.user) {
             console.log(state?.user.user)
             userContext?.setUser({
+                role: state?.user?.user?.role,
+                gender: state?.user?.user?.gender,
+                clinic_address: state?.user?.user?.clinic_address,
                 phone: state?.user?.user?.phone,
                 address: state?.user?.user?.address,
                 city: state?.user?.user?.city,
@@ -59,6 +62,7 @@ export default function ForgetPasswordForm({ email }: TypeEmail) {
                 contextToastMessage?.setToastMessage('Please Verify Your Email');
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     return (

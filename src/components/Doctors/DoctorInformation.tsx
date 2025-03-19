@@ -1,6 +1,6 @@
 'use client';
 import { IUser } from '@/types/UserInformation'
-import React, { useState } from 'react'
+import React from 'react'
 import { FaStar } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { PiCityLight } from "react-icons/pi";

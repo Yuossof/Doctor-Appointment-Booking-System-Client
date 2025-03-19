@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { LoginSchema } from '../../validation/LoginSchema';
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function LoginAction(state: any, formData: FormData) {
     const cookie = await cookies();
     
@@ -19,7 +20,7 @@ export default async function LoginAction(state: any, formData: FormData) {
         };
       }
     
-        const res = await fetch("http://localhost:8000/api/login", {
+        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/login`, {
           method: "POST",
           headers: {
             Accept: "application/json",

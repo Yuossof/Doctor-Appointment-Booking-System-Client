@@ -20,6 +20,7 @@ export default function DoctorsPagination({ doctors, totalPages }: { doctors: IU
 
     useEffect(() => {
         pageNumberContext?.setPageNumber(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page])
 
     const handleButton = (action: string) => {

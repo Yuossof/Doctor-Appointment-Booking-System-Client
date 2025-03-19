@@ -8,13 +8,12 @@ import { FaStarHalfAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { childeDiv, childNav, parentDiv } from "../ParentAndChildAnimation";
+import { childeDiv, parentDiv } from "../ParentAndChildAnimation";
 import { IUser } from "@/types/UserInformation";
 import GetToken from "@/lib/services/auth/GetToken";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { usePageNumber } from "@/Context/PageNumberReviews";
-
+import Image from "next/image";
 export default function MainContent({ user }: { user: IUser }) {
     const { doctor } = useDoctor();
     const deleteReview = usePageNumber();
@@ -23,7 +22,7 @@ export default function MainContent({ user }: { user: IUser }) {
         const token = await GetToken();
         try{
             deleteReview?.setDeleteReview(false);
-            const res = await axios.delete(`http://localhost:8000/api/reviews/delete/${id}`, {
+             await axios.delete(`${process.env.NEXT_BASE_URL}/api/reviews/delete/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -133,7 +132,7 @@ export default function MainContent({ user }: { user: IUser }) {
                                     transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
                                     key={review.id} className="flex justify-between items-center">
                                     <div className="flex items-center gap-8">
-                                        <img className="rounded-full w-[50px] h-[50px]" src={review.user.image_url} alt="User Image" />
+                                        <Image className="rounded-full w-[50px] h-[50px]" src={review.user.image_url} width={50} height={50} alt="User Image" />
                                         <div className="flex flex-col gap-1">
                                             <h1 className="text-mid-blue">
                                                 {doctor?.first_name?.charAt(0).toUpperCase() + doctor?.first_name?.slice(1)}

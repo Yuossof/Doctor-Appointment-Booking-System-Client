@@ -31,7 +31,7 @@ export default function SignInformation(props: InformationData) {
                 transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
                 className="sm:flex sm:items-center sm:justify-center w-full">
                 <Link
-                    href="http://127.0.0.1:8000/api/auth/google?prompt=select_account"
+                    href={`${process.env.NEXT_BASE_URL}/api/auth/google?prompt=select_account`}
                     className='flex items-center justify-center gap-1 w-full  p-2 mt-6 border border-dark-blue rounded-lg'>
                     <Image src={GoogleLogo} alt='GoogleLogo' width={20} height={20} />
                     <span className='text-[13px] text-dark-blue'>{props.method} with Google</span>

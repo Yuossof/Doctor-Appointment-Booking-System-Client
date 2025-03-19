@@ -32,6 +32,7 @@ export default function LoginForm() {
             }
         }
        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     useEffect(() => {
@@ -55,6 +56,7 @@ export default function LoginForm() {
                 router.push('/profile');
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state?.user])
 
     useEffect(() => {

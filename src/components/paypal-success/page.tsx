@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
@@ -15,20 +15,24 @@ export default function SuccessPaypal() {
     useEffect(() => {
         const verifyPayment = async () => {
             if (!token || !PayerID) return;
-        
+
             try {
-                const res = await axios.get(`http://localhost:8000/api/paypal/success_paypal?token=${token}&PayerID=${PayerID}`);
+                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/paypal/success_paypal?token=${token}&PayerID=${PayerID}`);
                 if (res.data.status === "COMPLETED") {
                     toastMessageContext?.setToastMessage("Payment Successful! Your reservation is confirmed.");
                     router.replace('/my-appointments');
-                } 
+                }
             } catch (error) {
-                toastMessageContext?.setToastMessage("Error verifying payment.");
+                if (axios.isAxiosError(error)) {
+                    toastMessageContext?.setToastMessage("Error verifying payment.");
+                } else {
+                    console.error("Unknown error:", error);
+                }
             }
         };
 
         verifyPayment();
-    }, [token, PayerID]);
+    }, [token, PayerID, toastMessageContext, router]);
 
-    return null;   
+    return null;
 }
