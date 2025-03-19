@@ -74,7 +74,7 @@ const AddNewReportBox = () => {
 
         if (showBox?.showBox) {
             try {
-                const res = await axios.post('http://localhost:8000/api/user_documentations/store', data, {
+                const res = await axios.post(`${process.env.NEXT_BASE_URL}/api/user_documentations/store`, data, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data'
@@ -109,7 +109,7 @@ const AddNewReportBox = () => {
                 docsImageContext?.setSuccessUpload(true);
             }, 1000);
         }
-    }, [message])
+    }, [docsImageContext, message, showBox])
 
 
     return (

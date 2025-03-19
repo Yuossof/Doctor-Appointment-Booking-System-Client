@@ -17,6 +17,7 @@ export default function UpdateMessage( { message }:  Message ) {
         if(cookieMessage && message && context){
             context.setToastMessage(message);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     return null

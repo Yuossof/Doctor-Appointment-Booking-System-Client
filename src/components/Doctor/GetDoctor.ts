@@ -12,7 +12,7 @@ export default function GetDoctor({ id }: { id: string }) {
     useEffect(() => {
         const fetchOnDoctor = async () => {
             try {
-                const res = await fetch(`http://localhost:8000/api/users/get-doctors/show/${id}?page=${pageNumberReviewsContext?.pageNumber}`, {
+                const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/get-doctors/show/${id}?page=${pageNumberReviewsContext?.pageNumber}`, {
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import { IUser } from '@/types/UserInformation'
 import React from 'react'
 import { MapPin } from 'lucide-react'
 import { motion } from 'framer-motion';
-import { childeDiv, childNav, parentDiv } from '../ParentAndChildAnimation';
+import { childeDiv, parentDiv } from '../ParentAndChildAnimation';
 
 export default function NamesProfile({ user }: { user: IUser }) {
   return (

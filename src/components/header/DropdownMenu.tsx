@@ -26,10 +26,10 @@ export function DropdownMenuCheckboxes({ AvatarCmp }: DropdownMenuCheckboxesProp
     const userContext = useUser();
     const router = useRouter()
     const [showBox, setShowBox] = useState<boolean>(false)
-
+ 
     const handleLogout = async () => {
         const token = await GetToken();
-        const res = await fetch('http://localhost:8000/api/users/logout', {
+        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/logout`, {
             headers: {
                 Accept: 'application/json',
                 "Content-Type": 'application/json',

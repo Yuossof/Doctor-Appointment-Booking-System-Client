@@ -48,6 +48,7 @@ export default function RegisterForm() {
             userContext?.setUser(state?.user)
             router.push('/verify');
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     return (

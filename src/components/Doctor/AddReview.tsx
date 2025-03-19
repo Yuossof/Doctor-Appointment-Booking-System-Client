@@ -30,6 +30,7 @@ export default function AddReview({ id }: { id: string }) {
             updatePage?.setDeleteReview(false)
         }
         return () => updatePage?.setDeleteReview(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state])
 
     const [haveReservations, setHaveReservations] = useState(false);
@@ -38,7 +39,7 @@ export default function AddReview({ id }: { id: string }) {
         const fetchSuccess = async () => {
             try {
                 const token = await GetToken();
-                const data = await axios.get(`http://localhost:8000/api/users/get-doctors/reservation-status/${id}`, {
+                const data = await axios.get(`${process.env.NEXT_BASE_URL}/api/users/get-doctors/reservation-status/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

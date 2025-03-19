@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { RegisterSchema } from "../../validation/RegisterSchema";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function RegisterAction(state: any, formData: FormData) {
 
   const cookiesStore = await cookies();
@@ -25,7 +26,8 @@ export default async function RegisterAction(state: any, formData: FormData) {
     };
   }
 
-    const res = await fetch("https://clinic.divstark.com/api/register", {
+
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",

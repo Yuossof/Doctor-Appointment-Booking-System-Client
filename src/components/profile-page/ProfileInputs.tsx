@@ -1,5 +1,5 @@
 "use client"
-import React, { useActionState, useEffect, useReducer, useRef, useState } from 'react'
+import React, { useActionState, useEffect, useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { MapPin, Phone, User } from "lucide-react"
@@ -18,7 +18,7 @@ import { useImageProfileChanged } from '@/Context/ProfileImageChanged'
 import { useProfileImageRef } from '@/Context/RefImageProfile'
 import { IUser } from '@/types/UserInformation'
 import { motion } from 'framer-motion'
-import { childeDiv, childNav, parentDiv } from '../ParentAndChildAnimation'
+import { childeDiv, parentDiv } from '../ParentAndChildAnimation'
 
 interface initialState {
     success: boolean,
@@ -51,7 +51,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
             console.log(state?.success)
             imageProfileContext?.setImage(undefined)
         }
-    }, [state?.errors])
+    }, [imageProfileContext, state.errors, state?.success])
 
 
     useEffect(() => {

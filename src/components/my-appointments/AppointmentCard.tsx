@@ -23,7 +23,7 @@ export default function AppointmentCard({ appointment_id, id, doctorName, specia
         const token = await GetToken();
         try {
             setPendding(true)
-            const res = await axios.post(`http://localhost:8000/api/reservations/cancel/${id}`, { appointment_id }, {
+             await axios.post(`${process.env.NEXT_BASE_URL}/api/reservations/cancel/${id}`, { appointment_id }, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             setPendding(false);

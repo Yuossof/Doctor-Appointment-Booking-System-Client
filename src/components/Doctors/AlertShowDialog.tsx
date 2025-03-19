@@ -52,7 +52,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
             const token = await GetToken();
             try {
                 setAppointemetnPending(true);
-                const res = await axios.post('http://localhost:8000/api/reservations/store', {
+                const res = await axios.post(`${process.env.NEXT_BASE_URL}/api/reservations/store`, {
                     appointment_id: appointementId,
                     doctor_id: doctorId,
                     day_id: dayID
@@ -65,8 +65,12 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                 setAppointemetnPending(false);
                 setShowPaymentMethod(prev => !prev);
             } catch (error) {
-                setAppointemetnPending(false);
-                messageContext?.setMessage('You must select from today onwards and not a previous day.');
+                if (axios.isAxiosError(error)) {
+                    setAppointemetnPending(false);
+                    messageContext?.setMessage('You must select from today onwards and not a previous day.');
+                } else {
+                    console.error("Unknown error:", error);
+                }
             }
         } else {
             router.replace('/login');
@@ -76,45 +80,56 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
     const hadlePaymentValue = (value: string) => { paymentMethod?.setPaymentMethod(value) }
 
     const handlePaymentMethod = async () => {
-        if(paymentMethod?.paymentMethod === 'paypal'){
+        if (paymentMethod?.paymentMethod === 'paypal') {
             try {
                 setpaymentPending(true);
-                const res = await axios.get(`http://localhost:8000/api/paypal/create/${reservationId}?payment_method=${paymentMethod?.paymentMethod}`)
+                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/paypal/create/${reservationId}?payment_method=${paymentMethod?.paymentMethod}`)
                 if (res.status === 200) {
                     setpaymentPending(false);
                     router.push(res.data.data.approval_url);
                 }
             } catch (error) {
-                setpaymentPending(false);
+                if (axios.isAxiosError(error)) {
+                    setpaymentPending(false);
+                } else {
+                    console.error("Unknown error:", error);
+                }
             }
-        } else if (paymentMethod?.paymentMethod === 'stripe'){
+        } else if (paymentMethod?.paymentMethod === 'stripe') {
             setpaymentPending(true);
             try {
                 const stripe = await stripePromise;
                 if (!stripe) {
                     console.error("Stripe failed to load.");
                     return;
-                  }
-                // إرسال الطلب إلى API للحصول على sessionId
-                const { data } = await axios.post("http://127.0.0.1:8000/api/stripe/create-checkout-session", {
+                }
+                const { data } = await axios.post(`${process.env.NEXT_BASE_URL}/api/stripe/create-checkout-session`, {
                     reservation_id: reservationId
                 });
-                // توجيه المستخدم إلى Stripe Checkout
                 await stripe.redirectToCheckout({ sessionId: data.sessionId });
-              } catch (error) {
-                setpaymentPending(false);
-              }
+            } catch (error) {
+
+                if (axios.isAxiosError(error)) {
+                    setpaymentPending(false);
+                } else {
+                    console.error("Unknown error:", error);
+                }
+            }
         } else {
             try {
                 setpaymentPending(true);
-                const res = await axios.get(`http://localhost:8000/api/cache/create/${reservationId}`)
+                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/cache/create/${reservationId}`)
                 if (res.status === 200) {
                     setpaymentPending(false);
                     toastMessageContext?.setToastMessage(res.data.data.message);
                     router.push('my-appointments');
                 }
             } catch (error) {
-                setpaymentPending(false);
+                if (axios.isAxiosError(error)) {
+                    setpaymentPending(false);
+                } else {
+                    console.error("Unknown error:", error);
+                }
             }
         }
     }
@@ -125,7 +140,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                 <motion.div
                     initial={{ scale: 0.5, opacity: 0 }}
                     whileInView={{ scale: [1.1, 1], opacity: 1 }}
-                    transition={{ duration: 0.6, ease:'easeInOut' }}
+                    transition={{ duration: 0.6, ease: 'easeInOut' }}
                     className="absolute flex flex-col gap-2 left-0 top-[20px] p-3 w-[100%] rounded-md shadow-lg bg-white z-[100]">
                     <h1 className="text-mid-blue">Choose Your Payment Method</h1>
 
@@ -152,7 +167,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
             <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
                 whileInView={{ scale: [1.1, 1], opacity: 1 }}
-                transition={{ duration: 0.6, ease:'easeInOut' }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
                 className={`${showPaymentMethod && 'hidden'} absolute flex flex-col gap-2 left-0 top-[20px] p-3 w-[100%] rounded-md shadow-lg bg-white z-[100]`}>
                 <h1 className="text-mid-blue">Are you absolutely sure?</h1>
                 <p className="text-body-text text-[12px]">This action cannot be undone. This will confirm that you have booked this appointment with your doctor.</p>

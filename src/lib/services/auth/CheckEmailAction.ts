@@ -2,6 +2,7 @@
 import { CheckEmail } from '../../validation/CheckEmailSchema';
 import { cookies } from 'next/headers';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function CheckEmailAction(state: any, formData: FormData) {
     const cookie = await cookies();
     const formValues = {  
@@ -16,7 +17,7 @@ export default async function CheckEmailAction(state: any, formData: FormData) {
         };
     }
 
-    const res = await fetch("http://localhost:8000/api/users/check-forget-password", {
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/check-forget-password`, {
         method: "POST",
         headers: {
           Accept: "application/json",

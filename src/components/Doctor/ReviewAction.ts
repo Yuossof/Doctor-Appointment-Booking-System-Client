@@ -1,7 +1,7 @@
 'use server'
 import GetToken from '@/lib/services/auth/GetToken'
 import RFAction from '@/types/ReviewAction';
-import { number, z } from 'zod'
+import { z } from 'zod'
 
 export default async function ReviewAction(state: RFAction, formData: FormData) : Promise<RFAction> {
     const token = await GetToken();
@@ -33,7 +33,7 @@ export default async function ReviewAction(state: RFAction, formData: FormData) 
         }
     }
 
-    const res = await fetch(`http://localhost:8000/api/reviews/store`, {
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/reviews/store`, {
         method: 'POST',
         headers:{
             Accept: 'application/json',

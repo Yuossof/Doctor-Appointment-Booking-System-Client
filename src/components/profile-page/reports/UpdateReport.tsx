@@ -81,7 +81,7 @@ const UpdateReport = () => {
         }
 
         try {
-            const res = await axios.post(`http://localhost:8000/api/user_documentations/update/${showBox?.doc?.id}`, data, {
+           await axios.post(`${process.env.NEXT_BASE_URL}/api/user_documentations/update/${showBox?.doc?.id}`, data, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'

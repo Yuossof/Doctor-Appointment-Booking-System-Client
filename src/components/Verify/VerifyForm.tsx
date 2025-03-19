@@ -23,14 +23,17 @@ export default function VerifyForm({ user }: { user: UserData }) {
 
     const handleResendCode = async () => {
         const token = await GetToken();
-        console.log(token)
+        console.log(token) 
         try {
-            const res = await axios.get('https://clinic.divstark.com/api/users/send-code', {
+
+            const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/users/send-code`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
                 }
             })
+
             const data = await res.data;
+            console.log(data)
             setMessage(data.message);
         } catch (error) {
             console.log(error);
@@ -61,6 +64,7 @@ export default function VerifyForm({ user }: { user: UserData }) {
             }else if (state?.user?.user?.role == 'user'){
                 router.push('/profile');
             }
+
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state?.user])
