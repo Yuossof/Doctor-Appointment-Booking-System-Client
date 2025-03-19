@@ -4,7 +4,6 @@ import MainContent from '@/components/Doctors/MainContent'
 import ShowMessageDialog from '@/components/Doctors/ShowMessageDialog'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import { Metadata } from 'next'
-import Link from 'next/link'
 import React from 'react'
 
 export const metadata: Metadata = {

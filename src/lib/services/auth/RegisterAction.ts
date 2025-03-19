@@ -26,6 +26,7 @@ export default async function RegisterAction(state: any, formData: FormData) {
     };
   }
 
+
     const res = await fetch(`${process.env.NEXT_BASE_URL}/api/register`, {
       method: "POST",
       headers: {
@@ -45,6 +46,7 @@ export default async function RegisterAction(state: any, formData: FormData) {
 
     const data = await res.json();
     cookiesStore.set('data', JSON.stringify(data.data));
+    console.log(data.data)
     return {
       user: data.data
     }

@@ -22,6 +22,7 @@ export default async function VerifyAction(state: any, formData: FormData) {
         };
       }
 
+
       const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/check-code`, {
         method: "POST",
         headers: {

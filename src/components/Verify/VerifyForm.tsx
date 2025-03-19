@@ -23,7 +23,9 @@ export default function VerifyForm({ user }: { user: UserData }) {
 
     const handleResendCode = async () => {
         const token = await GetToken();
+        console.log(token) 
         try {
+
             const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/users/send-code`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -41,18 +43,28 @@ export default function VerifyForm({ user }: { user: UserData }) {
     useEffect(() => {
         if (state?.user) {
             userContext?.setUser({
-                role: state?.user?.role,
-                phone: state?.user?.phone,
-                address: state?.user?.address,
-                city: state?.user?.city,
-                email: state?.user?.email,
-                first_name: state?.user?.first_name,
-                last_name: state?.user?.last_name,
-                image_url: state?.user?.image_url,
-                email_verified_at: state?.user?.email_verified_at,
-                gender: state?.user?.gender
-            })
-            router.push('/');
+                phone: state?.user?.user?.phone,
+                address: state?.user?.user?.address,
+                city: state?.user?.user?.city,
+                email: state?.user?.user?.email,
+                first_name: state?.user?.user?.first_name,
+                last_name: state?.user?.user?.last_name,
+                image_url: state?.user?.user?.image_url,
+                email_verified_at: state?.user?.user?.email_verified_at,
+                gender: state?.user?.user?.gender,
+                role: state?.user?.user?.role,
+                clinic_address: state?.user?.user?.clinic_address,
+            });
+            if(state?.user?.user?.role == 'doctor' && !state?.user?.user?.clinic_address){
+                router.push('/doctor-dashboard/profile');
+            }else if (state?.user?.user?.role == 'doctor' && state?.user?.user?.clinic_address){
+                router.push('/doctor-dashboard');
+            }else if (state?.user?.user?.role == 'user' && state?.user?.user?.city && state?.user?.user?.address){
+                router.push('/')
+            }else if (state?.user?.user?.role == 'user'){
+                router.push('/profile');
+            }
+
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state?.user])
