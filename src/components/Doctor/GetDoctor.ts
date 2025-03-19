@@ -26,6 +26,6 @@ export default function GetDoctor({ id }: { id: string }) {
             }
         }
         fetchOnDoctor()
-    }, [pageNumberReviewsContext?.pageNumber, contextDoctor?.doctor])
+    }, [pageNumberReviewsContext?.pageNumber, totalPagesReviewsContext?.totalPage, pageNumberReviewsContext?.deleteReview])
     return null;
 }

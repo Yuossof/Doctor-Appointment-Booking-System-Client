@@ -31,20 +31,31 @@ export default function LoginForm() {
                 router.push('/verify');
             }
         }
+       
+    }, [state])
+
+    useEffect(() => {
         if (state?.user) {
             userContext?.setUser({
-                phone: state?.user?.phone,
-                address: state?.user?.address,
-                city: state?.user?.city,
-                email: state?.user?.email,
-                first_name: state?.user?.first_name,
-                last_name: state?.user?.last_name,
-                image_url: state?.user?.image_url,
-                email_verified_at: state?.user?.email_verified_at
-            })
-            router.push('/');
+                phone: state?.user?.user?.phone,
+                address: state?.user?.user?.address,
+                city: state?.user?.user?.city,
+                email: state?.user?.user?.email,
+                first_name: state?.user?.user?.first_name,
+                last_name: state?.user?.user?.last_name,
+                image_url: state?.user?.user?.image_url,
+                email_verified_at: state?.user?.user?.email_verified_at,
+                gender: state?.user?.user?.gender,
+                role: state?.user?.user?.role,
+                clinic_address: state?.user?.user?.clinic_address,
+            });
+            if(state?.user?.user?.role == 'doctor'){
+                router.push('/doctor-dashboard/profile');
+            }else if (state?.user?.user?.role == 'user'){
+                router.push('/profile');
+            }
         }
-    }, [state])
+    }, [state?.user])
 
     useEffect(() => {
         if (message) {

@@ -150,7 +150,7 @@ export default function Sidebar() {
   return (
     <motion.div
       initial={{ scale: 0.5, opacity: 0 }}
-      whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+      whileInView={{ scale: [1.1, 1], opacity: 1 }}
       transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
       className='lg:sticky left-0 top-0 mb-4 lg:mb-0 translate-y-[10px] lg:w-[220px] h-fit rounded-md shadow-lg bg-white'>
 

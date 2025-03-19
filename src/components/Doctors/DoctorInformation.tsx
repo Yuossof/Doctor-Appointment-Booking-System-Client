@@ -10,10 +10,10 @@ import SwiperAppoinments from './SwiperAppoinments';
 import Link from 'next/link';
 import DoctorsPagination from './DoctorsPagination';
 import { motion } from 'framer-motion';
-import { childeDiv, childNav, parentDiv } from '../ParentAndChildAnimation';
+import { childeDiv, parentDiv } from '../ParentAndChildAnimation';
 
 interface DoctorInformationProps {
-    doctors: IUser[] | null,
+    doctors: IUser[] | undefined,
     totalPages: number
 }
 

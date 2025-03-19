@@ -10,9 +10,29 @@ import { FaRegComment } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { childeDiv, childNav, parentDiv } from "../ParentAndChildAnimation";
 import { IUser } from "@/types/UserInformation";
+import GetToken from "@/lib/services/auth/GetToken";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { usePageNumber } from "@/Context/PageNumberReviews";
 
 export default function MainContent({ user }: { user: IUser }) {
     const { doctor } = useDoctor();
+    const deleteReview = usePageNumber();
+
+    const handleDelete = async (id: number) => {
+        const token = await GetToken();
+        try{
+            deleteReview?.setDeleteReview(false);
+            const res = await axios.delete(`http://localhost:8000/api/reviews/delete/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            deleteReview?.setDeleteReview(true);
+        } catch(error){
+            console.log(error);
+        }
+    }
     return (
         <>
             <div className="relative flex flex-col md:flex-row justify-between gap-8 md:gap-4">
@@ -31,7 +51,7 @@ export default function MainContent({ user }: { user: IUser }) {
                         className="flex bg-[#f9f9f9] items-center gap-8 p-5 rounded-md shadow-lg">
                         <motion.img
                             initial={{ scale: 0.5, opacity: 0 }}
-                            whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                            whileInView={{ scale: [1.1, 1], opacity: 1 }}
                             transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
                             className="w-[100px] h-[100px] rounded-full" src={doctor?.image_url} alt="Doctor Image" />
                         <motion.div
@@ -40,11 +60,14 @@ export default function MainContent({ user }: { user: IUser }) {
                             whileInView='visible'
                             className="flex flex-col gap-2 p-2 flex-1">
                             <div className="flex justify-between items-center text-body-text">
+                                { doctor && (
                                 <h1>Doctor <span> </span>
                                     {doctor?.first_name?.charAt(0).toUpperCase() + doctor?.first_name?.slice(1)}
                                     {' '}
                                     {doctor?.last_name?.charAt(0).toUpperCase() + doctor?.first_name?.slice(1)}
                                 </h1>
+
+                                ) }
                                 <p><span className="text-mid-blue">{doctor?.reservation_count}</span> View</p>
                             </div>
                             <h1 className="text-body-text">{doctor?.desc}</h1>
@@ -106,7 +129,7 @@ export default function MainContent({ user }: { user: IUser }) {
                             doctor.reviews.data.map(review => (
                                 <motion.div
                                     initial={{ scale: 0.5, opacity: 0 }}
-                                    animate={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                                    animate={{ scale: [1.1, 1], opacity: 1 }}
                                     transition={{ duration: 0.6, type: 'spring', stiffness: 40, damping: 8 }}
                                     key={review.id} className="flex justify-between items-center">
                                     <div className="flex items-center gap-8">
@@ -135,8 +158,8 @@ export default function MainContent({ user }: { user: IUser }) {
                                     <div className="flex gap-2">
                                         {review.user.id && review.user.id === user.id ? (
                                             <>
-                                                <button className="bg-red-600 text-white rounded-md px-4 py-2">Delete</button>
-                                                <button className="bg-yellow-400 text-white rounded-md px-4 py-2">Edit</button>
+                                                <button onClick={() => handleDelete(review?.id)} className="bg-red-600 text-white rounded-md px-4 py-2">Delete</button>
+                                                {/* <button className="bg-yellow-400 text-white rounded-md px-4 py-2">Edit</button> */}
                                             </>
                                         ) : (
                                             <div className="flex flex-col items-center justify-center gap-1">

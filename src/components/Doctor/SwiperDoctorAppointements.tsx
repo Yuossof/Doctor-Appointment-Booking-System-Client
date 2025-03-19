@@ -27,7 +27,7 @@ export default function SwiperDoctorAppointments() {
 
     return (
         <div className='relative'>
-            {showDialog && <AlertShowDialog doctorId={doctor.id} dayID={dayId} appointementId={appointemetId} setShowDialog={setShowDialog} />}
+            {showDialog && <AlertShowDialog doctorId={doctor?.id} dayID={dayId} appointementId={appointemetId} setShowDialog={setShowDialog} />}
             <Swiper
                 slidesPerView={1}
                 spaceBetween={30}

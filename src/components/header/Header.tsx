@@ -32,7 +32,7 @@ const childVariants = {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 2, type: 'spring', stiffness: 150, damping: 8, 
+            duration: 0.9, type: 'spring'
         }
     }
 }
@@ -65,7 +65,7 @@ const Header = () => {
                     <motion.h1
                         initial={{ x: -50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 7 }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
                         className="font-semibold text-[35px] text-dark-blue">LOGO</motion.h1>
                     <motion.ul 
                     variants={divVariants} initial='hidden' animate='visible'
@@ -73,6 +73,7 @@ const Header = () => {
                         {links.map((lnk, i) => (
                             <motion.li 
                             variants={childVariants}
+                            
                             whileHover={{ color: '#011632', transition: { duration: 0.7 } }}
                             key={i} className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
                                 <Link href={lnk.to}>{lnk.title}</Link>
@@ -82,7 +83,7 @@ const Header = () => {
                     <motion.div
                         initial={{ x: 50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 7 }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
                         className='flex items-center gap-5'>
                         <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
                         {!userContext?.user && (

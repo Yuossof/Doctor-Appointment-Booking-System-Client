@@ -20,7 +20,7 @@ export const childNav = {
         opacity: 1,
         x: 0,
         transition: {
-            duration: 1, type: 'spring', stiffness: 100
+            duration: 3, type: 'spring', stiffness: 50
         }
     }
 }
@@ -34,7 +34,7 @@ export const childeDiv = {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 1, type: 'spring', stiffness: 50, damping: 6
+            duration: 3, type: 'spring', stiffness: 50
         }
     }
 }

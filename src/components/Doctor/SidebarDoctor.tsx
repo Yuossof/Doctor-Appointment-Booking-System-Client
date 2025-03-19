@@ -12,7 +12,7 @@ export default function SidebarDoctor() {
     return (
         <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
-            whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+            whileInView={{ scale: [1.1, 1], opacity: 1 }}
             transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
             className='sticky right-0 top-0 h-fit bg-[#f9f9f9] shadow-lg rounded-md basis-[30%]'>
             <h4 className='bg-mid-blue text-center text-white p-2 rounded-md'>Booking Information</h4>

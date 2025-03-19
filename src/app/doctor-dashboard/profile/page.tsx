@@ -2,11 +2,13 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Camera, MapPin } from 'lucide-react'
-import ProfileInputs from "@/components/doctor-dashboard/profile/ProfileInputs"
+import ProfileInputs from "@/components/profile-page/ProfileInputs"
+import { GetUser } from "@/lib/services/auth/GetUser"
 
-export default function ProfilePage() {
-
+export default async function ProfilePage() {
+  const user = await GetUser();
   return (
+    <>
     <div className="container mx-auto py-10 px-4">
       <Card className="max-w-4xl mx-auto overflow-hidden bg-slate-800 border-gray-700 shadow-lg"> 
         <div className="relative h-48 sm:h-64 bg-gradient-to-r from-blue-400 to-blue-600 z-[0]">
@@ -44,10 +46,12 @@ export default function ProfilePage() {
           </div>
 
           <div className="mt-9">
-            <ProfileInputs />
+            <ProfileInputs user={user}/>
           </div>
         </div>
       </Card>
     </div>
+    </>
+
   )
 }

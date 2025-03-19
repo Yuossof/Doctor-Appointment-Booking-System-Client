@@ -41,7 +41,7 @@ export default async function LoginAction(state: any, formData: FormData) {
     
         const data = await res.json();
         cookie.set('data', JSON.stringify(data.data));
-
+        
         return {
           user: data.data
         }

@@ -27,7 +27,7 @@ export default function SignInformation(props: InformationData) {
                 className='text-body-text text-[13px]'>{props.desc}</motion.p>
             <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
-                whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                whileInView={{ scale: [1.1, 1], opacity: 1 }}
                 transition={{ duration: 0.6, type: 'spring', stiffness: 80, mass: 1 }}
                 className="sm:flex sm:items-center sm:justify-center w-full">
                 <Link

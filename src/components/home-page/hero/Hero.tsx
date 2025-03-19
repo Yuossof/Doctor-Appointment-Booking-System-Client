@@ -117,9 +117,9 @@ const Hero = () => {
                     </div>
 
                     <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: [0, 1.2, 1], opacity: 1 }}
-                        transition={{ duration: 3, delay: 0.3, type: 'spring', stiffness: 50, damping: 15 }}
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        whileInView={{ scale: [0.8, 1.1, 1], opacity: 1 }}
+                        transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
                         className='hidden lg:w-[40%] w-[60%] lg:mr-0 mt-10 lg:mt-0 mr-24 lg:flex justify-center relative -z-[100]'>
                         <Image
                             src="/images/Mask-group.png"

@@ -32,7 +32,7 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 80, damping: 6 }}
                 className='relative py-4 md:py-0'>
-                {showDialog && <AlertShowDialog doctorId={doctor.id} dayID={dayId} appointementId={appointemetId} setShowDialog={setShowDialog} />}
+                {showDialog && <AlertShowDialog doctorId={doctor?.id} dayID={dayId} appointementId={appointemetId} setShowDialog={setShowDialog} />}
                 {doctor.days && doctor.days?.length > 0 && (
                     <Swiper
                         slidesPerView={1}
