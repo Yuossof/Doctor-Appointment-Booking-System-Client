@@ -20,7 +20,7 @@ export default async function LoginAction(state: any, formData: FormData) {
         };
       }
     
-        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/login`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -29,6 +29,7 @@ export default async function LoginAction(state: any, formData: FormData) {
           body: JSON.stringify(formValues),
         });
     
+
         if (!res.ok) {
           const errorsData = await res.json();
           console.log(errorsData);
@@ -41,6 +42,7 @@ export default async function LoginAction(state: any, formData: FormData) {
         }
     
         const data = await res.json();
+        console.log(data)
         cookie.set('data', JSON.stringify(data.data));
         
         return {

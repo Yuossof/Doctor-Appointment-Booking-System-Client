@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
+import axios from "axios"
+import GetToken from "@/lib/services/auth/GetToken"
 
 export function AddAvailabilityForm() {
     const [selectedDay, setSelectedDay] = useState<string | null>(null);
@@ -19,6 +21,28 @@ export function AddAvailabilityForm() {
         { id: crypto.randomUUID(), day: "Saturday" },
         { id: crypto.randomUUID(), day: "Sunday" },
     ]
+
+    const addAvailability = async () => {
+        const token = await GetToken()
+        console.log(token)
+        try {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/doctors/appointments/store`
+                , {
+                    start_time: "14:00:00",
+                    end_time: "16:00:00",
+                    day_id: 1,
+                }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res)
+        } catch (error) {
+            console.error("Error fetching data!", error);
+        }
+    };
+
+
     return (
         <Card className="bg-slate-800 pt-4 shadow-lg border-[1px] border-gray-700">
             <CardContent className="">
@@ -61,7 +85,10 @@ export function AddAvailabilityForm() {
                             />
                         </div>
                     </div>
-                    <Button type="submit" className="w-full">
+                    <Button onClick={(eo: React.FormEvent) => {
+                        eo.preventDefault()
+                        addAvailability()
+                    }} className="w-full">
                         Add Availability
                     </Button>
                 </form>
@@ -69,5 +96,3 @@ export function AddAvailabilityForm() {
         </Card>
     )
 }
-
-// ليه بيعمل تحديد للكل

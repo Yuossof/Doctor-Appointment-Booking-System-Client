@@ -20,7 +20,7 @@ export default async function ForgetPasswordAction(state: any, formData: FormDat
         };
     }
 
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/forget-password`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/forget-password`, {
         method: "POST",
         headers: {
             Accept: "application/json",

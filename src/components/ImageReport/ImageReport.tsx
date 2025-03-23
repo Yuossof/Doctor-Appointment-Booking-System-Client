@@ -25,7 +25,7 @@ export default function ImageReport({ image, doc }: ID) {
         console.log(id)
         const token = await GetToken();
         try {
-            await axios.delete(`${process.env.NEXT_BASE_URL}/api/user_documentations/deleteImage/${id}`, {
+            await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user_documentations/deleteImage/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             router.push('/profile/reports');

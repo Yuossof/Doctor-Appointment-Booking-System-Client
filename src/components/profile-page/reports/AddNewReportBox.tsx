@@ -74,7 +74,7 @@ const AddNewReportBox = () => {
 
         if (showBox?.showBox) {
             try {
-                const res = await axios.post(`${process.env.NEXT_BASE_URL}/api/user_documentations/store`, data, {
+                const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user_documentations/store`, data, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data'
@@ -109,7 +109,8 @@ const AddNewReportBox = () => {
                 docsImageContext?.setSuccessUpload(true);
             }, 1000);
         }
-    }, [docsImageContext, message, showBox])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [message])
 
 
     return (

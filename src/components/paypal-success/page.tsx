@@ -17,7 +17,7 @@ export default function SuccessPaypal() {
             if (!token || !PayerID) return;
 
             try {
-                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/paypal/success_paypal?token=${token}&PayerID=${PayerID}`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/paypal/success_paypal?token=${token}&PayerID=${PayerID}`);
                 if (res.data.status === "COMPLETED") {
                     toastMessageContext?.setToastMessage("Payment Successful! Your reservation is confirmed.");
                     router.replace('/my-appointments');

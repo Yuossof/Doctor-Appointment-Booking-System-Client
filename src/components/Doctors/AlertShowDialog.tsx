@@ -52,7 +52,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
             const token = await GetToken();
             try {
                 setAppointemetnPending(true);
-                const res = await axios.post(`${process.env.NEXT_BASE_URL}/api/reservations/store`, {
+                const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/reservations/store`, {
                     appointment_id: appointementId,
                     doctor_id: doctorId,
                     day_id: dayID

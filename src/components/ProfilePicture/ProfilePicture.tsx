@@ -6,11 +6,23 @@ import { motion } from "framer-motion"
 import { useImageProfileChanged } from "@/Context/ProfileImageChanged"
 import { useProfileImageRef } from "@/Context/RefImageProfile"
 import { IUser } from "@/types/UserInformation"
+import { useEffect, useState } from "react"
 
 export default function ProfilePicture({ user }: { user: IUser }) {
+    useEffect(()=> {
+        console.log(user.image_url)
+    }, [])
     const imageProfileChanged = useImageProfileChanged();
+    // console.log("iiiii:",imageProfileChanged)
+    const [newURL, setNewURL] = useState("")
     const ref = useProfileImageRef();
 
+    // useEffect(()=> {
+    //     const newImage = user?.image_url.split("/")
+    //     console.log(newImage)
+    //     const newUrl = `${newImage[0]}//${newImage[2]}/laravel/public/${newImage[3]}/${newImage[4]}/${newImage[5]}`
+    //     setNewURL(newUrl)
+    // }, [])
 
     const handleClick = () => {
         if (ref?.current) {
@@ -26,7 +38,7 @@ export default function ProfilePicture({ user }: { user: IUser }) {
                 transition={{ duration: 0.5,  type: 'spring', stiffness: 70, damping: 7 }}
             className="relative mb-4 sm:mb-0">
                 <Avatar className="w-32 h-32 border-4 border-white">
-                    <AvatarImage src={imageProfileChanged?.image || user?.image_url} alt='Profile Picture' />
+                    <AvatarImage src={imageProfileChanged?.image || user.image_url} alt='Profile Picture' />
                 </Avatar>
                 <Button
                     onClick={handleClick}

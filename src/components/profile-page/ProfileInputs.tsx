@@ -41,17 +41,20 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
     const handleChange = () => {
         if (ref?.current && ref.current.files?.length === 1) {
             const file = ref.current.files[0];
+            console.log(file)
             const imageURL = URL.createObjectURL(file);
+            console.log(imageURL)
             imageProfileContext?.setImage(imageURL);
+            // console.log(imageProfileContext?.image)
         }
     };
 
-    useEffect(() => {
-        if (state?.success == false) {
-            console.log(state?.success)
-            imageProfileContext?.setImage(undefined)
-        }
-    }, [imageProfileContext, state.errors, state?.success])
+    // useEffect(() => {
+    //     if (state?.success == false) {
+    //         console.log(state?.success)
+    //         // imageProfileContext?.setImage(undefined)
+    //     }
+    // }, [state?.success])
 
 
     useEffect(() => {

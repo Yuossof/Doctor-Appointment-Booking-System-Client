@@ -17,7 +17,7 @@ export default async function CheckEmailAction(state: any, formData: FormData) {
         };
     }
 
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/check-forget-password`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/check-forget-password`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -3,7 +3,6 @@ import SuccessPaypal from "../../components/paypal-success/page";
 import { Metadata } from "next";
 import SuccessStripe from "../stripe_success/page";
 import { GetUserReservation } from "@/components/GetUserReservation/GetUserReservation";
-import { IUser } from "@/types/UserInformation";
 import AppointmentsMotion from "@/components/AppointmentsMotion/AppointmentsMotion";
 import { IReservations } from "@/types/Reservations";
 

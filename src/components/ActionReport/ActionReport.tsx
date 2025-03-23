@@ -14,7 +14,7 @@ export default function ActionReport({ doc }: { doc: Doc }) {
     const handleDelete = async () => {
         const token = await GetToken();
         try {
-            await axios.delete(`${process.env.NEXT_BASE_URL}/api/user_documentations/delete/${doc?.id}`, {
+            await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user_documentations/delete/${doc?.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

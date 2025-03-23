@@ -8,24 +8,24 @@ import { childeDiv, parentDiv } from "../ParentAndChildAnimation";
 export default function AppointmentsMotion({ reservations }: { reservations: IReservations[] }) {
     return (
         <>
-            <motion.div 
-            variants={parentDiv}
-            initial='hidden'
-            whileInView='visible'
-            className="space-y-2 text-center mb-8">
+            <motion.div
+                variants={parentDiv}
+                initial='hidden'
+                whileInView='visible'
+                className="space-y-2 text-center mb-8">
                 <motion.h1
-                variants={childeDiv}
-                className="text-3xl font-bold tracking-tight">My Appointments</motion.h1>
-                <motion.p 
-                variants={childeDiv}
-                className="text-muted-foreground">View and manage your appointments with doctors</motion.p>
+                    variants={childeDiv}
+                    className="text-3xl font-bold tracking-tight">My Appointments</motion.h1>
+                <motion.p
+                    variants={childeDiv}
+                    className="text-muted-foreground">View and manage your appointments with doctors</motion.p>
             </motion.div>
 
             <Tabs defaultValue="pendding" className="w-full">
                 <motion.div
-                initial={{ scale: 0.5, opacity: 0 }}
-                whileInView={{ scale: [1.2, 1], opacity: 1 }}
-                transition={{ duration: 0.7, ease: 'easeInOut' }}
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    whileInView={{ scale: [1.2, 1], opacity: 1 }}
+                    transition={{ duration: 0.7, ease: 'easeInOut' }}
                 >
                     <TabsList className="grid w-full grid-cols-3 mb-8">
                         <TabsTrigger value="pendding">pendding</TabsTrigger>
@@ -33,7 +33,7 @@ export default function AppointmentsMotion({ reservations }: { reservations: IRe
                         <TabsTrigger value="cancel">Canceled</TabsTrigger>
                     </TabsList>
                 </motion.div>
-                <TabsContent value="pendding" className="space-y-6 overflow-scroll h-[420px]">
+                <TabsContent value="pendding" className="space-y-6 overflow-auto min-h-[420px]">
                     {reservations &&
                         reservations.length > 0 &&
                         reservations
@@ -57,7 +57,7 @@ export default function AppointmentsMotion({ reservations }: { reservations: IRe
                             ))}
                 </TabsContent>
 
-                <TabsContent value={'complete'} className="space-y-6 overflow-scroll h-[420px]">
+                <TabsContent value={'complete'} className="space-y-6 overflow-auto min-h-[420px]">
                     {reservations &&
                         reservations.length > 0 &&
                         reservations
@@ -81,7 +81,7 @@ export default function AppointmentsMotion({ reservations }: { reservations: IRe
                             ))}
                 </TabsContent>
 
-                <TabsContent value="cancel" className="space-y-6 overflow-scroll h-[420px]">
+                <TabsContent value="cancel" className="space-y-6 overflow-auto min-h-[420px]">
                     {reservations &&
                         reservations.length > 0 &&
                         reservations

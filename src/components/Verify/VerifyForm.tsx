@@ -26,7 +26,7 @@ export default function VerifyForm({ user }: { user: UserData }) {
         console.log(token) 
         try {
 
-            const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/users/send-code`, {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/send-code`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }

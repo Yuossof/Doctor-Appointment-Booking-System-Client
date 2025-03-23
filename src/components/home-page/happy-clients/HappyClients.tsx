@@ -52,7 +52,7 @@ const HappyClients = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/users/get-doctors/reviews-client`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/get-doctors/reviews-client`);
                 const data = res.data;
                 setReviews(data.data.reviews);
             } catch (error) {

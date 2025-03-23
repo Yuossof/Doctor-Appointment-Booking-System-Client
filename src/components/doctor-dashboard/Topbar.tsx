@@ -1,10 +1,22 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './doctor-dash.css'
 import { motion } from "framer-motion"
+import { getReviews } from '@/lib/services/doctor-dashboard/GetReviews'
+import { GetAllAppointmens } from '@/lib/services/doctor-dashboard/getWeaklyAppointments'
 const Topbar = () => {
     const [AppointmentData, setAppointmentData] = useState(46)
     const weaks = [70, 50, 30, 90, 95, 25, 100]
+    const [reviews, setReviews] = useState(0)
+
+    useEffect(()=> {
+        const getRv = async () => {
+          const res = await getReviews()
+          await GetAllAppointmens()
+          setReviews(res)
+        }
+        getRv()
+    }, [])
 
     return (
         <div className='grid lg:grid-cols-2 xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-4 w-full'>
@@ -49,7 +61,7 @@ const Topbar = () => {
                  border-transparent transition-all  '
             >
                 <h2 className='text-sm text-slate-400'>Total Reviews</h2>
-                <span className='text-4xl text-slate-300'>126</span>
+                <span className='text-4xl text-slate-300'>{reviews}</span>
                 {/* <span className='px-3 py-1 bg-orange-900 bg-opacity-40 rounded-md text-sm text-gray-200'>+3.5%</span> */}
             </div>
 

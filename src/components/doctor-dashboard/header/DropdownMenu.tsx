@@ -25,7 +25,7 @@ export function DropdownMenuCheckboxes() {
 
     const handleLogout = async () => {
         const token = await GetToken();
-        const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/logout`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/logout`, {
             headers: {
                 Accept: 'application/json',
                 "Content-Type": 'application/json',

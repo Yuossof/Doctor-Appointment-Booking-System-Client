@@ -7,7 +7,7 @@ export function AvatarCmp({
     }: { imgSrc?: string, w?: number, h?: number }) {
     return (
         <Avatar className={`w-${w} h-${h}`}>
-            <AvatarImage src={imgSrc} alt="@shadcn" />
+            <AvatarImage src={imgSrc || im} alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
         </Avatar>
     )

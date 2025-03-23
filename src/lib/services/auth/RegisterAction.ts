@@ -27,7 +27,7 @@ export default async function RegisterAction(state: any, formData: FormData) {
   }
 
 
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",

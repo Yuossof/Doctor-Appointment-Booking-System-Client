@@ -1,17 +1,19 @@
 'use client';
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 type TImageContext = {
-    image: string | undefined;
-    setImage: React.Dispatch<React.SetStateAction<string | undefined>>;
+    image: string;
+    setImage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const ImageContext = createContext<TImageContext | null>(null);
 
 export default function ImageProfileChanged({ children }: { children: React.ReactNode }) {
     
-    const [image, setImage] = useState<string | undefined>(undefined);
-    
+    const [image, setImage] = useState<string>("");
+    useEffect(()=> {
+        console.log(image)
+    }, [])
     return (
         <ImageContext.Provider value={{ image, setImage }}>
             {children}

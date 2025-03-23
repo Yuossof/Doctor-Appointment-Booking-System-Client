@@ -51,7 +51,7 @@ export default async function ProfileAction(state: Returned, formData: FormData)
         formDataToSend.append("image", formValues.image);
     }
 
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/users/profile`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/profile`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -62,6 +62,7 @@ export default async function ProfileAction(state: Returned, formData: FormData)
 
     if(!res.ok){
         const errorData = await res.json();
+        console.log(errorData)
         return {
             message: errorData.error,
             success: false,
