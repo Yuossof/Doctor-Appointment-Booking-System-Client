@@ -12,7 +12,7 @@ import { childNav, parentDiv } from '../ParentAndChildAnimation';
 
 export default function ReservationsCard({ docs, doc, i }: { docs: Doc[], doc: Doc, i: number }) {
     return (
-        <Card key={doc?.id} className="bg-white/80 my-4 backdrop-blur-sm shadow-xl rounded-xl overflow-hidden ">
+        <Card className="bg-white/80 my-4 backdrop-blur-sm shadow-xl rounded-xl overflow-hidden ">
             <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-6">
                     <motion.div
@@ -45,7 +45,7 @@ export default function ReservationsCard({ docs, doc, i }: { docs: Doc[], doc: D
                     </motion.div>
                 </div>
                 <ScrollArea className="pr-4">
-                    <Card className="mb-8 last:mb-0 overflow-scroll h-[715px]">
+                    <Card className="mb-8 last:mb-0 overflow-y-auto overflow-x-hidden h-[715px]">
                         <CardContent className="p-6">
                             <motion.div
                                 initial={{ x: -20, opacity: 0 }}

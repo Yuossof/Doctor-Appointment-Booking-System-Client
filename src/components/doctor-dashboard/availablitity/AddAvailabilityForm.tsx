@@ -11,6 +11,7 @@ export function AddAvailabilityForm() {
     const [selectedDay, setSelectedDay] = useState<string | null>(null);
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
     const days = [
         { id: crypto.randomUUID(), day: "Monday" },
@@ -22,23 +23,39 @@ export function AddAvailabilityForm() {
         { id: crypto.randomUUID(), day: "Sunday" },
     ]
 
+    const handleTimeInput = (value: string, setter: (val: string) => void) => {
+        let sanitizedValue = value.replace(/[^0-9:]/g, "");
+
+        if (sanitizedValue.length === 2 && !sanitizedValue.includes(":")) {
+            sanitizedValue += ":";
+        }
+        if (sanitizedValue.length > 5) {
+            return;
+        }
+        setter(sanitizedValue);
+    };
+
     const addAvailability = async () => {
+        setIsLoading(true)
         const token = await GetToken()
         console.log(token)
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/doctors/appointments/store`
+            await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/doctors/appointments/store`
                 , {
-                    start_time: "14:00:00",
-                    end_time: "16:00:00",
-                    day_id: 1,
+                    start_time: startTime+":00",
+                    end_time: endTime+":00",
+                    day_id: 2,
                 }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res)
+            setStartTime("")
+            setEndTime("")
         } catch (error) {
             console.error("Error fetching data!", error);
+        } finally {
+            setIsLoading(false)
         }
     };
 
@@ -66,26 +83,30 @@ export function AddAvailabilityForm() {
                             <Label htmlFor="start-time" className="text-gray-400">Start Time</Label>
                             <input
                                 id="start-time"
-                                type="time"
+                                type="text"
                                 className="bg-transparent text-gray-300 border-gray-600 w-full py-2 px-3 outline-none border-[1px] rounded-md"
                                 value={startTime}
-                                onChange={(e) => setStartTime(e.target.value)}
+                                onChange={(e) => handleTimeInput(e.target.value, setStartTime)}
                                 required
+                                placeholder="00:00"
                             />
+
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="end-time" className="text-gray-400">End Time</Label>
+
                             <input
                                 id="end-time"
-                                type="time"
-                                value={endTime}
+                                type="text"
                                 className="bg-transparent text-gray-300 border-gray-600 w-full py-2 px-3 outline-none border-[1px] rounded-md"
-                                onChange={(e) => setEndTime(e.target.value)}
+                                value={endTime}
+                                onChange={(e) => handleTimeInput(e.target.value, setEndTime)}
                                 required
+                                placeholder="00:00"
                             />
                         </div>
                     </div>
-                    <Button onClick={(eo: React.FormEvent) => {
+                    <Button disabled={isLoading} onClick={(eo: React.FormEvent) => {
                         eo.preventDefault()
                         addAvailability()
                     }} className="w-full">

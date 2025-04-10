@@ -1,17 +1,18 @@
 import axios from "axios";
 import GetToken from "../auth/GetToken";
 
-export const GetAllAppointmens = async () => {
+
+export const editAppointment = async (id: string | number, data: any) => {
     const token = await GetToken()
     try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/doctors/appointments/all-appointements`, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/doctors/appointments/update/${id}`,{...data, day_id: 1}, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log("ap",res.data)
-    //    return res.data.data.weakly_reservations.length
+        console.log(res.data)
     } catch (error) {
         console.error("Error fetching data!", error);
 
-}}
+    }
+}
