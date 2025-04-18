@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header/Header";
 import FooterWithCheckPathName from "@/components/CheckPathName/FooterWithCheckPathName";
 import LayoutProviders from "@/components/layout/LayoutProviders";
+import NotificationListener from "@/components/SubscribeToNotifications/SubscribeToNotifications ";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -14,7 +15,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <LayoutProviders> 
-          <div className="w-full flex justify-center">
+          <NotificationListener/>
+          <div className="w-full flex justify-center overflow-hidden">
             <div className="w-full">
               <div>
                 <Header />

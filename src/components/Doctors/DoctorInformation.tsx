@@ -11,6 +11,7 @@ import Link from 'next/link';
 import DoctorsPagination from './DoctorsPagination';
 import { motion } from 'framer-motion';
 import { childeDiv, parentDiv } from '../ParentAndChildAnimation';
+import Image from 'next/image';
 
 interface DoctorInformationProps {
     doctors: IUser[] | undefined,
@@ -33,10 +34,10 @@ export default function DoctorInformation({ doctors, totalPages }: DoctorInforma
                             variants={childeDiv}
                             initial='hidden'
                             whileInView='visible'
-                            key={doctor.id} className="flex flex-col md:flex-row justify-between items-center lg:items-start bg-[#f6f6f6] rounded-md p-2 cursor-pointer">
+                            key={doctor.id} className="flex flex-col md:flex-row justify-between items-center  bg-[#f6f6f6] rounded-md p-2 cursor-pointer">
                             <Link href={`doctors/${doctor.id}`} className="flex flex-col sm:flex-row flex-1 items-center gap-4 sm:gap-8">
 
-                                <img src={doctor.image_url} alt='Doctor Image' className='object-cover w-[100px] h-[100px] rounded-full' />
+                                <Image width={100} height={100} priority src={doctor.image_url} alt='Doctor Image' className='object-cover w-[100px] h-[100px] rounded-full' />
                                 <div className="text-mid-blue flex flex-col gap-2">
                                     <div>
                                         <span className='text-[13px]'>Doctor </span>

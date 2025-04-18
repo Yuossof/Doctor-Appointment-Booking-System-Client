@@ -4,10 +4,8 @@ import UpdateReport from "@/components/profile-page/reports/UpdateReport"
 import AddSection from "@/components/profile-page/reports/AddSection"
 import { Metadata } from "next"
 import { GetDocs } from "@/lib/services/GetDocumentations"
-import ImageReport from "@/components/ImageReport/ImageReport"
 import { Doc } from "@/types/Docs"
 import ShowImageReport from "@/components/ImageReport/ShowImageReport"
-import ActionReport from "@/components/ActionReport/ActionReport"
 import ReservationsCard from "@/components/ReservationsCard/ReservationsCard"
 
 export const metadata: Metadata = {
@@ -26,6 +24,7 @@ export default async function MedicalConnectionsPage() {
         <div>
           {docs && docs?.length > 0 &&
             docs?.map((doc, i) => (
+              // eslint-disable-next-line react/jsx-key
               <ReservationsCard docs={docs} doc={doc} i={i}/>
             ))}
         </div>

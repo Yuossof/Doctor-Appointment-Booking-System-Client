@@ -7,8 +7,8 @@ export default async function ReviewAction(state: RFAction, formData: FormData) 
     const token = await GetToken();
 
     const formValues = {
-        comment: formData.get('comment'),
-        rate: formData.get('rate'),
+        comment: formData.get('comment') as string,
+        rate: formData.get('rate') as string,
         doctor_id: state.id
     }
 

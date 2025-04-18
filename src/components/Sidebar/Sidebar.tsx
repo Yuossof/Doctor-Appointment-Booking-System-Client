@@ -132,7 +132,7 @@ export default function Sidebar() {
     const getFiltersData = async () => {
       try {
         const token = await GetToken();
-        const res = await axios.get('http://localhost:8000/api/specialization', {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/specialization`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

@@ -83,7 +83,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
         if (paymentMethod?.paymentMethod === 'paypal') {
             try {
                 setpaymentPending(true);
-                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/paypal/create/${reservationId}?payment_method=${paymentMethod?.paymentMethod}`)
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/paypal/create/${reservationId}?payment_method=${paymentMethod?.paymentMethod}`)
                 if (res.status === 200) {
                     setpaymentPending(false);
                     router.push(res.data.data.approval_url);
@@ -103,12 +103,11 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                     console.error("Stripe failed to load.");
                     return;
                 }
-                const { data } = await axios.post(`${process.env.NEXT_BASE_URL}/api/stripe/create-checkout-session`, {
+                const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/create-checkout-session`, {
                     reservation_id: reservationId
                 });
                 await stripe.redirectToCheckout({ sessionId: data.sessionId });
             } catch (error) {
-
                 if (axios.isAxiosError(error)) {
                     setpaymentPending(false);
                 } else {
@@ -118,7 +117,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
         } else {
             try {
                 setpaymentPending(true);
-                const res = await axios.get(`${process.env.NEXT_BASE_URL}/api/cache/create/${reservationId}`)
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cache/create/${reservationId}`)
                 if (res.status === 200) {
                     setpaymentPending(false);
                     toastMessageContext?.setToastMessage(res.data.data.message);

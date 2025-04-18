@@ -32,9 +32,9 @@ export default async function LoginAction(state: any, formData: FormData) {
 
         if (!res.ok) {
           const errorsData = await res.json();
-          console.log(errorsData);
+          console.log(errorsData.data);
           return {
-            errors: errorsData.errors,
+            errorsData: errorsData.errors.error,
             data: formValues,
             userData: errorsData.data,
             message: errorsData.message
@@ -46,6 +46,6 @@ export default async function LoginAction(state: any, formData: FormData) {
         cookie.set('data', JSON.stringify(data.data));
         
         return {
-          user: data.data
+          user: data.data.user
         }
 }

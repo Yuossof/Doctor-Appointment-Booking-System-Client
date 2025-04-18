@@ -1,3 +1,5 @@
+import { IUser } from "./UserInformation";
+
 type Appointment = {
   end_time: string;
   start_time: string;

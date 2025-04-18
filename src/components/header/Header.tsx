@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { AvatarCmp } from '../Avatar'
 import { DropdownMenuCheckboxes } from './DropdownMenu'
 import { Button } from '../ui/button'
 import { useUser } from '../../Context/User'
@@ -40,6 +39,7 @@ const childVariants = {
 const Header = () => {
     const [showHeader, setShowHeader] = useState(false)
     const pathname = usePathname();
+
     const isDashboard = (
         pathname.startsWith("/doctor-dashboard") ||
         pathname.startsWith("/admin")
@@ -55,7 +55,7 @@ const Header = () => {
         { title: "Contact", to: "/contact" },
     ]
 
-    if (isDashboard) return null;
+    if (isDashboard) return;
 
     return (
         <>
@@ -85,8 +85,9 @@ const Header = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                         className='flex items-center gap-5'>
-                        <DropdownMenuCheckboxes AvatarCmp={AvatarCmp} />
-                        {!userContext?.user && (
+                        <DropdownMenuCheckboxes />
+
+                        {!userContext?.user?.email_verified_at && (
                             <div className='flex items-center gap-2'>
                                 <Button asChild className='bg-mid-blue py-6 px-6'>
                                     <Link href="/register">Register</Link>
@@ -96,6 +97,7 @@ const Header = () => {
                                 </Button>
                             </div>
                         )}
+
                     </motion.div>
                 </div>
 

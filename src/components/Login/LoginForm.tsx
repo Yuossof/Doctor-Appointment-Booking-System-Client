@@ -10,9 +10,11 @@ import { GrFormCheckmark } from "react-icons/gr";
 import { useRouter } from "next/navigation";
 import { useUser } from "../../Context/User";
 import { motion } from "framer-motion";
+import { initialState } from "@/types/InitalState";
+import { ILogin } from "@/types/Login";
 
 export default function LoginForm() {
-    const [state, action, pending] = useActionState(LoginAction, undefined);
+    const [state, action, pending] = useActionState<ILogin, FormData>(LoginAction, initialState);
     const [message, setMessage] = useState('');
     const [checkbox, setCheckbox] = useState(false);
     const router = useRouter();
@@ -22,8 +24,8 @@ export default function LoginForm() {
     const handleCheckBox = () => setCheckbox(prev => !prev);
 
     useEffect(() => {
-        if (state?.errors?.error) {
-            setMessage(state.errors.error);
+        if (state?.errorsData) {
+            setMessage(state.errorsData);
         } else if (state?.userData) {
             if (state?.userData.user.email_verified_at == null) {
                 cookie.set('data', JSON.stringify(state.userData));
@@ -38,26 +40,29 @@ export default function LoginForm() {
     useEffect(() => {
         if (state?.user) {
             userContext?.setUser({
-                phone: state?.user?.user?.phone,
-                address: state?.user?.user?.address,
-                city: state?.user?.user?.city,
-                email: state?.user?.user?.email,
-                first_name: state?.user?.user?.first_name,
-                last_name: state?.user?.user?.last_name,
-                image_url: state?.user?.user?.image_url,
-                email_verified_at: state?.user?.user?.email_verified_at,
-                gender: state?.user?.user?.gender,
-                role: state?.user?.user?.role,
-                clinic_address: state?.user?.user?.clinic_address,
+                id: state?.user?.id,
+                phone: state?.user?.phone,
+                address: state?.user?.address,
+                city: state?.user?.city,
+                email: state?.user?.email,
+                first_name: state?.user?.first_name,
+                last_name: state?.user?.last_name,
+                image_url: state?.user?.image_url,
+                email_verified_at: state?.user?.email_verified_at,
+                gender: state?.user?.gender,
+                role: state?.user?.role,
+                clinic_address: state?.user?.clinic_address,
             });
-            if(state?.user?.user?.role == 'doctor' && !state?.user?.user?.clinic_address){
+            if(state?.user?.role == 'doctor' && !state?.user?.clinic_address){
                 router.push('/doctor-dashboard/profile');
-            }else if (state?.user?.user?.role == 'doctor' && state?.user?.user?.clinic_address){
+            }else if (state?.user?.role == 'doctor' && state?.user?.clinic_address){
                 router.push('/doctor-dashboard');
-            }else if (state?.user?.user?.role == 'user' && state?.user?.user?.city && state?.user?.user?.address){
+            }else if (state?.user?.role == 'user' && state?.user?.city && state?.user?.address){
                 router.push('/')
-            }else if (state?.user?.user?.role == 'user'){
+            }else if (state?.user?.role == 'user'){
                 router.push('/profile');
+            }else if (state?.user?.role == 'admin') {
+                router.push('/admin');
             }
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

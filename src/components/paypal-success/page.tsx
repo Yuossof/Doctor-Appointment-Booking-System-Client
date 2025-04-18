@@ -21,10 +21,11 @@ export default function SuccessPaypal() {
                 if (res.data.status === "COMPLETED") {
                     toastMessageContext?.setToastMessage("Payment Successful! Your reservation is confirmed.");
                     router.replace('/my-appointments');
+                    return;
                 }
             } catch (error) {
                 if (axios.isAxiosError(error)) {
-                    toastMessageContext?.setToastMessage("Error verifying payment.");
+                    toastMessageContext?.setToastMessage(error?.response?.data?.message);
                 } else {
                     console.error("Unknown error:", error);
                 }
