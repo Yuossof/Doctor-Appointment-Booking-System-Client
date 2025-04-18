@@ -4,7 +4,6 @@ import ProfileInputs from "@/components/profile-page/ProfileInputs"
 import ProfilePicture from "@/components/ProfilePicture/ProfilePicture"
 import ProfileButtons from "@/components/ProfileButtons/ProfileButtons"
 import { GetUser } from "@/lib/services/auth/GetUser"
-import { IUser } from "@/types/UserInformation"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

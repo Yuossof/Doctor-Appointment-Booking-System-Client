@@ -40,10 +40,28 @@ export async function middleware(request: NextRequest) {
         '/verify'
     ]
 
-    // const adminRoutes = [
+    const adminRoutes = [
+        '/doctor-dashboard',
+        '/doctor-dashboard/profile',
+        '/doctor-dashboard/all-reservations',
+        '/doctor-dashboard/availability',
+        '/doctor-dashboard/users-table',
+        `/doctor-dashboard/users-table/report/${userId}`,
+        '/profile',
+        '/register',
+        '/login',
+        '/forgetPassword',
+        '/verify'
+    ];
 
-    // ];
+    const allowed = [
+        '/verify',
+        '/login',
+        '/register',
+        '/'
+    ]
 
+        
     if (user && user?.role === 'doctor' && pathname.startsWith('/doctor-dashboard/profile')) {
         return NextResponse.next();
     } else if (user && user?.role === 'doctor' && !user.clinic_address && !pathname.startsWith('/doctor-dashboard/profile')) {
@@ -54,9 +72,16 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/', request.nextUrl))
     } else if (user && user.role === 'user' && user.email_verified_at && userRoutes.includes(pathname)) {
         return NextResponse.redirect(new URL('/', request.nextUrl))
+    } 
+    
+    if (user && user?.role === 'admin' && pathname.startsWith('/admin')){
+        return NextResponse.next();
+    }
+    else if (user && user.role === 'admin' && user.email_verified_at && adminRoutes.includes(pathname)){
+        return NextResponse.redirect(new URL('/', request.nextUrl))
     }
 
-    if (!user && pathname.startsWith('/verify')) {
+    if (!user && !allowed.includes(pathname)) {
         return NextResponse.redirect(new URL('/login', request.nextUrl));
     }
 

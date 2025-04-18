@@ -1,6 +1,6 @@
 "use client"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Calendar, Clock, MapPin } from "lucide-react"
 import StatusBadge from "./StatusBadge"
 import { Button } from "../ui/button"
@@ -14,8 +14,21 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { childeDiv, childNav, parentDiv } from "../ParentAndChildAnimation"
-
-export default function AppointmentCard({ appointment_id, id, doctorName, specialty, price, is_paid, payment_method, showStatus, date, time, location, avatarSrc, avatarFallback }: any) {
+type IData = {
+    appointment_id: number,
+    id: number,
+    doctorName: string,
+    specialty?: string,
+    price: number,
+    is_paid: string,
+    payment_method: string,
+    showStatus: string,
+    date: string,
+    time: string,
+    location?: string,
+    avatarSrc: string,
+}
+export default function AppointmentCard({ appointment_id, id, doctorName, specialty, price, is_paid, payment_method, showStatus, date, time, location, avatarSrc }: IData) {
     const [pendding, setPendding] = useState(false);
     const router = useRouter();
 
@@ -29,6 +42,7 @@ export default function AppointmentCard({ appointment_id, id, doctorName, specia
             setPendding(false);
             router.push('/my-appointments');
         } catch (error) {
+            console.log(error)
             setPendding(false);
         }
     }
@@ -53,7 +67,7 @@ export default function AppointmentCard({ appointment_id, id, doctorName, specia
                     >
                         <Avatar className="h-20 w-20 border-2 border-muted">
                             <AvatarImage src={avatarSrc} alt={doctorName} />
-                            <AvatarFallback className="text-lg">{avatarFallback}</AvatarFallback>
+                            {/* <AvatarFallback className="text-lg">{avatarFallback}</AvatarFallback> */}
                         </Avatar>
                     </motion.div>
                     <div className="space-y-3 flex-1">
@@ -127,13 +141,15 @@ export default function AppointmentCard({ appointment_id, id, doctorName, specia
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.7, ease: 'easeInOut' }}
                 >
-                    <Button className="disabled:opacity-50 disabled:cursor-not-allowed" disabled={pendding} onClick={() => handleDelete(id)} variant="destructive">
-                        {pendding == true ? (
-                            <span className="flex items-center gap-3">Loading<span className="loader"></span></span>
-                        ) : (
-                            'Cancel Appointment'
-                        )}
-                    </Button>
+                    { showStatus !== 'cancel' && (
+                        <Button className="disabled:opacity-50 disabled:cursor-not-allowed" disabled={pendding} onClick={() => handleDelete(id)} variant="destructive">
+                            {pendding == true ? (
+                                <span className="flex items-center gap-3">Loading<span className="loader"></span></span>
+                            ) : (
+                                'Cancel Appointment'
+                            )}
+                        </Button>
+                    ) }
                 </motion.div>
             </CardFooter>
         </Card>

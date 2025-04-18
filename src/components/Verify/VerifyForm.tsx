@@ -7,9 +7,11 @@ import { useUser } from "../../Context/User";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { UserData } from "@/types/RegsiterUser";
+import { initialState } from "@/types/InitalState";
+import { IVerify } from "@/types/Verify";
 
 export default function VerifyForm({ user }: { user: UserData }) {
-    const [state, action, pending] = useActionState(VerifyAction, undefined);
+    const [state, action, pending] = useActionState<IVerify, FormData>(VerifyAction, initialState);
     const [disabled, setDisabled] = useState(true);
     const [message, setMessage] = useState('');
     const userContext = useUser();
@@ -25,15 +27,12 @@ export default function VerifyForm({ user }: { user: UserData }) {
         const token = await GetToken();
         console.log(token) 
         try {
-
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/send-code`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
             })
-
             const data = await res.data;
-            console.log(data)
             setMessage(data.message);
         } catch (error) {
             console.log(error);
@@ -43,28 +42,30 @@ export default function VerifyForm({ user }: { user: UserData }) {
     useEffect(() => {
         if (state?.user) {
             userContext?.setUser({
-                phone: state?.user?.user?.phone,
-                address: state?.user?.user?.address,
-                city: state?.user?.user?.city,
-                email: state?.user?.user?.email,
-                first_name: state?.user?.user?.first_name,
-                last_name: state?.user?.user?.last_name,
-                image_url: state?.user?.user?.image_url,
-                email_verified_at: state?.user?.user?.email_verified_at,
-                gender: state?.user?.user?.gender,
-                role: state?.user?.user?.role,
-                clinic_address: state?.user?.user?.clinic_address,
+                id: state?.user?.id,
+                phone: state?.user?.phone,
+                address: state?.user?.address,
+                city: state?.user?.city,
+                email: state?.user?.email,
+                first_name: state?.user?.first_name,
+                last_name: state?.user?.last_name,
+                image_url: state?.user?.image_url,
+                email_verified_at: state?.user?.email_verified_at,
+                gender: state?.user?.gender,
+                role: state?.user?.role,
+                clinic_address: state?.user?.clinic_address,
             });
-            if(state?.user?.user?.role == 'doctor' && !state?.user?.user?.clinic_address){
+            if(state?.user?.role == 'doctor' && !state?.user?.clinic_address){
                 router.push('/doctor-dashboard/profile');
-            }else if (state?.user?.user?.role == 'doctor' && state?.user?.user?.clinic_address){
+            }else if (state?.user?.role == 'doctor' && state?.user?.clinic_address){
                 router.push('/doctor-dashboard');
-            }else if (state?.user?.user?.role == 'user' && state?.user?.user?.city && state?.user?.user?.address){
+            }else if (state?.user?.role == 'user' && state?.user?.city && state?.user?.address){
                 router.push('/')
-            }else if (state?.user?.user?.role == 'user'){
+            }else if (state?.user?.role == 'user'){
                 router.push('/profile');
+            }else if (state?.user?.role == 'admin') {
+                router.push('/admin');
             }
-
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state?.user])
@@ -109,7 +110,7 @@ export default function VerifyForm({ user }: { user: UserData }) {
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.3, type: 'spring', stiffness: 80 }}
-                    type="submit" className="bg-mid-blue rounded-lg py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed" disabled={disabled || pending}>
+                    type="submit" className="bg-mid-blue rounded-lg py-2 text-white disabled:bg-opacity-[50%] disabled:cursor-not-allowed" disabled={disabled || pending}>
                     {pending ? <span className="flex items-center justify-center gap-2">Loading <span className="loader"></span></span> : 'Continue'}
                 </motion.button>
                 <motion.span

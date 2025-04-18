@@ -14,8 +14,8 @@ interface Reservations {
     id: number | string
     status: string | null
     review: number | null
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    payment_method: any
+    payment_method: string
+
     is_paid: string | null
     day: Day
     user: UserProps

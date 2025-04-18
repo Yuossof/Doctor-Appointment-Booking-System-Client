@@ -24,7 +24,9 @@ export default async function MedicalConnectionsPage() {
         <div>
           {docs && docs?.length > 0 &&
             docs?.map((doc, i) => (
-              <ReservationsCard docs={docs} doc={doc} i={i} key={doc.id}/>
+              // eslint-disable-next-line react/jsx-key
+              <ReservationsCard docs={docs} doc={doc} i={i}/>
+
             ))}
         </div>
       </div>
