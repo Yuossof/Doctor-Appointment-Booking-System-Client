@@ -26,6 +26,7 @@ export default async function MedicalConnectionsPage() {
             docs?.map((doc, i) => (
               // eslint-disable-next-line react/jsx-key
               <ReservationsCard docs={docs} doc={doc} i={i}/>
+
             ))}
         </div>
       </div>

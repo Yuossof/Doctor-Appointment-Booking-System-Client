@@ -18,3 +18,11 @@ export interface Doc {
   user: Person,
   user_docs_images: UserImages[]
 }
+
+export interface Report {
+    id: number | string
+    type: string
+    desc: string
+    created_at: string
+    user_docs_images: UserImages[]
+}

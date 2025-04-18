@@ -15,6 +15,7 @@ interface Reservations {
     status: string | null
     review: number | null
     payment_method: string
+
     is_paid: string | null
     day: Day
     user: UserProps
