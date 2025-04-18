@@ -1,7 +1,7 @@
 import Header from '@/components/doctor-dashboard/header/Header'
 import Sidebar from '@/components/doctor-dashboard/sidebar/Sidebar'
 import React from 'react'
-import { User } from 'lucide-react'
+import { CircleDollarSign, User } from 'lucide-react'
 import { Calendar } from 'lucide-react'
 import { LayoutGrid } from 'lucide-react'
 import { CalendarDays } from 'lucide-react'
@@ -12,6 +12,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         { name: "Dashboard", path: "/doctor-dashboard", icon: <LayoutGrid size={18} /> },
         { name: "Availability", path: "/doctor-dashboard/availability", icon: <CalendarDays size={18} /> },
         { name: "Reservations", path: "/doctor-dashboard/all-reservations", icon: <Calendar size={18} /> },
+        { name: "Feeses", path: "/doctor-dashboard/feeses", icon: <CircleDollarSign size={18} /> },
         { name: "Users", path: "/doctor-dashboard/users-table", icon: <User size={18} /> },
     ]
 

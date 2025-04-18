@@ -1,8 +1,8 @@
 "use client"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
-import { GetAllAppointmens } from "@/lib/services/doctor-dashboard/getAllAppointments"
+import { useState } from "react"
+
 import { WeaklyAppointments } from "@/types/Appointments"
 import { formatTimestamp } from "@/lib/formatDate"
 import { Input } from "@/components/ui/input"
@@ -13,8 +13,7 @@ interface Data {
     id: number | string | null
 }
 
-export function RecentAvailability() {
-    const [weaklyAppointments, setWeaklyAppointments] = useState<WeaklyAppointments[]>([])
+export function RecentAvailability({weaklyAppointments}: {weaklyAppointments: WeaklyAppointments[]}) {
     const [showBox, setShowBox] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState<Data>({
@@ -23,14 +22,6 @@ export function RecentAvailability() {
         id: null
     })
 
-    useEffect(() => {
-        const getReservations = async () => {
-            const res = await GetAllAppointmens()
-            // setAppointmentData(res)
-            setWeaklyAppointments(res.data.weakly_appointments)
-        }
-        getReservations()
-    }, [])
 
     const handelEdit = async () => {
         setIsLoading(true)

@@ -1,40 +1,23 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './doctor-dash.css'
 import { motion } from "framer-motion"
-import { getDashboardData } from '@/lib/services/doctor-dashboard/dashboard-data'
 import Spinner from '../loading/Spinner'
 
-const Topbar = () => {
+
+const Topbar = ({
+    isLoading,
+    totalAppointmets,
+    weaklyAppointment,
+    reviews,
+    todayUsers,
+    weaklyEarnings,
+    firstReservations,
+    todayReservations
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  }: any) => {
     const weaks = [70, 50, 30, 90, 95, 25, 100]
-    const [isLoading, setIsLoading] = useState(false)
-    const [reviews, setReviews] = useState(0)
-    const [weaklyEarnings, setWeaklyEarnings] = useState<number>(0)
-    const [weaklyAppointment, setWeaklyAppointment] = useState(0)
-    const [totalAppointmets, setTotalAppointments] = useState(0)
-    const [todayUsers, setTodayUsers] = useState(0)
-    const [firstReservations, setFirstReservations] = useState(0)
-    const [todayReservations, setTodayReservations] = useState([])
 
-
-    useEffect(() => {
-        const getRv = async () => {
-            setIsLoading(true)
-            const res = await getDashboardData()
-            setReviews(res.total_review)
-            setWeaklyAppointment(res.weakly_appointments.length)
-            setTotalAppointments(res.total_weakly_appointments)
-            setFirstReservations(res.total_users_first_reservation)
-            setTodayReservations(res.today_reservations)
-            setTodayUsers(res.total_users_today)
-            const sum = Object.values(res.weekly_earnings).reduce(
-                (acc, day) => acc as number + (day as { total_price: number }).total_price || 0, 0)
-            setWeaklyEarnings(sum as number)
-
-            setIsLoading(false)
-        }
-        getRv()
-    }, [])
 
     return (
         <div style={{ opacity: isLoading ? "0.4" : "1" }} className='grid lg:grid-cols-2 xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-4 w-full relative'>
@@ -93,7 +76,7 @@ const Topbar = () => {
                  border-transparent transition-all  '
             >
                 <div className='flex items-center justify-between'>
-                    <h2 className='text-sm text-slate-400 mb-2'>Weakly Eearnings</h2>
+                    <h2 className='text-sm text-slate-400 mb-2' onClick={() => console.log(todayReservations)}>Weakly Eearnings</h2>
                     <span className='bg-orange-600 bg-opacity-25  px-2 py-1 rounded-sm text-sm text-slate-200'>
                         total: 230
                     </span>
@@ -148,6 +131,7 @@ const Topbar = () => {
                 <span className='text-4xl text-slate-300'>{todayReservations.length}</span>
                 {/* <span className='px-3 py-1 bg-orange-900 bg-opacity-40 rounded-md text-sm text-gray-200'>+3.5%</span> */}
             </div>
+
         </div>
     )
 }

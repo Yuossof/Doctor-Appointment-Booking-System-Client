@@ -20,6 +20,7 @@ const informations = [
   { image: <PiGenderIntersex />, title: 'Gender', type: 'gender' },
   { image: <IoMdAlarm />, title: 'Availability', type: 'avilable' },
   { image: <GiTakeMyMoney />, title: 'Salary', type: 'salary' },
+  
   { image: <IoAnalyticsSharp />, title: 'Age', type: 'age' },
 ];
 

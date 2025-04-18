@@ -6,22 +6,14 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import axios from "axios"
 import GetToken from "@/lib/services/auth/GetToken"
+import { Day } from "@/types/Appointments"
 
-export function AddAvailabilityForm() {
-    const [selectedDay, setSelectedDay] = useState<string | null>(null);
+export function AddAvailabilityForm({days,setReget,reget}: {days: Day[],setReget:React.Dispatch<React.SetStateAction<boolean>>
+    , reget: boolean}) {
+    const [selectedDay, setSelectedDay] = useState<number | string | null>(null);
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-
-    const days = [
-        { id: crypto.randomUUID(), day: "Monday" },
-        { id: crypto.randomUUID(), day: "Tuesday" },
-        { id: crypto.randomUUID(), day: "Wednesday" },
-        { id: crypto.randomUUID(), day: "Thursday" },
-        { id: crypto.randomUUID(), day: "Friday" },
-        { id: crypto.randomUUID(), day: "Saturday" },
-        { id: crypto.randomUUID(), day: "Sunday" },
-    ]
 
     const handleTimeInput = (value: string, setter: (val: string) => void) => {
         let sanitizedValue = value.replace(/[^0-9:]/g, "");
@@ -44,7 +36,7 @@ export function AddAvailabilityForm() {
                 , {
                     start_time: startTime+":00",
                     end_time: endTime+":00",
-                    day_id: 2,
+                    day_id: selectedDay,
                 }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -59,7 +51,6 @@ export function AddAvailabilityForm() {
         }
     };
 
-
     return (
         <Card className="bg-slate-800 pt-4 shadow-lg border-[1px] border-gray-700">
             <CardContent className="">
@@ -69,10 +60,10 @@ export function AddAvailabilityForm() {
                         <div className="w-full flex items-center gap-3">
                             {days.map((day) => (
                                 <div
-                                    onClick={() => setSelectedDay(day.day)}
+                                    onClick={() => setSelectedDay(day.id)}
                                     key={day.id}
                                     className={` py-2 px-4 rounded-md text-gray-400 cursor-pointer 
-                                                ${selectedDay === day.day ? "border-blue-500 border-2" : "border-slate-600 border-[2px]"}`}>
+                                                ${selectedDay === day.id ? "border-blue-500 border-2" : "border-slate-600 border-[2px]"}`}>
                                     {day.day}
                                 </div>
                             ))}
@@ -109,6 +100,7 @@ export function AddAvailabilityForm() {
                     <Button disabled={isLoading} onClick={(eo: React.FormEvent) => {
                         eo.preventDefault()
                         addAvailability()
+                        setReget(!reget)
                     }} className="w-full">
                         Add Availability
                     </Button>

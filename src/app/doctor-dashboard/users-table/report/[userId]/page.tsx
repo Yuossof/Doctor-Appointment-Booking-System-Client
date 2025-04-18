@@ -12,7 +12,7 @@ export default async function page({ params }: { params: { userId: string } }) {
       <div className="max-w-7xl mx-auto">
         <AddSection />
         <div>
-          <Docs />
+          <Docs userID={params.userId}/>
         </div>
       </div>
     </div>

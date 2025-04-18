@@ -9,8 +9,7 @@ export const GetAllAppointmens = async () => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(res.data)
-        return res.data
+        return res.data.data
     //    return res.data.data.weakly_reservations.length
     } catch (error) {
         console.error("Error fetching data!", error);}

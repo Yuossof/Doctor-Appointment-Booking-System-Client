@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import { GetBestDoctors } from "@/lib/services/user/getBestDoctors";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,15 @@ import React, { useState, useEffect } from "react";
 const SpecialistsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
-
+  const [doctors, setDoctors] = useState()
+  useEffect(()=> {
+    const fn = async () => {
+      await GetBestDoctors()
+      
+    }
+    fn()
+  },[])
+  
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
