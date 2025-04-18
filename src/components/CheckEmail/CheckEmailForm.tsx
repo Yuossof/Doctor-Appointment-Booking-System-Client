@@ -4,9 +4,16 @@ import CheckEmailAction from "../../lib/services/auth/CheckEmailAction";
 import EnvelopeImage from '@/../public/images/envelope 1.png';
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ICheckEmail } from "@/types/CheckEmail";
+
+const initialState = {
+    errors: {},
+    data: {},
+    message: ''
+}
 
 export default function CheckEmailForm() {
-    const [state, action, pending] = useActionState(CheckEmailAction, undefined);
+    const [state, action, pending] = useActionState<ICheckEmail, FormData>(CheckEmailAction, initialState);
     const [message, setMessage] = useState('');
 
     useEffect(() => {

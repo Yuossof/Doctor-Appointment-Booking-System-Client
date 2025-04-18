@@ -1,4 +1,3 @@
-import AdminsTable from '@/components/admin/AdminsTable'
 import TodayAppointments from '@/components/admin/TodayAppointments'
 import Topbar from '@/components/admin/Topbar'
 import UsersMakedReservation from '@/components/admin/UsersMakedReservation'
@@ -9,8 +8,7 @@ const page = () => {
     <div>
       <Topbar />
       <TodayAppointments />
-      <div className='flex gap-4 items-start mt-6'>
-        <AdminsTable />
+      <div className='mt-6'>
         <UsersMakedReservation />
       </div>
     </div>

@@ -40,12 +40,12 @@ export default function SwiperAppoinments({ doctor }: { doctor: IUser }) {
                         loop={true}
                         navigation={true}
                         modules={[Navigation]}
-                        className="mySwiper w-[250px] max-w[250px] md:h-[200px] max-h-[450px] cursor-pointer"
+                        className="mySwiper w-[250px] max-w[250px] min-h-[250px] cursor-pointer"
                     >
                         {!showDialog && (doctor?.days ?? []).map((day) => (
                             <SwiperSlide
                                 key={day.id}
-                                className="w-[250px] max-w-[250px]"
+                                className="w-[250px] max-w-[250px] min-h-[250px]"
                             >
                                 <h1 className='bg-mid-blue text-white text-[13px] p-[5px] shadow-sm w-[150px]'>{day.day}</h1>
                                 <ul className='text-[13px] p-2 flex flex-col gap-2 shadow-sm w-[150px]'>

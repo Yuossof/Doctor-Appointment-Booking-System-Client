@@ -19,6 +19,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useUser } from "../../Context/User";
 import { parentDiv } from "../ParentAndChildAnimation";
+import { IRegister } from "@/types/Register";
 
 const childeDiv = {
     hidden: {
@@ -36,8 +37,13 @@ const childeDiv = {
     })
 };
 
+const initialState = {
+    errors: {},
+    data: {},
+}
+
 export default function RegisterForm() {
-    const [state, action, pending] = useActionState(RegisterAction, undefined);
+    const [state, action, pending] = useActionState<IRegister, FormData>(RegisterAction, initialState);
     const [checkbox, setCheckbox] = useState(false);
     const handleCheckBox = () => setCheckbox(prev => !prev);
     const router = useRouter();

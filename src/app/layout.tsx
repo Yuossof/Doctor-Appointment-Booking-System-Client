@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <LayoutProviders> 
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center overflow-hidden">
             <div className="w-full">
               <div>
                 <Header />

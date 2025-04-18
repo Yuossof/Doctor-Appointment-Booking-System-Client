@@ -12,7 +12,7 @@ import { useDocsImage } from '@/Context/DocsImages'
 import { z } from "zod"
 import { useRouter } from 'next/navigation'
 
-const AddNewReportBox = ({ userID, doctorID }: { userID: number | string, doctorID: number | string }) => {
+const AddNewReportBox = ({ userID }: { userID: number}) => {
     const showBox = useAddReport();
     const [pending, setPending] = useState(false);
     const [errors, setErrors] = useState<{ type?: string[]; desc?: string[]; image?: string }>({});

@@ -1,9 +1,9 @@
 'use server';
+import { ICheckEmail } from '@/types/CheckEmail';
 import { CheckEmail } from '../../validation/CheckEmailSchema';
 import { cookies } from 'next/headers';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function CheckEmailAction(state: any, formData: FormData) {
+export default async function CheckEmailAction(state: ICheckEmail, formData: FormData): Promise<ICheckEmail> {
     const cookie = await cookies();
     const formValues = {  
         email: formData.get('email')?.toString() || '',

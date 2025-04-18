@@ -1,9 +1,9 @@
 'use server';
+import { IForgetPassword } from '@/types/ForgetPassword';
 import { ForgetPasswordSchema } from '../../validation/ForgetPasswordSchema';
 import { cookies } from 'next/headers';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function ForgetPasswordAction(state: any, formData: FormData) {
+export default async function ForgetPasswordAction(state: IForgetPassword, formData: FormData): Promise<IForgetPassword> {
     const cookie = await cookies();
 
     const formValues = {
@@ -41,8 +41,9 @@ export default async function ForgetPasswordAction(state: any, formData: FormDat
     cookie.set('data', JSON.stringify(data.data));
     cookie.set('message', data.message);
     cookie.delete('email');
-    
+    console.log(data.data.user);
+
     return {
-        user: data.data
+        user: data.data.data.user
     }
 }

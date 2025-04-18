@@ -2,6 +2,7 @@ import axios from "axios";
 import GetToken from "../auth/GetToken";
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const editAppointment = async (id: string | number, data: any) => {
     const token = await GetToken()
     try {

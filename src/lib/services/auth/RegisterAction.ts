@@ -1,21 +1,21 @@
 "use server";
 import { cookies } from "next/headers";
 import { RegisterSchema } from "../../validation/RegisterSchema";
+import { IRegister } from "@/types/Register";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function RegisterAction(state: any, formData: FormData) {
+export default async function RegisterAction(state: IRegister, formData: FormData): Promise<IRegister> {
 
   const cookiesStore = await cookies();
     
   const formValues = {
-    first_name: formData.get("first_name")?.toString() || "",
-    last_name: formData.get("last_name")?.toString() || "",
-    email: formData.get("email")?.toString() || "",
-    phone: formData.get("phone")?.toString() || "",
-    password: formData.get("password")?.toString() || "",
-    password_confirmation: formData.get("password_confirmation")?.toString() || "",
-    birth_date: formData.get("birth_date")?.toString() || "",
-    gender: formData.get('gender')?.toString() || ""
+    first_name: formData.get("first_name") as string,
+    last_name: formData.get("last_name") as string,
+    email: formData.get("email") as string,
+    phone: formData.get("phone") as string,
+    password: formData.get("password") as string,
+    password_confirmation: formData.get("password_confirmation") as string,
+    birth_date: formData.get("birth_date") as string,
+    gender: formData.get('gender') as string
   };
 
   const validationFeildes = RegisterSchema.safeParse(formValues);
@@ -46,9 +46,9 @@ export default async function RegisterAction(state: any, formData: FormData) {
 
     const data = await res.json();
     cookiesStore.set('data', JSON.stringify(data.data));
-    console.log(data.data)
+    
     return {
-      user: data.data
+      user: data.data.user
     }
 }
 

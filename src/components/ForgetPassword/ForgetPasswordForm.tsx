@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { useUser } from "../../Context/User";
 import { useToastMessage } from "../../Context/ToastMessage";
 import { parentDiv } from "../ParentAndChildAnimation";
+import { IForgetPassword } from "@/types/ForgetPassword";
+import { initialState } from "@/types/InitalState";
 
 const childeDiv = {
     hidden: {
@@ -33,26 +35,27 @@ interface TypeEmail {
 }
 
 export default function ForgetPasswordForm({ email }: TypeEmail) {
-    const [state, action, pending] = useActionState(ForgetPasswordAction, undefined);
+    const [state, action, pending] = useActionState<IForgetPassword, FormData>(ForgetPasswordAction, initialState);
     const contextToastMessage = useToastMessage();
     const router = useRouter();
     const userContext = useUser();
 
     useEffect(() => {
         if (state?.user) {
-            console.log(state?.user.user)
+            console.log(state?.user);
             userContext?.setUser({
-                role: state?.user?.user?.role,
-                gender: state?.user?.user?.gender,
-                clinic_address: state?.user?.user?.clinic_address,
-                phone: state?.user?.user?.phone,
-                address: state?.user?.user?.address,
-                city: state?.user?.user?.city,
-                email: state?.user?.user?.email,
-                first_name: state?.user?.user?.first_name,
-                last_name: state?.user?.user?.last_name,
-                image_url: state?.user?.user?.image_url,
-                email_verified_at: state?.user?.user?.email_verified_at
+                id: state?.user?.id,
+                role: state?.user?.role,
+                gender: state?.user?.gender,
+                clinic_address: state?.user?.clinic_address,
+                phone: state?.user?.phone,
+                address: state?.user?.address,
+                city: state?.user?.city,
+                email: state?.user?.email,
+                first_name: state?.user?.first_name,
+                last_name: state?.user?.last_name,
+                image_url: state?.user?.image_url,
+                email_verified_at: state?.user?.email_verified_at
             })
             if (state?.user.email_verified_at) {
                 router.push('/');

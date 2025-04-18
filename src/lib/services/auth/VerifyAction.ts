@@ -11,7 +11,7 @@ export default async function VerifyAction(state: any, formData: FormData) {
     console.log(token)
 
     const formValues = {
-        code: formData.get('code')?.toString() || ''
+        code: formData.get('code') as string
     }
 
      const validationFeildes = VerfiySchema.safeParse(formValues);
@@ -35,7 +35,6 @@ export default async function VerifyAction(state: any, formData: FormData) {
   
       if (!res.ok) {
         const errorsData = await res.json();
-        console.log(errorsData)
         return {
           errors: errorsData.errors,
           data: formValues,
@@ -48,6 +47,6 @@ export default async function VerifyAction(state: any, formData: FormData) {
       cookiesStore.delete('verify');
       
       return {
-        user: data.data
+        user: data.data.user
       }
 }

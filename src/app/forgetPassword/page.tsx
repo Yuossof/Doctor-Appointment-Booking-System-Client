@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 }
 
 export default async function ForgetPassword({ searchParams }: SearchParams) {
-    const email = searchParams?.email || '';
+  const params = await searchParams;
+    const email = params?.email || '';
   return (
     <div className='flex flex-col items-center justify-center h-[calc(100vh-125px)] md:h-[calc(100vh-150px)]'>
         <ForgetPasswordForm  email={email}/>
