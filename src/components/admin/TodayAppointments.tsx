@@ -7,14 +7,15 @@ import useDashboardData from '@/lib/services/Admin/DashboardData';
 
 const TodayAppointments = () => {
     const data = useDashboardData();
-
     return (
         <div className='w-full mt-6'>
             <div className='w-full bg-slate-800 rounded-md shadow-lg overflow-hidden'>
                 <div className='bg-gray-700 w-full py-3 px-3'>
                     <h2 className='text-xl text-slate-400'>
                         Today Appointments 
-                        <span className='text-gray-400'> {data?.today_reservations?.length || 0}</span>
+                        <span className='text-gray-400'> {data?.today_reservations && data?.today_reservations?.length > 0 && data?.today_reservations?.map((rev) => (
+                            rev.reservations.length
+                        )) || 0}</span>
                     </h2>
                 </div>
                 <div className='w-full p-3 flex flex-col gap-6 pt-6 overflow-x-auto px-2'>
