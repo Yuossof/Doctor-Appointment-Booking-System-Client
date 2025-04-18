@@ -103,12 +103,10 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                     console.error("Stripe failed to load.");
                     return;
                 }
-                console.log(reservationId);
                 const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/create-checkout-session`, {
                     reservation_id: reservationId
                 });
-                await console.log(data);
-                // await stripe.redirectToCheckout({ sessionId: data.sessionId });
+                await stripe.redirectToCheckout({ sessionId: data.sessionId });
             } catch (error) {
                 if (axios.isAxiosError(error)) {
                     setpaymentPending(false);
