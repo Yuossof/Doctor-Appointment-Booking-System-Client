@@ -111,7 +111,7 @@ export default function AlertShowDialog({ doctorId, dayID, appointementId, setSh
                 if (axios.isAxiosError(error)) {
                     setpaymentPending(false);
                 } else {
-                    console.error("error", error);
+                    console.log("error", error);
                 }
             }
         } else {
