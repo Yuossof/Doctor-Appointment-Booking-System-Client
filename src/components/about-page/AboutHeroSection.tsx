@@ -63,7 +63,7 @@ const AboutHeroSection = () => {
                     </div>
                     <div className='overflow-hidden'>
                         <motion.div
-                            initial={{ x: 50,  opacity: 0 }}
+                            initial={{ x: 50, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.6, type: 'spring', stiffness: 20, mass: 3, damping: 7 }}
                             className='w-auto hidden lg:block'>
