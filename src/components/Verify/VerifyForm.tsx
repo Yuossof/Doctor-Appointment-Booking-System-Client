@@ -90,7 +90,7 @@ export default function VerifyForm({ user }: { user: UserData }) {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.1, type: 'spring', stiffness: 80 }}
                 className='text-body-text text-center text-[12px] sm:text-[14px] mt-2'>We Sent Code To This Email:
-                <span className='text-dark-blue'> {user.email}</span>
+                <span className='text-dark-blue'> {user?.email}</span>
             </motion.p>
             <form action={action} className="w-full sm:w-[550px] md:w-[700px] lg:w-[800px] mt-6 flex flex-col gap-3 px-2 sm:px-0 sm:gap-6">
                 {message &&

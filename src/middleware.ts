@@ -6,8 +6,10 @@ import { IUser } from "./types/UserInformation";
 export async function middleware(request: NextRequest) {
     const user: IUser = await GetUser();
     const cookie = await cookies();
+
     const { pathname, searchParams } = request.nextUrl;
     const emailParams = searchParams.get('email');
+    console.log("hello",emailParams)
     const emailCookie = cookie.get('email');
 
     const pathSegments = pathname.split('/');  
@@ -55,12 +57,13 @@ export async function middleware(request: NextRequest) {
     ];
 
     const allowed = [
+        '/forgetPassword',
         '/verify',
         '/login',
         '/register',
-        '/'
+        '/',
+        '/forgetPassword'
     ]
-
         
     if (user && user?.role === 'doctor' && pathname.startsWith('/doctor-dashboard/profile')) {
         return NextResponse.next();
@@ -92,7 +95,7 @@ export async function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    if (user && user.email_verified_at == null && pathname.startsWith('/verify')) {
+    if (user && user.email_verified_at == null &&  pathname.startsWith('/verify')) {
         return NextResponse.next();
     }
 

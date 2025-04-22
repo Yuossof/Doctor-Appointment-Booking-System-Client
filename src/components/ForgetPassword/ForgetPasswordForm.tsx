@@ -57,12 +57,9 @@ export default function ForgetPasswordForm({ email }: TypeEmail) {
                 image_url: state?.user?.image_url,
                 email_verified_at: state?.user?.email_verified_at
             })
-            if (state?.user.email_verified_at) {
+            if (state?.user?.email_verified_at) {
                 router.push('/');
                 contextToastMessage?.setToastMessage('Updated Successfully');
-            } else {
-                router.replace('/verify');
-                contextToastMessage?.setToastMessage('Please Verify Your Email');
             }
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -44,6 +44,6 @@ export default async function ForgetPasswordAction(state: IForgetPassword, formD
     console.log(data.data.user);
 
     return {
-        user: data.data.data.user
+        user: data.data.user
     }
 }
