@@ -58,9 +58,9 @@ export async function middleware(request: NextRequest) {
         '/verify',
         '/login',
         '/register',
-        '/'
+        '/',
+        '/forgetPassword'
     ]
-
         
     if (user && user?.role === 'doctor' && pathname.startsWith('/doctor-dashboard/profile')) {
         return NextResponse.next();
