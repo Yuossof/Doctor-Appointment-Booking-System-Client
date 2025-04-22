@@ -7,8 +7,8 @@ export async function middleware(request: NextRequest) {
     const user: IUser = await GetUser();
     const cookie = await cookies();
     const { pathname, searchParams } = request.nextUrl;
-    const emailParams = await searchParams.get('email');
-    console.log(emailParams)
+    const emailParams = searchParams.get('email');
+    console.log("hello",emailParams)
     const emailCookie = cookie.get('email');
 
     const pathSegments = pathname.split('/');  
