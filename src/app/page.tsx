@@ -11,6 +11,7 @@ import SepecialistsSection from "@/components/home-page/specialists-section/Sepe
 import WelcomePlaylist from "@/components/home-page/welcome-with-playlist/WelcomePlaylist";
 ;
 
+
 export default async function Home() {
   const cookieStore = await cookies();
   const message = cookieStore.get('message')?.value || undefined;

@@ -12,6 +12,8 @@ export type UserProps = {
     email: string
 }
 
+
+
 export const TableSlice = ({ user, i }: { user: UserProps, i: number }) => {
     const router = useRouter()
     const pathname = usePathname()
@@ -32,8 +34,6 @@ export const TableSlice = ({ user, i }: { user: UserProps, i: number }) => {
             <td className="px-4 py-3 border-b border-gray-700">{user.phone}</td>
             <td className="px-4 py-3 border-b border-gray-700">{user.email}</td>
             <td className="px-4 py-3 border-b border-gray-700">{user.address}</td>
-
-
         </tr>
     )
 }
