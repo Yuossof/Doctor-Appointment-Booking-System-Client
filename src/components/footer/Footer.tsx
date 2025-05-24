@@ -9,18 +9,15 @@ import { childeDiv, childNav, parentDiv } from '../ParentAndChildAnimation'
 const Footer = () => {
 
     return (
-        <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px] overflow-hidden">
+        <div className="translate-y-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px] overflow-hidden mb-11">
             <div className="my-32 w-full"></div>
             <AskQuestion />
             <div className="my-36 w-full"></div>
 
             <div className='w-full flex flex-col gap-4 pb-6 lg:px-0 px-3'>
                 <div className='flex items-center md:justify-between md:flex-row flex-col md:gap-0 gap-4'>
-                    <motion.h2
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 1, type: 'spring', stiffness: 100, damping: 4, mass: 0.5 }}
-                        className='font-semibold text-dark-blue text-xl'>LOGO</motion.h2>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
                     <motion.div
                         variants={parentDiv}
                         initial='hidden'

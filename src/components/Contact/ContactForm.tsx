@@ -113,7 +113,7 @@ export default function ContactForm() {
 
         <motion.button
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.5, type: 'spring', stiffness: 50 }}
           className="bg-mid-blue rounded-lg py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed" disabled={pending}>
           {pending ? <span className="flex items-center justify-center gap-2">Loading <span className="loader"></span></span> : 'Send Message'}

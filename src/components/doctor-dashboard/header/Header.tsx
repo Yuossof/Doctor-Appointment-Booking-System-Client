@@ -1,12 +1,13 @@
 import React from 'react'
 import { DropdownMenuCheckboxes } from './DropdownMenu'
-import Link from 'next/link'
 
 const Header = () => {
     return (
         <header className='flex justify-between items-center w-full'>
             <div className='flex items-center gap-4'>
-                <Link href={'/'} className='text-4xl text-blue-700 font-semibold'>LOGO</Link>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={"/images/logo.jpeg"}  alt='logo' className='rounded-full w-[60px] h-[60px]' />
+
             </div>
             <div className='flex items-center gap-4'>
                 <div>

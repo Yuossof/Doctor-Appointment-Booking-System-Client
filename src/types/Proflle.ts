@@ -6,10 +6,12 @@ export type UserProfileInputs = {
     city: string;
     address: string;
     phone: string ;
+    clinic_address: string;
+    desc: string;
+    ex_years: string;
 }
 
 export type DoctorProfileInputs = UserProfileInputs & {
-    ex_years: string;
     clinic_address: string;
     desc: string;
 }

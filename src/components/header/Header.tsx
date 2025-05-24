@@ -16,7 +16,7 @@ const divVariants = {
         y: 0,
         transition: {
             duration: 2,
-            type: 'spring', stiffness: 150, damping: 8, 
+            type: 'spring', stiffness: 150, damping: 8,
             staggerChildren: 0.3
         }
     }
@@ -55,6 +55,16 @@ const Header = () => {
         { title: "Contact", to: "/contact" },
     ]
 
+    const links_mobile = [
+        { title: "Register", to: "/register" },
+        { title: "Login", to: "/login" },
+        { title: "Home", to: "/" },
+        { title: "Services", to: "/services" },
+        { title: "Doctors", to: "/doctors" },
+        { title: "About", to: "/about-us" },
+        { title: "Contact", to: "/contact" },
+    ]
+
     if (isDashboard) return;
 
     return (
@@ -62,20 +72,18 @@ const Header = () => {
             {/* LG */}
             <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px] z-50">
                 <div className="bg-light-blue hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7">
-                    <motion.h1
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="font-semibold text-[35px] text-dark-blue">LOGO</motion.h1>
-                    <motion.ul 
-                    variants={divVariants} initial='hidden' animate='visible'
-                    className='flex items-center gap-[38px]'>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
+
+                    <motion.ul
+                        variants={divVariants} initial='hidden' animate='visible'
+                        className='flex items-center gap-[38px]'>
                         {links.map((lnk, i) => (
-                            <motion.li 
-                            variants={childVariants}
-                            
-                            whileHover={{ color: '#011632', transition: { duration: 0.7 } }}
-                            key={i} className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
+                            <motion.li
+                                variants={childVariants}
+
+                                whileHover={{ color: '#011632', transition: { duration: 0.7 } }}
+                                key={i} className={`${pathname === lnk.to ? "text-dark-blue font-semibold" : "text-gray-700"}`}>
                                 <Link href={lnk.to}>{lnk.title}</Link>
                             </motion.li>
                         ))}
@@ -104,7 +112,8 @@ const Header = () => {
                 {/* SM  */}
                 <div className='lg:hidden md:hidden px-5 bg-white'>
                     <div className='w-full flex items-center justify-between'>
-                        <h1 className="font-semibold text-[35px] text-dark-blue">LOGO</h1>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={"/images/logo.jpeg"} className='rounded-full w-[60px] h-[60px]' alt='logo' />
                         <div onClick={() => setShowHeader(true)} className='bg-mid-blue rounded-lg p-3 hover:bg-primary cursor-pointer'>
                             <Menu className='text-light-blue' />
                         </div>
@@ -119,7 +128,7 @@ const Header = () => {
                                     </div>
                                     <div>
                                         <ul className='flex flex-col justify-center gap-7'>
-                                            {links.map((lnk, i) => (
+                                            {links_mobile.map((lnk, i) => (
                                                 <li key={i} className={`${pathname === lnk.to ? "text-mid-blue font-semibold" : "text-gray-700"}`}>
                                                     <Link href={lnk.to}>{lnk.title}</Link>
                                                 </li>

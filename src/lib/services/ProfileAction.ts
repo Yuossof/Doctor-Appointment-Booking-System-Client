@@ -9,11 +9,10 @@ interface Returned {
     message: string,
     data: UserProfileInputs | null,
     errors: Record<string, string[]>
-    
 }
 
-export default async function ProfileAction(state: Returned, formData: FormData) 
-: Promise<Returned> {
+export default async function ProfileAction(state: Returned, formData: FormData)
+    : Promise<Returned> {
     const cookie = await cookies()
     const token = await GetToken();
 
@@ -24,19 +23,21 @@ export default async function ProfileAction(state: Returned, formData: FormData)
         phone: formData.get('phone') as string,
         city: formData.get('city') as string,
         address: formData.get('address') as string,
-        image: formData.get('image') as File ,
+        clinic_address: formData.get('clinic_address') as string, // Fixed: was getting 'address' instead
+        desc: formData.get('desc') as string,
+        image: formData.get('image') as File,
+        ex_years: formData.get('ex_years') as string,
     }
-
 
     const validationFieldies = ProfileSchema.safeParse(formValues);
 
-    if(!validationFieldies.success){
+    if (!validationFieldies.success) {
         return {
-            success : false,
+            success: false,
             message: '',
             data: formValues,
             errors: validationFieldies.error.flatten().fieldErrors
-        }   
+        }
     }
 
     const formDataToSend = new FormData();
@@ -47,9 +48,15 @@ export default async function ProfileAction(state: Returned, formData: FormData)
     formDataToSend.append("city", formValues.city);
     formDataToSend.append("address", formValues.address);
 
-    if (formValues.image &&  formValues.image.size > 0) {
+    // Add the missing fields
+    formDataToSend.append("clinic_address", formValues.clinic_address);
+    formDataToSend.append("desc", formValues.desc);
+    formDataToSend.append("ex_years", formValues.ex_years);
+
+    if (formValues.image && formValues.image.size > 0) {
         formDataToSend.append("image", formValues.image);
     }
+
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/profile`, {
         method: 'POST',
@@ -60,7 +67,7 @@ export default async function ProfileAction(state: Returned, formData: FormData)
         body: formDataToSend
     })
 
-    if(!res.ok){
+    if (!res.ok) {
         const errorData = await res.json();
         console.log(errorData)
         return {
