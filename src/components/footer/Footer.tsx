@@ -16,8 +16,7 @@ const Footer = () => {
 
             <div className='w-full flex flex-col gap-4 pb-6 lg:px-0 px-3'>
                 <div className='flex items-center md:justify-between md:flex-row flex-col md:gap-0 gap-4'>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
+                    <motion.img whileInView={{ x: 0, opacity: 1 }} initial={{ x: -50, opacity: 0 }} transition={{duration: 3, type: 'spring', stiffness: 50}} variants={parentDiv} src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
                     <motion.div
                         variants={parentDiv}
                         initial='hidden'

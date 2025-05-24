@@ -7,6 +7,7 @@ import { DropdownMenuCheckboxes } from './DropdownMenu'
 import { Button } from '../ui/button'
 import { useUser } from '../../Context/User'
 import { motion } from 'framer-motion'
+import { parentDiv } from '../ParentAndChildAnimation'
 
 const divVariants = {
     hidden: {
@@ -72,8 +73,7 @@ const Header = () => {
             {/* LG */}
             <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px] z-50">
                 <div className="bg-light-blue hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
+                    <motion.img whileInView={{ x: 0, opacity: 1 }} initial={{ x: -50, opacity: 0 }} transition={{duration: 3, type: 'spring', stiffness: 50}} variants={parentDiv} src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
 
                     <motion.ul
                         variants={divVariants} initial='hidden' animate='visible'
