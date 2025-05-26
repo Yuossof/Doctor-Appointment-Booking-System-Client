@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { DropdownMenuCheckboxes } from './DropdownMenu'
@@ -8,8 +8,13 @@ import { Button } from '../ui/button'
 import { useUser } from '../../Context/User'
 import { motion } from 'framer-motion'
 import { parentDiv } from '../ParentAndChildAnimation'
+import GetToken from '@/lib/services/auth/GetToken'
+import Cookie from "cookie-universal"
+import { useToastMessage } from '@/Context/ToastMessage'
+import { useRouter } from 'next/navigation'
 
 const divVariants = {
+
     hidden: {
         y: 50,
     },
@@ -38,15 +43,39 @@ const childVariants = {
 }
 
 const Header = () => {
+    const router = useRouter()
     const [showHeader, setShowHeader] = useState(false)
     const pathname = usePathname();
+    const cookieStore = Cookie();
+    const messageContext = useToastMessage();
 
     const isDashboard = (
         pathname.startsWith("/doctor-dashboard") ||
         pathname.startsWith("/admin")
     )
 
+    useEffect(()=> {
+    
+    },[])
+
     const userContext = useUser();
+
+    const handleLogout = async () => {
+        const token = await GetToken();
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/logout`, {
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        if (res.ok) {
+            cookieStore.removeAll();
+            messageContext?.setToastMessage('Logout Successfully');
+            userContext?.setUser(null);
+            router.push('/login');
+        }
+    }
 
     const links = [
         { title: "Home", to: "/" },
@@ -57,14 +86,13 @@ const Header = () => {
     ]
 
     const links_mobile = [
-        { title: "Register", to: "/register" },
-        { title: "Login", to: "/login" },
         { title: "Home", to: "/" },
         { title: "Services", to: "/services" },
         { title: "Doctors", to: "/doctors" },
         { title: "About", to: "/about-us" },
         { title: "Contact", to: "/contact" },
     ]
+
 
     if (isDashboard) return;
 
@@ -73,7 +101,7 @@ const Header = () => {
             {/* LG */}
             <div className="my-[35px] container px-[5px] md:px-[20px] lg:px-[80px] xl:px-[130px] z-50">
                 <div className="bg-light-blue hidden items-center sm:hidden lg:flex md:flex justify-between h-[80px] rounded-md px-7">
-                    <motion.img whileInView={{ x: 0, opacity: 1 }} initial={{ x: -50, opacity: 0 }} transition={{duration: 3, type: 'spring', stiffness: 50}} variants={parentDiv} src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
+                    <motion.img whileInView={{ x: 0, opacity: 1 }} initial={{ x: -50, opacity: 0 }} transition={{ duration: 3, type: 'spring', stiffness: 50 }} variants={parentDiv} src={"/images/logo.jpeg"} alt='logo' className='rounded-full w-[60px] h-[60px]' />
 
                     <motion.ul
                         variants={divVariants} initial='hidden' animate='visible'
@@ -129,10 +157,37 @@ const Header = () => {
                                     <div>
                                         <ul className='flex flex-col justify-center gap-7'>
                                             {links_mobile.map((lnk, i) => (
-                                                <li key={i} className={`${pathname === lnk.to ? "text-mid-blue font-semibold" : "text-gray-700"}`}>
-                                                    <Link href={lnk.to}>{lnk.title}</Link>
+
+                                                <li
+                                                    onClick={() => setShowHeader(false)}
+                                                    key={i} className={`${pathname === lnk.to ? "text-mid-blue font-semibold" : "text-gray-700"} w-full`}>
+                                                    <Link className='w-full' href={lnk.to}>{lnk.title}</Link>
                                                 </li>
                                             ))}
+                                            {!userContext?.user?.email ? (
+                                                <>
+
+                                                    <li
+                                                        onClick={() => setShowHeader(false)}
+                                                        className={`${pathname === "register" ? "text-mid-blue font-semibold" : "text-gray-700"} w-full`}>
+                                                        <Link href={"/register"} className='w-full'>Register</Link>
+                                                    </li>
+                                                    <li
+                                                        onClick={() => setShowHeader(false)}
+                                                        className={`${pathname === "login" ? "text-mid-blue font-semibold" : "text-gray-700"} w-full`}>
+                                                        <Link href={"/login"} className='w-full'>Login</Link>
+                                                    </li>
+                                                </>
+                                            ) : (
+                                                <button
+                                                    onClick={() => {
+                                                        setShowHeader(false)
+                                                        handleLogout()
+                                                    }}
+                                                    className='text-white bg-red-500 py-2 rounded-md hover:bg-red-400 font-semibold'>
+                                                    Logout
+                                                </button>
+                                            )}
                                         </ul>
                                     </div>
                                 </div>

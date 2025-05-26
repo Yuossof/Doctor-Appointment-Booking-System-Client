@@ -14,8 +14,10 @@ import { useToastMessage } from "@/Context/ToastMessage";
 import { useUser } from "@/Context/User";
 import GetToken from "@/lib/services/auth/GetToken";
 import { AvatarCmp } from "@/components/Avatar";
+import { useRegetImage } from "@/store/useRegetImage";
 
 export function DropdownMenuCheckboxes() {
+    const {reget} = useRegetImage()
     const cookieStore = Cookie();
     const messageContext = useToastMessage();
     const userContext = useUser();
@@ -61,7 +63,7 @@ export function DropdownMenuCheckboxes() {
                             eo.stopPropagation()
                             setShowBox(!showBox)
                         }} className="outline-none">
-                            <AvatarCmp imgSrc={userContext?.user?.image_url} w={8} h={8} />
+                            <AvatarCmp imgSrc={reget || userContext?.user?.image_url} w={8} h={8} />
                         </button>
                         {showBox && (
                             <motion.div

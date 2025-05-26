@@ -80,11 +80,11 @@ export default async function ProfileAction(state: Returned, formData: FormData)
 
     const data = await res.json();
     cookie.set('data', JSON.stringify(data.data))
-
+    // console.log(data.da)
     return {
         message: data.message,
         success: true,
-        data: data,
+        data: data.data.user,
         errors: {}
     }
 }

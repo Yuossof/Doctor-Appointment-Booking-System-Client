@@ -28,7 +28,6 @@ export default function UserProvider({ children }: { children: React.ReactNode }
     const cookie = Cookie();
     const [user, setUser] = useState<UData | null>(null);
     const userCookie = cookie.get('data')?.user || null;
-    
     useEffect(() => {
         if(userCookie){
             setUser({

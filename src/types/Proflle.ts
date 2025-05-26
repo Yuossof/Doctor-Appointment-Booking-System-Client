@@ -8,7 +8,8 @@ export type UserProfileInputs = {
     phone: string ;
     clinic_address: string;
     desc: string;
-    ex_years: string;
+    ex_years?: string;
+    image_url?: string
 }
 
 export type DoctorProfileInputs = UserProfileInputs & {

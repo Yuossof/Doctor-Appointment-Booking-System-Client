@@ -1,5 +1,6 @@
 "use client"
 import { useActionState, useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -27,8 +28,24 @@ interface initialState {
     data: UserProfileInputs | null
     errors: Record<string, string[]>
 }
+import { useRegetImage } from "@/store/useRegetImage"
 
 const ProfileInputs = ({ user }: { user: IUser }) => {
+    const pathname = usePathname()
+    const isProfilePage = pathname === "/profile"
+    
+    // Define conditional styles
+    const inputStyles = isProfilePage 
+        ? "border-gray-200 overflow-hidden bg-gray-100" 
+        : "bg-slate-700 text-gray-200"
+
+    const labelStyles = isProfilePage 
+    ? "text-gray-600" 
+    : "text-gray-300"
+    
+    const focusStyles = "focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0"
+
+    const { setReget } = useRegetImage()
     const imageProfileContext = useImageProfileChanged()
     const [message, setMessage] = useState("")
     const [clinicAddressError, setClinicAddressError] = useState("")
@@ -42,11 +59,19 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
     })
 
     useEffect(() => {
+        if (state.success) {
+            console.log(state.data?.image_url)
+            setReget(state?.data?.image_url || "")
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.success])
+
+    useEffect(() => {
 
         const msg = cookie.get("error")
-        if(msg) {
+        if (msg) {
             setClinicAddressError(msg)
-            setTimeout(()=> {
+            setTimeout(() => {
                 cookie.remove("error")
             }, 4000)
         }
@@ -71,6 +96,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
     }
 
     const handleChange = () => {
+
         if (ref?.current && ref.current.files?.length === 1) {
             const file = ref.current.files[0]
 
@@ -176,11 +202,11 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                             </svg>
                         </button>
                     </div>
-                    <div className="flex flex-col mt-14">
-                        <h1 className="text-2xl sm:text-3xl font-bold text-gray-300">
+                    <div className="flex flex-col mt-14 items-center">
+                        <h1 className={`text-2xl sm:text-3xl font-bold ${labelStyles}`}>
                             {user.first_name} {""} {user.last_name}
                         </h1>
-                        <p className="text-gray-400 flex items-center mt-1">
+                        <p className={`text-gray-400 flex items-center mt-1 ${labelStyles}`}>
                             <MapPin className="h-4 w-4 mr-1" /> {user.address}
                         </p>
                     </div>
@@ -195,7 +221,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                     >
                         {/* First Name */}
                         <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                            <Label htmlFor="firstName" className="text-sm font-medium text-gray-300">
+                            <Label htmlFor="firstName" className={`text-sm font-medium ${labelStyles}`}>
                                 First Name
                             </Label>
                             <div className="relative">
@@ -207,7 +233,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                     defaultValue={state?.data?.first_name || user?.first_name}
                                     id="firstName"
                                     placeholder="John"
-                                    className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200"
+                                    className={`pl-10 ${focusStyles} ${inputStyles}`}
                                 />
                             </div>
                             {state?.errors?.first_name && <span className="text-red-500 text-sm">{state.errors.first_name[0]}</span>}
@@ -215,7 +241,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
 
                         {/* Last Name */}
                         <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                            <Label htmlFor="lastName" className="text-sm font-medium text-gray-300">
+                            <Label htmlFor="lastName" className={`text-sm font-medium ${labelStyles}`}>
                                 Last Name
                             </Label>
                             <div className="relative">
@@ -227,7 +253,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                     defaultValue={state?.data?.last_name || user?.last_name}
                                     id="lastName"
                                     placeholder="Doe"
-                                    className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200"
+                                    className={`pl-10 ${focusStyles} ${inputStyles}`}
                                 />
                             </div>
                             {state?.errors?.last_name && <span className="text-red-500 text-sm">{state.errors.last_name[0]}</span>}
@@ -235,7 +261,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
 
                         {/* Phone */}
                         <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                            <Label htmlFor="phone" className="text-sm font-medium text-gray-300">
+                            <Label htmlFor="phone" className={`text-sm font-medium ${labelStyles}`}>
                                 Phone Number
                             </Label>
                             <div className="relative">
@@ -248,7 +274,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                     id="phone"
                                     type="tel"
                                     placeholder="+1 (555) 123-4567"
-                                    className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200"
+                                    className={`pl-10 ${focusStyles} ${inputStyles}`}
                                 />
                             </div>
                             {state?.errors?.phone && <span className="text-red-500 text-sm">{state.errors.phone[0]}</span>}
@@ -256,11 +282,11 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
 
                         {/* Gender */}
                         <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                            <Label htmlFor="gender" className="text-sm font-medium text-gray-300">
+                            <Label htmlFor="gender" className={`text-sm font-medium ${labelStyles}`}>
                                 Gender
                             </Label>
                             <Select defaultValue={state?.data?.gender || user?.gender} name="gender">
-                                <SelectTrigger className="focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200">
+                                <SelectTrigger className={`${focusStyles} ${inputStyles}`}>
                                     <SelectValue placeholder="Select Gender" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -276,7 +302,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
 
                         {/* City */}
                         <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                            <Label htmlFor="city" className="text-sm font-medium text-gray-300">
+                            <Label htmlFor="city" className={`text-sm font-medium ${labelStyles}`}>
                                 City
                             </Label>
                             <div className="relative">
@@ -288,7 +314,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                     defaultValue={state?.data?.city || user?.city}
                                     id="city"
                                     placeholder="New York"
-                                    className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200"
+                                    className={`pl-10 ${focusStyles} ${inputStyles}`}
                                 />
                             </div>
                             {state?.errors?.city && <span className="text-red-500 text-sm">{state.errors.city[0]}</span>}
@@ -296,7 +322,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
 
                         {/* Home Address */}
                         <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                            <Label htmlFor="address" className="text-sm font-medium text-gray-300">
+                            <Label htmlFor="address" className={`text-sm font-medium ${labelStyles}`}>
                                 Home Address
                             </Label>
                             <div className="relative">
@@ -308,7 +334,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                     defaultValue={state?.data?.address || user?.address}
                                     id="address"
                                     placeholder="123 Main Street"
-                                    className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200"
+                                    className={`pl-10 ${focusStyles} ${inputStyles}`}
                                 />
                             </div>
                             {state?.errors?.address && <span className="text-red-500 text-sm">{state.errors.address[0]}</span>}
@@ -319,7 +345,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                     {user.role === "doctor" && (
                         <>
                             <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2 md:col-span-2">
-                                <Label htmlFor="clinicAddress" className="text-sm font-medium text-gray-300">
+                                <Label htmlFor="clinicAddress" className={`text-sm font-medium ${labelStyles}`}>
                                     Clinic Address <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
@@ -331,8 +357,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                         defaultValue={state?.data?.clinic_address || user?.clinic_address}
                                         id="clinicAddress"
                                         placeholder="456 Medical Center Dr"
-                                        className={`pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200 ${clinicAddressError ? 'border-red-500' : ''
-                                            }`}
+                                        className={`pl-10 ${focusStyles} ${inputStyles} ${clinicAddressError ? 'border-red-500' : ''}`}
                                         onChange={() => setClinicAddressError("")} // Clear error on change
                                     />
                                 </div>
@@ -344,7 +369,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                             </motion.div>
 
                             <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2 md:col-span-2">
-                                <Label htmlFor="ex_years" className="text-sm font-medium text-gray-300">
+                                <Label htmlFor="ex_years" className={`text-sm font-medium ${labelStyles}`}>
                                     Experience Years
                                 </Label>
                                 <div className="relative">
@@ -357,7 +382,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                         defaultValue={state?.data?.ex_years || user?.ex_years}
                                         id="ex_years"
                                         placeholder="Experience in years"
-                                        className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-0 bg-slate-700 text-gray-200"
+                                        className={`pl-10 ${focusStyles} ${inputStyles}`}
                                     />
                                 </div>
                                 {state?.errors?.ex_years && (
@@ -367,7 +392,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
 
                             {/* Description field - full width */}
                             <motion.div variants={childeDiv} initial="hidden" whileInView="visible" className="space-y-2">
-                                <Label htmlFor="desc" className="text-sm font-medium text-gray-300">
+                                <Label htmlFor="desc" className={`text-sm font-medium ${labelStyles}`}>
                                     Description
                                 </Label>
                                 <div className="relative">
@@ -379,7 +404,7 @@ const ProfileInputs = ({ user }: { user: IUser }) => {
                                         defaultValue={state?.data?.desc || user?.desc}
                                         id="desc"
                                         placeholder="Tell us about yourself..."
-                                        className="pl-10 focus-visible:ring-2 focus-visible:ring-blue-500 bg-slate-700 text-gray-200 focus-visible:ring-offset-0 min-h-[100px] resize-none"
+                                        className={`pl-10 ${focusStyles} ${inputStyles} min-h-[100px] resize-none`}
                                         rows={4}
                                     />
                                 </div>
