@@ -47,7 +47,7 @@ export default function GoogleCallback() {
             variants={parentDiv}
             initial='hidden'
             whileInView='visible'
-            className='flex flex-col h-[calc(100vh-125px)] md:h-[calc(100vh-150px)] items-center justify-center gap-4 container'>
+            className='flex flex-col  h-[calc(100vh-125px)] md:h-[calc(100vh-150px)] items-center justify-center gap-4 container'>
             <motion.div
                 variants={childeDiv}
             >
@@ -55,7 +55,7 @@ export default function GoogleCallback() {
             </motion.div>
             <motion.h1
                 variants={childeDiv}
-                className='text-[60px] font-semibold text-dark-blue'>Login Successfully</motion.h1>
+                className='text-[60px] text-center font-semibold text-dark-blue'>Login Successfully</motion.h1>
         </motion.div>
     );
 } 
